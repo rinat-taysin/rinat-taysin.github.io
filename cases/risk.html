@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>РИСК: претензии в&nbsp;грузоперевозках&nbsp;— Ринат Тайсин</title>
+<meta name="description" content="B2B-платформа претензий для перевозчиков: путь от претензии до судебного приказа с готовыми документами. ИИ подсказывает, а не решает: маска персональных данных, сторож чисел, работа без ИИ при сбое.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&amp;family=Unbounded:wght@500;600&display=swap">
+<link rel="stylesheet" href="../assets/style.css">
+<script src="../assets/theme.js"></script>
+</head>
+<body>
+<header class="wrap top">
+  <a class="home" href="../index.html">Ринат Тайсин</a>
+  <nav>
+    <a href="../index.html#cases">Кейсы</a>
+    <a href="../cv.html">Резюме</a>
+    <a href="../en/cases/risk.html" lang="en" hreflang="en">EN</a>
+    <button class="theme-toggle" type="button" aria-label="Сменить тему">Тема</button>
+  </nav>
+</header>
+
+<main class="wrap">
+  <div class="case-head">
+    <a class="back" href="../index.html#cases">← Все кейсы</a>
+    <h1>РИСК: перевозчик взыскивает долг за рейс без юриста, а ИИ только подсказывает</h1>
+    <p class="lead"><a href="https://vrisk.ru">РИСК</a>&nbsp;— закрытая B2B-платформа для грузоперевозок: претензия, досудебное урегулирование, судебный приказ или иск с готовыми документами и посчитанными сроками. Я встроил LLM в юридический процесс так, чтобы модель помогала, но не могла испортить документ: суммы, даты и&nbsp;юридически значимый текст остаются за&nbsp;кодом и&nbsp;шаблоном.</p>
+    <dl class="meta">
+      <div><dt>Роль</dt><dd>Отвечаю за разработку платформы</dd></div>
+      <div><dt>Когда</dt><dd>С августа 2026, в бою с 21.09.2026</dd></div>
+      <div><dt>Масштаб</dt><dd>900+ коммитов, 180+ архитектурных решений</dd></div>
+    </dl>
+  </div>
+
+  <div class="case-body">
+    <section>
+      <h2>Задача бизнеса</h2>
+      <div class="measure">
+        <p>Перевозчик или экспедитор выполнил рейс, а заказчик не платит. У небольшой транспортной компании нет штатного юриста: непонятно, какую претензию писать, сколько ждать, когда идти в суд и как посчитать неустойку. Деньги теряются на сроках и ошибках в бумагах.</p>
+        <p>Платформа ведёт перевозчика от&nbsp;претензии через досудебное урегулирование к&nbsp;судебному приказу или иску и&nbsp;сама собирает документы. Отдельная задача&nbsp;— ИИ. В юридическом документе ошибка в сумме или дате стоит денег, так что модели нельзя ни выдумывать цифры, ни видеть лишние персональные данные, ни ломать продукт своим сбоем.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Что построено</h2>
+      <div class="measure">
+        <p>Сначала&nbsp;— платформа без ИИ: всё, что влияет на деньги и сроки, считает код. Потом&nbsp;— ИИ поверх неё, с тремя предохранителями: маска данных, сторож чисел и флаги.</p>
+        <ul>
+          <li><b>Кабинет перевозчика.</b> Мастер претензии: несколько требований в одном черновике, вложения, статусы, публикация в реестр.</li>
+          <li><b>Реестр контрагентов.</b> Карточка по ИНН со статистикой претензий и наблюдением.</li>
+          <li><b>Документы.</b> Досудебная претензия и заявление о судебном приказе: PDF и почтовый пакет по шаблону. Калькулятор неустойки&nbsp;— только код.</li>
+          <li><b>Модерация.</b> Очередь с SLA. ИИ готовит модератору чек-лист с&nbsp;доказательствами и&nbsp;рекомендацию, порог и&nbsp;веса задаёт код, а&nbsp;решает модератор.</li>
+          <li><b>ИИ-адаптер.</b> Один вход к модели с драйверами cli, api, mock и off. До вызова маскирует персональные данные: ФИО, телефоны, email и паспорт превращаются в метки вида [ФИО-1], после ответа подставляются обратно. Журнал вызовов пишется без текстов.</li>
+          <li><b>Сторож чисел.</b> Ответ модели принимается, только если каждая сумма, дата, номер и статья в нём есть во входных данных. Иначе в документ идёт шаблон.</li>
+          <li><b>Функции за флагами.</b> Черновик «сути претензии» из полей мастера и обратный разбор текста в поля, черновики обоснований, обстоятельства в тексте претензии и заявления. Каждая включается флагом по мере проверки юристом. Если модель недоступна, продукт работает без ИИ.</li>
+          <li><b>База знаний и помощник.</b> Справочные карточки «Спорные ситуации» с семантическим поиском на pgvector. Чат-помощник отвечает только по карточкам и данным дела.</li>
+          <li><b>Остальное.</b> Автосверка оплат с банком, SMS-коды, чат поддержки, тарифы, админка.</li>
+        </ul>
+      </div>
+      <figure class="figure-wide">
+        <svg class="diagram" viewBox="0 0 960 390" role="img" aria-labelledby="d-title">
+          <title id="d-title">Схема: перевозчик работает в кабинете, кабинет обращается к API, API хранит данные в PostgreSQL с pgvector. API отдаёт документы генератору по шаблону и вызывает ИИ-адаптер: маска персональных данных, модель Sonnet или Haiku, сторож чисел. Принятый ответ становится черновиком или подсказкой модератору-человеку. Помощник отвечает по базе знаний через тот же адаптер.</title>
+          <defs>
+            <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0,0 L10,5 L0,10 z"/>
+            </marker>
+          </defs>
+
+          <g class="node human"><rect x="20" y="30" width="200" height="56" rx="8"/><text x="36" y="54">Перевозчик</text><text class="small" x="36" y="74">или экспедитор</text></g>
+          <g class="node"><rect x="260" y="30" width="200" height="56" rx="8"/><text x="276" y="54">Кабинет</text><text class="small" x="276" y="74">мастер претензии</text></g>
+          <g class="node code"><rect x="500" y="30" width="200" height="56" rx="8"/><text x="516" y="54">API</text><text class="small" x="516" y="74">Hono, флаги ИИ</text></g>
+          <g class="node"><rect x="740" y="30" width="200" height="56" rx="8"/><text x="756" y="54">PostgreSQL + pgvector</text><text class="small" x="756" y="74">дела, реестр, векторы</text></g>
+
+          <text class="small" x="600" y="156">ИИ-адаптер за флагом: cli | api | mock | off</text>
+          <g class="node code"><rect x="20" y="170" width="200" height="56" rx="8"/><text x="36" y="194">Генератор документов</text><text class="small" x="36" y="214">шаблон, PDF, почта</text></g>
+          <g class="node code"><rect x="260" y="170" width="200" height="56" rx="8"/><text x="276" y="194">Маска ПДн</text><text class="small" x="276" y="214">ФИО, телефон → [ФИО-1]</text></g>
+          <g class="node agent"><rect x="500" y="170" width="200" height="56" rx="8"/><text x="516" y="194">Модель</text><text class="small" x="516" y="214">Claude Sonnet, Haiku</text></g>
+          <g class="node code"><rect x="740" y="170" width="200" height="56" rx="8"/><text x="756" y="194">Сторож чисел</text><text class="small" x="756" y="214">чужое число&nbsp;— шаблон</text></g>
+
+          <g class="node"><rect x="20" y="310" width="200" height="56" rx="8"/><text x="36" y="334">База знаний</text><text class="small" x="36" y="354">«Спорные ситуации»</text></g>
+          <g class="node agent"><rect x="260" y="310" width="200" height="56" rx="8"/><text x="276" y="334">Помощник</text><text class="small" x="276" y="354">только по карточкам</text></g>
+          <g class="node human"><rect x="500" y="310" width="200" height="56" rx="8"/><text x="516" y="334">Модератор</text><text class="small" x="516" y="354">решает по чек-листу</text></g>
+          <g class="node"><rect x="740" y="310" width="200" height="56" rx="8"/><text x="756" y="334">Черновик</text><text class="small" x="756" y="354">текст или чек-лист</text></g>
+
+          <path class="edge hot" d="M220,58 H256" marker-end="url(#arrow)"/>
+          <path class="edge hot" d="M460,58 H496" marker-end="url(#arrow)"/>
+          <path class="edge" d="M700,58 H736" marker-end="url(#arrow)"/>
+          <path class="edge" d="M580,86 V128 H120 V166" marker-end="url(#arrow)"/>
+          <path class="edge" d="M360,128 V166" marker-end="url(#arrow)"/>
+          <path class="edge hot" d="M460,198 H496" marker-end="url(#arrow)"/>
+          <path class="edge hot" d="M700,198 H736" marker-end="url(#arrow)"/>
+          <path class="edge hot" d="M840,226 V306" marker-end="url(#arrow)"/>
+          <path class="edge ask" d="M740,338 H704" marker-end="url(#arrow)"/>
+          <path class="edge" d="M220,338 H256" marker-end="url(#arrow)"/>
+          <path class="edge" d="M360,310 V230" marker-end="url(#arrow)"/>
+        </svg>
+        <ul class="legend">
+          <li class="agent">агент на модели</li>
+          <li class="code">код без модели</li>
+          <li class="human">решение человека</li>
+          <li>интерфейс и данные</li>
+        </ul>
+        <figcaption>Модель видит только замаскированный текст, а её ответ проходит сторожа чисел. Черновик возвращается в форму, где его правит перевозчик; подсказка уходит модератору (пунктир). Документы для суда собирает генератор по шаблону.</figcaption>
+      </figure>
+    </section>
+
+    <section>
+      <h2>Результат</h2>
+      <ul class="results">
+        <li><strong>21.09.2026</strong><span>платформа в бою, идёт пилот</span></li>
+        <li><strong>15&nbsp;релизов</strong><span>за&nbsp;18&nbsp;дней</span></li>
+        <li><strong>900+ коммитов</strong><span>с 02.08.2026</span></li>
+        <li><strong>180+ ADR</strong><span>архитектурных решений записано</span></li>
+        <li><strong>≈&nbsp;45&nbsp;с</strong><span>расчётное время ИИ-черновика, малые задачи&nbsp;— ≈&nbsp;3&nbsp;с</span></li>
+      </ul>
+      <div class="measure"><p>Данные на 09.10.2026. Пилот только начался, поэтому чисел о пользователях и деньгах здесь нет. Функции ИИ включаются флагами по мере проверки юристом.</p></div>
+    </section>
+
+    <section>
+      <h2>Как это выглядит</h2>
+      <div class="shots">
+        <figure class="phone"><img src="../img/risk-landing.webp" alt="Боевой лендинг РИСК на телефоне: «Заказчик не платит за рейс? Пройдите путь до денег»." loading="lazy" width="390" height="658"><figcaption>Лендинг: путь от претензии до судебного приказа без юриста в штате.</figcaption></figure>
+        <figure class="phone"><img src="../img/risk-ai-hint.webp" alt="Мастер претензии: поле «Суть претензии» и плашка «подсказка ИИ» о расхождении суммы." loading="lazy" width="375" height="1026"><figcaption>Разбор текста в поля. Сумма в тексте расходится с полем, поэтому поле не меняется&nbsp;— только предупреждение. Данные вымышленные.</figcaption></figure>
+        <figure class="phone"><img src="../img/risk-kb-card.webp" alt="Карточка базы знаний: пошаговая инструкция «Что делать» с ссылками на связанные карточки." loading="lazy" width="375" height="1002"><figcaption>Карточка базы знаний «Что делать» со ссылками на связанные карточки. По ним отвечает помощник.</figcaption></figure>
+      </div>
+      <div class="shots">
+        <figure><img src="../img/risk-desktop.webp" alt="Администрирование базы знаний в десктопном кабинете: таблица карточек со статусами проверки." loading="lazy" width="1174" height="946"><figcaption>Админка базы знаний: у каждой карточки статус проверки.</figcaption></figure>
+      </div>
+    </section>
+
+    <section>
+      <h2>Стек</h2>
+      <dl class="stack">
+        <dt>ИИ</dt><dd>Claude Sonnet и Haiku через свой адаптер: маска персональных данных, сторож чисел, флаги; pgvector для поиска</dd>
+        <dt>Бэкенд</dt><dd>Node 22, TypeScript, Hono, Drizzle ORM; PostgreSQL, Redis, S3</dd>
+        <dt>Фронтенд</dt><dd>React, Vite, Ant Design</dd>
+        <dt>Инфраструктура</dt><dd>Docker Compose; GitHub Actions: стенд по main, бой по тегу; GlitchTip</dd>
+      </dl>
+    </section>
+
+    <nav class="next" aria-label="Другие кейсы">
+      <a href="prezentashki.html">← Презенташки: AI-генератор презентаций</a>
+      <a href="tools.html">Инструменты для агентов →</a>
+    </nav>
+  </div>
+</main>
+
+<footer class="wrap">
+  <p>Ринат Тайсин, инженер AI-автоматизации. <a href="mailto:evilandfox@gmail.com">evilandfox@gmail.com</a>, <a href="https://www.linkedin.com/in/rinat-taysin-2b31ab225">LinkedIn</a>, <a href="https://github.com/evilandfox">GitHub</a></p>
+</footer>
+</body>
+</html>

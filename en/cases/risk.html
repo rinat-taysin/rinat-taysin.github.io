@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RISK: payment claims for freight carriers — Rinat Taysin</title>
+<meta name="description" content="A B2B platform that takes freight carriers from a payment claim to a court order with ready-made documents. The LLM suggests, it never decides: PII masking, a number guard, and a product that keeps working without AI.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&amp;family=Unbounded:wght@500;600&display=swap">
+<link rel="stylesheet" href="../../assets/style.css">
+<script src="../../assets/theme.js"></script>
+</head>
+<body>
+<header class="wrap top">
+  <a class="home" href="../index.html">Rinat Taysin</a>
+  <nav>
+    <a href="../index.html#cases">Case studies</a>
+    <a href="../cv.html">CV</a>
+    <a href="../../cases/risk.html" lang="ru" hreflang="ru">RU</a>
+    <button class="theme-toggle" type="button" aria-label="Switch theme">Theme</button>
+  </nav>
+</header>
+
+<main class="wrap">
+  <div class="case-head">
+    <a class="back" href="../index.html#cases">← All case studies</a>
+    <h1>RISK: carriers chase unpaid freight bills without a lawyer on staff, and AI only advises</h1>
+    <p class="lead"><a href="https://vrisk.ru">RISK</a> is a closed B2B platform for the freight industry. It walks a carrier from a payment claim to a pre-trial demand and then to a court order or lawsuit, with documents and deadlines ready. My job here was to put an LLM inside a legal workflow without letting it break a document: amounts, dates, and legally binding wording stay with code and templates.</p>
+    <dl class="meta">
+      <div><dt>Role</dt><dd>In charge of platform development</dd></div>
+      <div><dt>When</dt><dd>Since August 2026, live since Sep 21, 2026</dd></div>
+      <div><dt>Scale</dt><dd>900+ commits, 180+ architecture decisions</dd></div>
+    </dl>
+  </div>
+
+  <div class="case-body">
+    <section>
+      <h2>The business problem</h2>
+      <div class="measure">
+        <p>A carrier or freight forwarder finishes a trip, and the client doesn’t pay. Small trucking companies have no lawyer on staff. They don’t know which claim to send, how long to wait, when to go to court, or how to calculate the penalty. Money gets lost to missed deadlines and paperwork mistakes.</p>
+        <p>The platform walks them through it step by step and assembles the documents. AI was a separate problem. In a legal document, a wrong amount or date costs real money. So the model must never invent numbers, never see personal data it doesn’t need, and never take the product down when it fails.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>What I built</h2>
+      <div class="measure">
+        <p>First came a platform that works with no AI at all: anything that affects money or deadlines is computed in code. Then AI went on top, behind data masking, a number guard and feature flags.</p>
+        <ul>
+          <li><b>Carrier portal.</b> A claim wizard: several demands in one draft, attachments, statuses, publishing to the registry.</li>
+          <li><b>Counterparty registry.</b> A profile per company tax ID with claim statistics and a watch option.</li>
+          <li><b>Documents.</b> The pre-trial demand and the court order application, rendered from templates to PDF with a mailing package. The penalty calculator is plain code.</li>
+          <li><b>Moderation.</b> A review queue with an SLA. The AI gives the human moderator a checklist of evidence and a recommendation. Code sets the threshold and weights; the moderator decides.</li>
+          <li><b>AI adapter.</b> One entry point to the model, with cli, api, mock, and off drivers. Before the call it masks personal data: names, phone numbers, emails, and passport details become tokens like [NAME-1], and the real values go back in after the response. The call log stores no text.</li>
+          <li><b>Number guard.</b> A model response is accepted only if every amount, date, reference number, and statute in it appears in the input. Otherwise the document falls back to the template.</li>
+          <li><b>Features behind flags.</b> A draft of the claim summary from the wizard fields, and the reverse: parsing free text back into fields. Drafts of legal reasoning, and the circumstances section of the claim and the application. Each one is turned on by a flag as a lawyer signs off on it. If the model is down, the product works without AI.</li>
+          <li><b>Knowledge base and assistant.</b> “Disputed situations” reference cards with semantic search on pgvector. The chat assistant answers only from those cards and the case data.</li>
+          <li><b>Everything else.</b> Automatic payment matching with the bank, SMS codes, support chat, pricing plans, an admin panel.</li>
+        </ul>
+      </div>
+      <figure class="figure-wide">
+        <svg class="diagram" viewBox="0 0 960 390" role="img" aria-labelledby="d-title">
+          <title id="d-title">Diagram: the carrier works in the portal, the portal calls the API, the API stores data in PostgreSQL with pgvector. The API sends documents to a template-based generator and calls the AI adapter: PII masking, then the Sonnet or Haiku model, then the number guard. An accepted response becomes a draft or a hint for the human moderator. The assistant answers from the knowledge base through the same adapter.</title>
+          <defs>
+            <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0,0 L10,5 L0,10 z"/>
+            </marker>
+          </defs>
+
+          <g class="node human"><rect x="20" y="30" width="200" height="56" rx="8"/><text x="36" y="54">Carrier</text><text class="small" x="36" y="74">or freight forwarder</text></g>
+          <g class="node"><rect x="260" y="30" width="200" height="56" rx="8"/><text x="276" y="54">Portal</text><text class="small" x="276" y="74">claim wizard</text></g>
+          <g class="node code"><rect x="500" y="30" width="200" height="56" rx="8"/><text x="516" y="54">API</text><text class="small" x="516" y="74">Hono, AI flags</text></g>
+          <g class="node"><rect x="740" y="30" width="200" height="56" rx="8"/><text x="756" y="54">PostgreSQL + pgvector</text><text class="small" x="756" y="74">cases, registry, vectors</text></g>
+
+          <text class="small" x="600" y="156">AI adapter behind a flag: cli | api | mock | off</text>
+          <g class="node code"><rect x="20" y="170" width="200" height="56" rx="8"/><text x="36" y="194">Document generator</text><text class="small" x="36" y="214">template, PDF, mail</text></g>
+          <g class="node code"><rect x="260" y="170" width="200" height="56" rx="8"/><text x="276" y="194">PII masking</text><text class="small" x="276" y="214">name, phone → [NAME-1]</text></g>
+          <g class="node agent"><rect x="500" y="170" width="200" height="56" rx="8"/><text x="516" y="194">Model</text><text class="small" x="516" y="214">Claude Sonnet, Haiku</text></g>
+          <g class="node code"><rect x="740" y="170" width="200" height="56" rx="8"/><text x="756" y="194">Number guard</text><text class="small" x="756" y="214">unknown number → template</text></g>
+
+          <g class="node"><rect x="20" y="310" width="200" height="56" rx="8"/><text x="36" y="334">Knowledge base</text><text class="small" x="36" y="354">“Disputed situations”</text></g>
+          <g class="node agent"><rect x="260" y="310" width="200" height="56" rx="8"/><text x="276" y="334">Assistant</text><text class="small" x="276" y="354">answers from cards only</text></g>
+          <g class="node human"><rect x="500" y="310" width="200" height="56" rx="8"/><text x="516" y="334">Moderator</text><text class="small" x="516" y="354">decides on a checklist</text></g>
+          <g class="node"><rect x="740" y="310" width="200" height="56" rx="8"/><text x="756" y="334">Draft</text><text class="small" x="756" y="354">text or checklist</text></g>
+
+          <path class="edge hot" d="M220,58 H256" marker-end="url(#arrow)"/>
+          <path class="edge hot" d="M460,58 H496" marker-end="url(#arrow)"/>
+          <path class="edge" d="M700,58 H736" marker-end="url(#arrow)"/>
+          <path class="edge" d="M580,86 V128 H120 V166" marker-end="url(#arrow)"/>
+          <path class="edge" d="M360,128 V166" marker-end="url(#arrow)"/>
+          <path class="edge hot" d="M460,198 H496" marker-end="url(#arrow)"/>
+          <path class="edge hot" d="M700,198 H736" marker-end="url(#arrow)"/>
+          <path class="edge hot" d="M840,226 V306" marker-end="url(#arrow)"/>
+          <path class="edge ask" d="M740,338 H704" marker-end="url(#arrow)"/>
+          <path class="edge" d="M220,338 H256" marker-end="url(#arrow)"/>
+          <path class="edge" d="M360,310 V230" marker-end="url(#arrow)"/>
+        </svg>
+        <ul class="legend">
+          <li class="agent">model-based agent</li>
+          <li class="code">code, no model</li>
+          <li class="human">human decision</li>
+          <li>interface and data</li>
+        </ul>
+        <figcaption>The model only sees masked text, and its response has to pass the number guard. A draft goes back into the form, where the carrier edits it; a hint goes to the moderator (dashed). Court documents come from the template-based generator.</figcaption>
+      </figure>
+    </section>
+
+    <section>
+      <h2>Results</h2>
+      <ul class="results">
+        <li><strong>Sep 21, 2026</strong><span>platform went live, pilot underway</span></li>
+        <li><strong>15 releases</strong><span>in 18 days</span></li>
+        <li><strong>900+ commits</strong><span>since Aug 2, 2026</span></li>
+        <li><strong>180+ ADRs</strong><span>architecture decisions on record</span></li>
+        <li><strong>~45 s</strong><span>expected time for an AI draft; small tasks ~3 s</span></li>
+      </ul>
+      <div class="measure"><p>As of Oct 9, 2026. The pilot has just started, so there are no user or revenue numbers here yet. AI features are turned on by flags as a lawyer reviews them.</p></div>
+    </section>
+
+    <section>
+      <h2>What it looks like</h2>
+      <div class="shots">
+        <figure class="phone"><img src="../../img/risk-landing.webp" alt="RISK production landing on mobile: &quot;Client not paying for the trip? Follow the path to your money.&quot;" loading="lazy" width="390" height="658"><figcaption>Landing page: from a payment claim to a court order, no in-house lawyer needed.</figcaption></figure>
+        <figure class="phone"><img src="../../img/risk-ai-hint.webp" alt="Claim wizard: the claim-summary field and an AI hint flagging an amount mismatch." loading="lazy" width="375" height="1026"><figcaption>Parsing text into fields. The amount in the text doesn’t match the field, so the field stays as is and the user gets a warning. Sample data.</figcaption></figure>
+        <figure class="phone"><img src="../../img/risk-kb-card.webp" alt="Knowledge base card: a step-by-step &quot;What to do&quot; guide linking to related cards." loading="lazy" width="375" height="1002"><figcaption>A “What to do” knowledge base card with links to related cards. The assistant answers from these.</figcaption></figure>
+      </div>
+      <div class="shots">
+        <figure><img src="../../img/risk-desktop.webp" alt="Desktop admin of the knowledge base: a table of cards with review statuses." loading="lazy" width="1174" height="946"><figcaption>Knowledge base admin: every card carries a review status. The interface is in Russian.</figcaption></figure>
+      </div>
+    </section>
+
+    <section>
+      <h2>Stack</h2>
+      <dl class="stack">
+        <dt>AI</dt><dd>Claude Sonnet and Haiku through a custom adapter: PII masking, number guard, feature flags; pgvector for search</dd>
+        <dt>Backend</dt><dd>Node 22, TypeScript, Hono, Drizzle ORM; PostgreSQL, Redis, S3</dd>
+        <dt>Frontend</dt><dd>React, Vite, Ant Design</dd>
+        <dt>Infrastructure</dt><dd>Docker Compose; GitHub Actions: staging from main, production by tag; GlitchTip</dd>
+      </dl>
+    </section>
+
+    <nav class="next" aria-label="Other case studies">
+      <a href="prezentashki.html">← Prezentashki: an AI presentation generator</a>
+      <a href="tools.html">Tools for agents →</a>
+    </nav>
+  </div>
+</main>
+
+<footer class="wrap">
+  <p>Rinat Taysin, AI automation engineer. <a href="mailto:evilandfox@gmail.com">evilandfox@gmail.com</a>, <a href="https://www.linkedin.com/in/rinat-taysin-2b31ab225">LinkedIn</a>, <a href="https://github.com/evilandfox">GitHub</a></p>
+</footer>
+</body>
+</html>

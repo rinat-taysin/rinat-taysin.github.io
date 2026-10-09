@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rinat Taysin — AI automation engineer</title>
+<meta name="description" content="I build LLM agent systems that take routine work off a running business: triaging inbound requests, keeping trackers current, shipping and checking code. Case studies with diagrams and numbers.">
+<link rel="alternate" hreflang="ru" href="../index.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&amp;family=Unbounded:wght@500;600&display=swap">
+<link rel="stylesheet" href="../assets/style.css">
+<script src="../assets/theme.js"></script>
+</head>
+<body>
+<header class="wrap top">
+  <a class="home" href="index.html">Rinat Taysin</a>
+  <nav>
+    <a href="#cases">Case studies</a>
+    <a href="cv.html">CV</a>
+    <a href="../index.html" lang="ru" hreflang="ru">RU</a>
+    <button class="theme-toggle" type="button" aria-label="Switch theme">Theme</button>
+  </nav>
+</header>
+
+<main class="wrap">
+  <div class="hero">
+    <h1>AI agents that take routine work off your team</h1>
+    <p class="lead">I’m Rinat Taysin, an AI automation engineer and tech lead. I build systems on Claude and other LLMs that triage incoming requests, keep the tracker up to date, write and review code, so people are left with just the decisions.</p>
+    <p class="sub">Ten years in software, former startup CTO. I get AI systems out of the demo stage and into daily use in a real business. Checks run in code, every agent has hard limits on what it may do, and I keep an eye on token costs. Remote, contract or full-time.</p>
+    <ul class="contacts">
+      <li><a href="mailto:evilandfox@gmail.com">evilandfox@gmail.com</a></li>
+      <li><a href="https://www.linkedin.com/in/rinat-taysin-2b31ab225">LinkedIn</a></li>
+      <li><a href="https://github.com/evilandfox">GitHub</a></li>
+      <li><a href="cv.html">CV</a></li>
+    </ul>
+
+    <figure class="route">
+      <svg class="diagram" viewBox="0 0 960 190" role="img" aria-labelledby="route-title">
+        <title id="route-title">How my systems work: an agent triages requests from chats and trackers, code checks the work, and a person gets only the decision, with a default option ready</title>
+        <defs>
+          <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z"/>
+          </marker>
+        </defs>
+        <g class="node"><rect x="1" y="20" width="190" height="64" rx="8"/><text x="18" y="46">Incoming</text><text class="small" x="18" y="68">chats, tracker, voice</text></g>
+        <path class="edge hot" d="M191,52 H241" marker-end="url(#arrow)"/>
+        <g class="node agent"><rect x="243" y="20" width="200" height="64" rx="8"/><text x="260" y="46">Agent triages</text><text class="small" x="260" y="68">type, owner, urgency</text></g>
+        <path class="edge hot" d="M443,52 H493" marker-end="url(#arrow)"/>
+        <g class="node agent"><rect x="495" y="20" width="200" height="64" rx="8"/><text x="512" y="46">Agent does the work</text><text class="small" x="512" y="68">ticket, reply, code, report</text></g>
+        <path class="edge hot" d="M695,52 H745" marker-end="url(#arrow)"/>
+        <g class="node code"><rect x="747" y="20" width="210" height="64" rx="8"/><text x="764" y="46">Code checks it</text><text class="small" x="764" y="68">tests, permissions, limits</text></g>
+        <path class="edge ask" d="M345,84 V140 H493" marker-end="url(#arrow)"/>
+        <path class="edge ask" d="M852,84 V140 H697" marker-end="url(#arrow)"/>
+        <g class="node human"><rect x="495" y="112" width="200" height="64" rx="8"/><text x="512" y="138">A person decides</text><text class="small" x="512" y="160">default option ready</text></g>
+      </svg>
+      <ul class="legend">
+        <li class="agent">LLM agent</li>
+        <li class="code">plain code, no model</li>
+        <li class="human">human decision: money, people, deadlines</li>
+      </ul>
+    </figure>
+  </div>
+
+  <section id="cases">
+    <h2>Case studies</h2>
+    <ul class="cases">
+      <li class="case-row lead-case">
+        <div>
+          <h3><a href="cases/alemx-ops.html">An operations agent for a product team</a></h3>
+          <p>AlemX mobile app: bug reports pour in through WhatsApp and the store release had been stuck for four months. The agent triages reports, files tickets and takes each fix through independent AI review and CI to a merge. Questions about money, people and deadlines go to a human, with a recommendation attached.</p>
+          <p class="tags">Claude Code, MCP, hooks, Jira, GitHub, WhatsApp, EAS</p>
+        </div>
+        <p class="fact"><strong>Up to 21 merges a&nbsp;day</strong><span>first store release two weeks after I joined</span></p>
+      </li>
+      <li class="case-row">
+        <div>
+          <h3><a href="cases/agent-hub.html">An operations team of AI agents</a></h3>
+          <p>One system across several projects: an operator in the messenger, a persistent agent per project, background workers for tracker tasks, a daily sweep for stalled work, and a single answer to “what should I do now?”</p>
+          <p class="tags">Claude Code, Node.js, Linear, Jira, messengers, Windows Task Scheduler</p>
+        </div>
+        <p class="fact"><strong>5 persistent agents</strong><span>plus 10 scheduled jobs; monitoring runs as plain code, zero tokens</span></p>
+      </li>
+      <li class="case-row">
+        <div>
+          <h3><a href="cases/prezentashki.html">Prezentashki: an AI presentation generator</a></h3>
+          <p>A service that turns a topic into a finished deck with text, images and PDF or PPTX export. I own all of engineering and product. I also built a Telegram assistant that answers my business partner’s questions about ads, so he doesn’t need a developer for them.</p>
+          <p class="tags">GPT-4o, Flux, Node.js, React, PostgreSQL, Docker</p>
+        </div>
+        <p class="fact"><strong>2,600+ sign-ups</strong><span>38% of them go on to pay, as of July 25, 2026</span></p>
+      </li>
+      <li class="case-row">
+        <div>
+          <h3><a href="cases/risk.html">RISK: payment claims for freight carriers</a></h3>
+          <p>A B2B platform that takes a carrier from an unpaid trip to a formal claim and a court order. AI helps with drafts and gives moderators a checklist, while amounts, deadlines and legal wording stay in code and templates.</p>
+          <p class="tags">Claude Sonnet and Haiku, pgvector, Hono, React, PostgreSQL</p>
+        </div>
+        <p class="fact"><strong>15 releases in 18&nbsp;days</strong><span>after going live</span></p>
+      </li>
+      <li class="case-row">
+        <div>
+          <h3><a href="cases/tools.html">Tools for agents</a></h3>
+          <p>The groundwork under everything above: voice dictation into any window, a key vault that agents can use but never read, and a single gateway to messengers with per-agent allow-lists.</p>
+          <p class="tags">.NET, Node.js, MCP, Groq</p>
+        </div>
+        <p class="fact"><strong>13 tools</strong><span>in one shared kit for every agent</span></p>
+      </li>
+    </ul>
+  </section>
+
+  <section id="approach">
+    <h2>How I work</h2>
+    <ul class="principles">
+      <li><b>Routine first, model second</b><p>I find where people actually lose hours and automate the most frequent work first. Anything that can be computed is computed in code.</p></li>
+      <li><b>Agents prepare, people decide</b><p>Money, people, deadlines and anything irreversible go to a human as one question: options, a recommendation, and what happens by default.</p></li>
+      <li><b>Agent permissions live in code</b><p>Action allow-lists, hooks, a merge guard, secrets the agent can use but never see. The prompt isn’t what keeps it in bounds.</p></li>
+      <li><b>Live data stays in the tracker</b><p>Agents work where the team already works: Jira, Linear, messengers, the calendar. Nobody has to learn a new tool.</p></li>
+    </ul>
+  </section>
+
+  <section id="stack">
+    <h2>Technologies</h2>
+    <dl class="stack">
+      <dt>Agents and LLMs</dt><dd>Claude Code (persistent sessions, subagents, hooks, skills, git worktrees), Anthropic and OpenAI APIs, MCP servers, RAG with pgvector, PII masking, output evaluation, token cost control</dd>
+      <dt>Backend</dt><dd>TypeScript, Node.js, NestJS, Express, Hono, PostgreSQL, MongoDB, Redis, RabbitMQ; I read and review Python</dd>
+      <dt>Frontend and mobile</dt><dd>React, Next.js, React Native and Expo, Electron</dd>
+      <dt>Infrastructure</dt><dd>Docker Compose, blue-green deploys, GitHub Actions, EAS, Cloudflare Workers</dd>
+      <dt>Integrations</dt><dd>Jira, Linear, GitHub, Figma, WhatsApp, Telegram, Google Calendar, Yandex Direct and Metrica, App Store and Google Play APIs</dd>
+    </dl>
+  </section>
+
+  <section id="contacts">
+    <h2>Get in touch</h2>
+    <div class="measure">
+      <p>I’m looking for work where an AI system has to run every day, not just look good in a demo. Email <a href="mailto:evilandfox@gmail.com">evilandfox@gmail.com</a> or message me on <a href="https://www.linkedin.com/in/rinat-taysin-2b31ab225">LinkedIn</a>. Full experience is in my <a href="cv.html">CV</a>.</p>
+    </div>
+  </section>
+</main>
+
+<footer class="wrap">
+  <p>Rinat Taysin, AI automation engineer. <a href="mailto:evilandfox@gmail.com">evilandfox@gmail.com</a>, <a href="https://www.linkedin.com/in/rinat-taysin-2b31ab225">LinkedIn</a>, <a href="https://github.com/evilandfox">GitHub</a></p>
+</footer>
+</body>
+</html>

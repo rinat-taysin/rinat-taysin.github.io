@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Презенташки: AI-генератор презентаций&nbsp;— Ринат Тайсин</title>
+<meta name="description" content="LLM-пайплайн в бою: тема на входе, готовая презентация с текстом, картинками и экспортом в PDF и PPTX на выходе. Плюс Telegram-ассистент, который снял с партнёра рутину отчётов по рекламе.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&amp;family=Unbounded:wght@500;600&amp;display=swap">
+<link rel="stylesheet" href="../assets/style.css">
+<script src="../assets/theme.js"></script>
+</head>
+<body>
+<header class="wrap top">
+  <a class="home" href="../index.html">Ринат Тайсин</a>
+  <nav>
+    <a href="../index.html#cases">Кейсы</a>
+    <a href="../cv.html">Резюме</a>
+    <a href="../en/cases/prezentashki.html" lang="en" hreflang="en">EN</a>
+    <button class="theme-toggle" type="button" aria-label="Сменить тему">Тема</button>
+  </nav>
+</header>
+
+<main class="wrap">
+  <div class="case-head">
+    <a class="back" href="../index.html#cases">← Все кейсы</a>
+    <h1>Презенташки: тема на входе, готовая презентация на выходе</h1>
+    <p class="lead">Сервис <a href="https://prezentashki.ru">prezentashki.ru</a> делает презентацию по теме сам: после оплаты сервер пишет текст, рисует картинки, собирает слайды в шаблон и отдаёт PDF или PPTX. Людей в этой цепочке нет, и с июля по 7&nbsp;сентября она не дала ни одной ошибки генерации. Для партнёра-маркетолога я сделал Telegram-ассистента, который снял с него рутину отчётов по рекламе.</p>
+    <dl class="meta">
+      <div><dt>Роль</dt><dd>Технический сооснователь (CTO): вся техника и продукт</dd></div>
+      <div><dt>Когда</dt><dd>С мая 2026</dd></div>
+      <div><dt>Масштаб</dt><dd>2&nbsp;600+ регистраций, 1&nbsp;400+ оплат на 25.07.2026</dd></div>
+    </dl>
+  </div>
+
+  <div class="case-body">
+    <section>
+      <h2>Задача бизнеса</h2>
+      <div class="measure">
+        <p>Школьнику к уроку, учителю к занятию, родителю в помощь ребёнку нужна презентация&nbsp;— быстро и недорого. В сервисе путь короткий: выбрал тему, число слайдов и шаблон, оплатил, получил готовую презентацию, поправил в редакторе, скачал PDF или PPTX.</p>
+        <p>Нас двое: партнёр ведёт маркетинг, на мне вся техника и продукт. Рост идёт через платную рекламу. Отсюда два требования. Генерация не должна ждать ничьих рук&nbsp;— ни&nbsp;при каком числе заказов. А партнёр должен видеть цифры рекламы и денег без разработчика и без ручных таблиц.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Что построено</h2>
+      <div class="measure">
+        <p>Основа сервиса&nbsp;— боевой LLM-пайплайн. Сервер запускает его после оплаты, и&nbsp;дальше заказ доходит до готовой презентации без людей.</p>
+        <ul>
+          <li><b>Заказ и оплата.</b> Лендинг с формой «тема + слайды + шаблон», онлайн-оплата картой, через СБП или подпиской.</li>
+          <li><b>Статусы заказа.</b> awaiting_payment → paid → generating → ready или failed. Генерацию запускает сервер, фронтенд только спрашивает статус.</li>
+          <li><b>Надёжность.</b> Идемпотентность и блокировка в базе: один заказ&nbsp;— одна генерация, даже если запрос пришёл дважды. Cron каждые ~30&nbsp;секунд находит зависшие заказы и поднимает их.</li>
+          <li><b>ИИ-пайплайн.</b> План по теме → GPT-4o и 4o-mini пишут текст и структуру слайдов → HTML-шаблон → картинки Flux, в среднем около 6 на презентацию → экспорт. Тему берём из запроса пользователя дословно, поэтому презентация выходит ровно о том, что просили.</li>
+          <li><b>Редактор и экспорт.</b> Правка слайдов в браузере, PDF через Puppeteer, PPTX через pptxgenjs.</li>
+          <li><b>Шаблоны.</b> Каталог HTML-шаблонов и свой экспортёр, который переносит шаблоны из Figma.</li>
+          <li><b>Текст выступления.</b> Отдельная платная функция: GPT-4o пишет речь к слайдам.</li>
+          <li><b>Инфраструктура в одиночку.</b> Blue-green деплой в Docker Compose за nginx, prod и preprod, релиз по тегу через GitHub Actions, образы по digest, ежедневные бэкапы с&nbsp;копией во&nbsp;внешнем S3. Код пишу вместе с агентами&nbsp;— Claude Code и Codex со скиллами разработки и релиза.</li>
+        </ul>
+        <h3>Telegram-ассистент для партнёра</h3>
+        <p>Партнёру-маркетологу нужны ответы о бизнесе и рекламе: сколько стоит покупатель, какая доля денег уходит на рекламу, что с прибылью. Вместо ручных отчётов я сделал ему Telegram-ассистента.</p>
+        <ul>
+          <li><b>Цифры считает код.</b> CPA, долю расходов на рекламу и P&amp;L считали детерминированные скрипты по данным Яндекс Директа и Метрики. Модель только собирала их в ответ и объясняла.</li>
+          <li><b>Правки&nbsp;— только по кнопке.</b> Любое изменение в рекламном кабинете и любой выкат ассистент оформлял заявкой с кнопками ✅/❌ в чате. Без нажатия человека ничего не менялось.</li>
+          <li><b>Голосом.</b> Голосовые сообщения расшифровывались, спросить можно было на ходу.</li>
+        </ul>
+      </div>
+      <figure class="figure-wide">
+        <svg class="diagram" viewBox="0 0 960 376" role="img" aria-labelledby="d-title">
+          <title id="d-title">Схема: пользователь заполняет форму на лендинге, API принимает заказ, после оплаты он попадает в очередь генерации; модель пишет текст слайдов, Flux рисует картинки, код собирает шаблон и экспортирует PDF или PPTX, готовая презентация возвращается пользователю. Отдельно: партнёр спрашивает Telegram-ассистента, цифры считают скрипты по Яндекс Директу и Метрике, а правка в рекламном кабинете проходит только после подтверждения партнёра.</title>
+          <defs>
+            <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0,0 L10,5 L0,10 z"/>
+            </marker>
+          </defs>
+
+          <text class="small" x="20" y="22">Продукт: от темы до готовой презентации</text>
+          <g class="node human"><rect x="20" y="36" width="200" height="56" rx="8"/><text x="36" y="60">Пользователь</text><text class="small" x="36" y="80">тема, слайды, шаблон</text></g>
+          <g class="node code"><rect x="260" y="36" width="200" height="56" rx="8"/><text x="276" y="60">Лендинг</text><text class="small" x="276" y="80">форма и редактор</text></g>
+          <g class="node code"><rect x="500" y="36" width="200" height="56" rx="8"/><text x="516" y="60">API</text><text class="small" x="516" y="80">статусы заказа</text></g>
+          <g class="node"><rect x="740" y="36" width="200" height="56" rx="8"/><text x="756" y="60">Оплата</text><text class="small" x="756" y="80">карта, СБП, подписка</text></g>
+
+          <g class="node code"><rect x="740" y="150" width="200" height="56" rx="8"/><text x="756" y="174">Очередь генерации</text><text class="small" x="756" y="194">блокировка, cron 30 с</text></g>
+          <g class="node agent"><rect x="500" y="150" width="200" height="56" rx="8"/><text x="516" y="174">Текст слайдов</text><text class="small" x="516" y="194">GPT-4o / 4o-mini</text></g>
+          <g class="node agent"><rect x="260" y="150" width="200" height="56" rx="8"/><text x="276" y="174">Картинки</text><text class="small" x="276" y="194">Flux, около 6 штук</text></g>
+          <g class="node code"><rect x="20" y="150" width="200" height="56" rx="8"/><text x="36" y="174">Шаблон и экспорт</text><text class="small" x="36" y="194">HTML → PDF, PPTX</text></g>
+
+          <text class="small" x="20" y="250">Рутина партнёра: отчёты по рекламе</text>
+          <g class="node human"><rect x="20" y="264" width="200" height="56" rx="8"/><text x="36" y="288">Партнёр ✅ / ❌</text><text class="small" x="36" y="308">вопрос, голос, решение</text></g>
+          <g class="node agent"><rect x="260" y="264" width="200" height="56" rx="8"/><text x="276" y="288">Telegram-ассистент</text><text class="small" x="276" y="308">собирает и объясняет</text></g>
+          <g class="node code"><rect x="500" y="264" width="200" height="56" rx="8"/><text x="516" y="288">Скрипты отчётов</text><text class="small" x="516" y="308">CPA, расходы, P&amp;L</text></g>
+          <g class="node"><rect x="740" y="264" width="200" height="56" rx="8"/><text x="756" y="288">Директ и Метрика</text><text class="small" x="756" y="308">API Яндекса</text></g>
+
+          <path class="edge hot" d="M220,64 H256" marker-end="url(#arrow)"/>
+          <path class="edge hot" d="M460,64 H496" marker-end="url(#arrow)"/>
+          <path class="edge hot" d="M700,64 H736" marker-end="url(#arrow)"/>
+          <path class="edge hot" d="M840,92 V146" marker-end="url(#arrow)"/>
+          <text class="small" x="848" y="124">оплачено</text>
+          <path class="edge hot" d="M740,178 H704" marker-end="url(#arrow)"/>
+          <path class="edge hot" d="M500,178 H464" marker-end="url(#arrow)"/>
+          <path class="edge hot" d="M260,178 H224" marker-end="url(#arrow)"/>
+          <path class="edge hot" d="M120,150 V96" marker-end="url(#arrow)"/>
+          <text class="small" x="128" y="124">готово</text>
+
+          <path class="edge" d="M220,282 H256" marker-end="url(#arrow)"/>
+          <path class="edge ask" d="M260,304 H224" marker-end="url(#arrow)"/>
+          <path class="edge" d="M460,292 H496" marker-end="url(#arrow)"/>
+          <path class="edge" d="M700,282 H736" marker-end="url(#arrow)"/>
+          <path class="edge" d="M740,304 H704" marker-end="url(#arrow)"/>
+          <path class="edge ask" d="M120,320 V344 H840 V324" marker-end="url(#arrow)"/>
+          <text class="small" x="360" y="366">правка в кабинете&nbsp;— только после ✅</text>
+        </svg>
+        <ul class="legend">
+          <li class="agent">модель</li>
+          <li class="code">код без модели</li>
+          <li class="human">человек</li>
+          <li>внешние сервисы</li>
+        </ul>
+        <figcaption>Выделенные стрелки&nbsp;— путь заказа: после оплаты в нём нет ни одного ручного шага. Пунктир&nbsp;— единственное место, где система ждёт человека: заявку на правку в рекламном кабинете подтверждает партнёр.</figcaption>
+      </figure>
+    </section>
+
+    <section>
+      <h2>Результат</h2>
+      <ul class="results">
+        <li><strong>2&nbsp;600+</strong><span>регистраций на 25.07.2026</span></li>
+        <li><strong>1&nbsp;400+</strong><span>онлайн-оплат на 25.07.2026</span></li>
+        <li><strong>38%</strong><span>регистраций доходят до оплаты, на 25.07.2026</span></li>
+        <li><strong>~16&nbsp;000 слайдов</strong><span>сгенерировано на 25.07.2026</span></li>
+        <li><strong>88&nbsp;с</strong><span>медиана генерации презентации, p90&nbsp;— 149&nbsp;с (август 2026)</span></li>
+        <li><strong>0 ошибок</strong><span>генерации и 0 заказов без презентации с июля по 07.09.2026</span></li>
+        <li><strong>11,3%</strong><span>покупателей купили повторно, к 07.09.2026</span></li>
+        <li><strong>945 коммитов</strong><span>с 02.05.2026, вся техника&nbsp;— один человек с агентами</span></li>
+      </ul>
+      <div class="measure"><p>Сервис окупает свои расходы. Данные о регистрациях, оплатах и слайдах&nbsp;— срез боевой базы на 25.07.2026; скорость и ошибки&nbsp;— из&nbsp;отчёта за август и данных по 07.09.2026.</p></div>
+    </section>
+
+    <section>
+      <h2>Как это выглядит</h2>
+      <div class="shots">
+        <figure><img src="../img/prez-templates.webp" alt="Шесть шаблонов презентаций: биология, алгебра, креатив, бизнес, гейминг, рисование." loading="lazy" width="1400" height="1204"><figcaption>Часть каталога шаблонов. Их переносит из Figma мой экспортёр.</figcaption></figure>
+        <figure><img src="../img/prez-slide-1.webp" alt="Сгенерированный слайд «Основы алгебры» в синем стиле." loading="lazy" width="1200" height="758"><figcaption>Презентация «Основы алгебры»: текст и картинки сгенерированы по теме.</figcaption></figure>
+        <figure><img src="../img/prez-slide-3.webp" alt="Сгенерированный слайд «Эволюция видов» с зелёной графикой." loading="lazy" width="1200" height="758"><figcaption>«Эволюция видов» в другом шаблоне: та же цепочка, другой стиль.</figcaption></figure>
+      </div>
+    </section>
+
+    <section>
+      <h2>Стек</h2>
+      <dl class="stack">
+        <dt>Модели</dt><dd>OpenAI GPT-4o и 4o-mini&nbsp;— текст; Flux&nbsp;— картинки</dd>
+        <dt>Бэкенд</dt><dd>Node 22, TypeScript, Express → Hono, Sequelize, PostgreSQL, Zod, OpenAPI</dd>
+        <dt>Фронтенд</dt><dd>React 19, Vite, TanStack Query</dd>
+        <dt>Экспорт</dt><dd>Puppeteer (PDF), pptxgenjs (PPTX), HTML-шаблоны из Figma</dd>
+        <dt>Оплата</dt><dd>CloudPayments: карта, СБП, подписки</dd>
+        <dt>Инфраструктура</dt><dd>Docker Compose, nginx, blue-green, GitHub Actions, GHCR, бэкапы в&nbsp;S3</dd>
+        <dt>Ассистент</dt><dd>Telegram Bot API, API Яндекс Директа и Метрики</dd>
+        <dt>Разработка</dt><dd>Claude Code и Codex со скиллами разработки и релиза</dd>
+      </dl>
+    </section>
+
+    <nav class="next" aria-label="Другие кейсы">
+      <a href="agent-hub.html">← Операционный отдел из агентов</a>
+      <a href="risk.html">РИСК: претензии в грузоперевозках →</a>
+    </nav>
+  </div>
+</main>
+
+<footer class="wrap">
+  <p>Ринат Тайсин, инженер AI-автоматизации. <a href="mailto:evilandfox@gmail.com">evilandfox@gmail.com</a>, <a href="https://www.linkedin.com/in/rinat-taysin-2b31ab225">LinkedIn</a>, <a href="https://github.com/evilandfox">GitHub</a></p>
+</footer>
+</body>
+</html>

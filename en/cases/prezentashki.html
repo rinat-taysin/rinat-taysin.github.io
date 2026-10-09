@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prezentashki: an AI presentation generator — Rinat Taysin</title>
+<meta name="description" content="A production LLM pipeline: a topic goes in, a finished deck with text, images and PDF or PPTX export comes out. Plus a Telegram assistant that took ad reporting off my business partner's plate.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&amp;family=Unbounded:wght@500;600&amp;display=swap">
+<link rel="stylesheet" href="../../assets/style.css">
+<script src="../../assets/theme.js"></script>
+</head>
+<body>
+<header class="wrap top">
+  <a class="home" href="../index.html">Rinat Taysin</a>
+  <nav>
+    <a href="../index.html#cases">Case studies</a>
+    <a href="../cv.html">CV</a>
+    <a href="../../cases/prezentashki.html" lang="ru" hreflang="ru">RU</a>
+    <button class="theme-toggle" type="button" aria-label="Switch theme">Theme</button>
+  </nav>
+</header>
+
+<main class="wrap">
+  <div class="case-head">
+    <a class="back" href="../index.html#cases">← All case studies</a>
+    <h1>Prezentashki: a topic goes in, a finished deck comes out</h1>
+    <p class="lead"><a href="https://prezentashki.ru">Prezentashki.ru</a> builds a presentation on its own. Once an order is paid, the server writes the text, generates the images, lays the slides into a template and hands back a PDF or PPTX. No one touches the pipeline, and from July to September 7 it had zero generation failures. For my marketing partner I also built a Telegram assistant that took ad reporting off his plate.</p>
+    <dl class="meta">
+      <div><dt>Role</dt><dd>Technical co-founder (CTO): all of engineering and product</dd></div>
+      <div><dt>When</dt><dd>Since May 2026</dd></div>
+      <div><dt>Scale</dt><dd>2,600+ sign-ups and 1,400+ payments as of July 25, 2026</dd></div>
+    </dl>
+  </div>
+
+  <div class="case-body">
+    <section>
+      <h2>The business problem</h2>
+      <div class="measure">
+        <p>Students, teachers and parents need a presentation fast and on a budget. With the service it takes a few clicks: pick a topic, a slide count and a template, pay, get a finished deck, tweak it in the editor, download PDF or PPTX.</p>
+        <p>We are a team of two. My partner runs marketing; I own all of engineering and product. Growth comes from paid ads, which sets two requirements. Generation must never wait for a person, no matter how many orders come in. And my partner needs ad and revenue numbers without asking a developer or building spreadsheets.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>What I built</h2>
+      <div class="measure">
+        <p>At the center is an LLM pipeline running in production. The server starts it after payment, and it takes the order all the way to a finished deck with no manual steps.</p>
+        <ul>
+          <li><b>Ordering and payment.</b> A landing page with a “topic + slides + template” form; online payment by card, SBP (Russia's instant bank transfers) or subscription.</li>
+          <li><b>Order states.</b> awaiting_payment → paid → generating → ready or failed. The server starts generation; the frontend only polls for status.</li>
+          <li><b>Reliability.</b> Idempotency plus a database lock: one order, one generation, even if the request arrives twice. A cron job runs every ~30&nbsp;seconds, finds stuck orders and restarts them.</li>
+          <li><b>AI pipeline.</b> Outline from the topic → GPT-4o and 4o-mini write the slide text and structure → HTML template → Flux images, about 6 per deck on average → export. The topic goes through exactly as the user typed it. That rule never bends: the deck is about what was asked, nothing else.</li>
+          <li><b>Editor and export.</b> In-browser slide editing, PDF via Puppeteer, PPTX via pptxgenjs.</li>
+          <li><b>Templates.</b> A catalog of HTML templates and my own exporter that brings templates over from Figma.</li>
+          <li><b>Speaker notes.</b> A separate paid feature: GPT-4o writes the talk track for each slide.</li>
+          <li><b>Solo infrastructure.</b> Blue-green deploys on Docker Compose behind nginx, prod and preprod, tag-based releases through GitHub Actions, images pinned by digest, daily backups with an offsite copy in S3. I write the code with Claude Code and Codex agents, using skills for development and releases.</li>
+        </ul>
+        <h3>A Telegram assistant for my partner</h3>
+        <p>My partner is a marketer, not an engineer. He needs answers about the business and the ads: what a customer costs, what share of revenue goes to ads, how profit looks. I built him a Telegram assistant that took that reporting routine off his plate.</p>
+        <ul>
+          <li><b>Code does the math.</b> Deterministic scripts calculated CPA, ad spend share and P&amp;L from Yandex Direct and Yandex Metrica data. The model only put the numbers together and explained them.</li>
+          <li><b>Changes need a tap.</b> Any change to the ad account and any deploy went out as a request with ✅/❌ buttons in the chat. Nothing changed until a person tapped.</li>
+          <li><b>Voice works too.</b> Voice messages were transcribed, so he could ask on the go.</li>
+        </ul>
+      </div>
+      <figure class="figure-wide">
+        <svg class="diagram" viewBox="0 0 960 376" role="img" aria-labelledby="d-title">
+          <title id="d-title">Diagram: the user fills in the form on the landing page, the API takes the order, and after payment it enters the generation queue; a model writes the slide text, Flux generates images, code fills the template and exports PDF or PPTX, and the finished deck goes back to the user. Separately: the partner asks the Telegram assistant, scripts calculate the numbers from Yandex Direct and Metrica, and any ad account change goes through only after the partner confirms.</title>
+          <defs>
+            <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0,0 L10,5 L0,10 z"/>
+            </marker>
+          </defs>
+
+          <text class="small" x="20" y="22">Product: from topic to finished deck</text>
+          <g class="node human"><rect x="20" y="36" width="200" height="56" rx="8"/><text x="36" y="60">User</text><text class="small" x="36" y="80">topic, slides, template</text></g>
+          <g class="node code"><rect x="260" y="36" width="200" height="56" rx="8"/><text x="276" y="60">Landing page</text><text class="small" x="276" y="80">order form and editor</text></g>
+          <g class="node code"><rect x="500" y="36" width="200" height="56" rx="8"/><text x="516" y="60">API</text><text class="small" x="516" y="80">order states</text></g>
+          <g class="node"><rect x="740" y="36" width="200" height="56" rx="8"/><text x="756" y="60">Payment</text><text class="small" x="756" y="80">card, SBP, subscription</text></g>
+
+          <g class="node code"><rect x="740" y="150" width="200" height="56" rx="8"/><text x="756" y="174">Generation queue</text><text class="small" x="756" y="194">DB lock, 30 s cron</text></g>
+          <g class="node agent"><rect x="500" y="150" width="200" height="56" rx="8"/><text x="516" y="174">Slide text</text><text class="small" x="516" y="194">GPT-4o / 4o-mini</text></g>
+          <g class="node agent"><rect x="260" y="150" width="200" height="56" rx="8"/><text x="276" y="174">Images</text><text class="small" x="276" y="194">Flux, about 6 per deck</text></g>
+          <g class="node code"><rect x="20" y="150" width="200" height="56" rx="8"/><text x="36" y="174">Template and export</text><text class="small" x="36" y="194">HTML → PDF, PPTX</text></g>
+
+          <text class="small" x="20" y="250">Partner's routine: ad reports</text>
+          <g class="node human"><rect x="20" y="264" width="200" height="56" rx="8"/><text x="36" y="288">Partner ✅ / ❌</text><text class="small" x="36" y="308">question, voice, decision</text></g>
+          <g class="node agent"><rect x="260" y="264" width="200" height="56" rx="8"/><text x="276" y="288">Telegram assistant</text><text class="small" x="276" y="308">assembles and explains</text></g>
+          <g class="node code"><rect x="500" y="264" width="200" height="56" rx="8"/><text x="516" y="288">Report scripts</text><text class="small" x="516" y="308">CPA, ad spend, P&amp;L</text></g>
+          <g class="node"><rect x="740" y="264" width="200" height="56" rx="8"/><text x="756" y="288">Yandex Direct</text><text class="small" x="756" y="308">and Metrica APIs</text></g>
+
+          <path class="edge hot" d="M220,64 H256" marker-end="url(#arrow)"/>
+          <path class="edge hot" d="M460,64 H496" marker-end="url(#arrow)"/>
+          <path class="edge hot" d="M700,64 H736" marker-end="url(#arrow)"/>
+          <path class="edge hot" d="M840,92 V146" marker-end="url(#arrow)"/>
+          <text class="small" x="848" y="124">paid</text>
+          <path class="edge hot" d="M740,178 H704" marker-end="url(#arrow)"/>
+          <path class="edge hot" d="M500,178 H464" marker-end="url(#arrow)"/>
+          <path class="edge hot" d="M260,178 H224" marker-end="url(#arrow)"/>
+          <path class="edge hot" d="M120,150 V96" marker-end="url(#arrow)"/>
+          <text class="small" x="128" y="124">ready</text>
+
+          <path class="edge" d="M220,282 H256" marker-end="url(#arrow)"/>
+          <path class="edge ask" d="M260,304 H224" marker-end="url(#arrow)"/>
+          <path class="edge" d="M460,292 H496" marker-end="url(#arrow)"/>
+          <path class="edge" d="M700,282 H736" marker-end="url(#arrow)"/>
+          <path class="edge" d="M740,304 H704" marker-end="url(#arrow)"/>
+          <path class="edge ask" d="M120,320 V344 H840 V324" marker-end="url(#arrow)"/>
+          <text class="small" x="360" y="366">ad account changes only after ✅</text>
+        </svg>
+        <ul class="legend">
+          <li class="agent">model</li>
+          <li class="code">plain code, no model</li>
+          <li class="human">person</li>
+          <li>external services</li>
+        </ul>
+        <figcaption>Highlighted arrows show the order path: after payment there is not a single manual step. The dashed line is the only place the system waits for a person: my partner approves every ad account change.</figcaption>
+      </figure>
+    </section>
+
+    <section>
+      <h2>Results</h2>
+      <ul class="results">
+        <li><strong>2,600+</strong><span>sign-ups as of July 25, 2026</span></li>
+        <li><strong>1,400+</strong><span>online payments as of July 25, 2026</span></li>
+        <li><strong>38%</strong><span>of sign-ups go on to pay, as of July 25, 2026</span></li>
+        <li><strong>~16,000 slides</strong><span>generated as of July 25, 2026</span></li>
+        <li><strong>88&nbsp;s</strong><span>median time to generate a deck, p90 149&nbsp;s (August 2026)</span></li>
+        <li><strong>0 failures</strong><span>in generation and 0 orders left without a deck, July through Sept 7, 2026</span></li>
+        <li><strong>11.3%</strong><span>of buyers came back and bought again, as of Sept 7, 2026</span></li>
+        <li><strong>945 commits</strong><span>since May 2, 2026; one engineer working with agents</span></li>
+      </ul>
+      <div class="measure"><p>The service covers its own costs. Sign-ups, payments and slide counts come from a production database snapshot on July 25, 2026; speed and failure figures come from the August report and data through September 7, 2026.</p></div>
+    </section>
+
+    <section>
+      <h2>What it looks like</h2>
+      <div class="shots">
+        <figure><img src="../../img/prez-templates.webp" alt="Six presentation templates: biology, algebra, creative, business, gaming, drawing." loading="lazy" width="1400" height="1204"><figcaption>Part of the template catalog, brought over from Figma by my exporter.</figcaption></figure>
+        <figure><img src="../../img/prez-slide-1.webp" alt="Generated &quot;Algebra basics&quot; slide in a blue style." loading="lazy" width="1200" height="758"><figcaption>An “Algebra basics” deck: text and images generated from the topic.</figcaption></figure>
+        <figure><img src="../../img/prez-slide-3.webp" alt="Generated &quot;Evolution of species&quot; slide with green graphics." loading="lazy" width="1200" height="758"><figcaption>“Evolution of species” in another template: same pipeline, different style.</figcaption></figure>
+      </div>
+    </section>
+
+    <section>
+      <h2>Stack</h2>
+      <dl class="stack">
+        <dt>Models</dt><dd>OpenAI GPT-4o and 4o-mini for text; Flux for images</dd>
+        <dt>Backend</dt><dd>Node 22, TypeScript, Express → Hono, Sequelize, PostgreSQL, Zod, OpenAPI</dd>
+        <dt>Frontend</dt><dd>React 19, Vite, TanStack Query</dd>
+        <dt>Export</dt><dd>Puppeteer (PDF), pptxgenjs (PPTX), HTML templates from Figma</dd>
+        <dt>Payments</dt><dd>CloudPayments: cards, SBP, subscriptions</dd>
+        <dt>Infrastructure</dt><dd>Docker Compose, nginx, blue-green deploys, GitHub Actions, GHCR, S3 backups</dd>
+        <dt>Assistant</dt><dd>Telegram Bot API, Yandex Direct and Metrica APIs</dd>
+        <dt>Development</dt><dd>Claude Code and Codex with development and release skills</dd>
+      </dl>
+    </section>
+
+    <nav class="next" aria-label="Other case studies">
+      <a href="agent-hub.html">← An operations team of AI agents</a>
+      <a href="risk.html">RISK: payment claims for freight carriers →</a>
+    </nav>
+  </div>
+</main>
+
+<footer class="wrap">
+  <p>Rinat Taysin, AI automation engineer. <a href="mailto:evilandfox@gmail.com">evilandfox@gmail.com</a>, <a href="https://www.linkedin.com/in/rinat-taysin-2b31ab225">LinkedIn</a>, <a href="https://github.com/evilandfox">GitHub</a></p>
+</footer>
+</body>
+</html>

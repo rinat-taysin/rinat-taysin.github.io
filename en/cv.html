@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CV — Rinat Taysin, AI automation engineer</title>
+<meta name="description" content="Rinat Taysin’s CV: ten years in software, former CTO. Production LLM agents, MCP, RAG, TypeScript and Node.js. Remote.">
+<link rel="alternate" hreflang="ru" href="../cv.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&amp;family=Unbounded:wght@500;600&amp;display=swap">
+<link rel="stylesheet" href="../assets/style.css">
+<script src="../assets/theme.js"></script>
+</head>
+<body>
+<header class="wrap top">
+  <a class="home" href="index.html">Rinat Taysin</a>
+  <nav>
+    <a href="index.html#cases">Case studies</a>
+    <a href="cv.html" aria-current="page">CV</a>
+    <a href="../cv.html" lang="ru" hreflang="ru">RU</a>
+    <button class="theme-toggle" type="button" aria-label="Switch theme">Theme</button>
+  </nav>
+</header>
+
+<main class="wrap cv">
+  <h1>Rinat Taysin</h1>
+  <p class="role">AI Automation Engineer, LLM Agents</p>
+  <p>Kazan, Russia. Working remotely.</p>
+  <ul class="contacts">
+    <li><a href="mailto:evilandfox@gmail.com">evilandfox@gmail.com</a></li>
+    <li><a href="https://www.linkedin.com/in/rinat-taysin-2b31ab225">LinkedIn</a></li>
+    <li><a href="https://github.com/evilandfox">GitHub</a></li>
+  </ul>
+
+  <section>
+    <h2>Summary</h2>
+    <div class="measure">
+      <p>Software engineer with 10&nbsp;years of experience in TypeScript, Node.js and Python, former startup CTO and lead engineer. Since 2024 I have focused on AI agents and LLM systems that do real work in production: an autonomous development operator built on Claude Code and MCP (bug intake → ticket → fix → independent AI review → CI → merge), LLM features in B2B SaaS, RAG pipelines, and MCP integrations with Jira, GitHub, Figma, Linear and calendars.</p>
+      <p>I’m strong at debugging hard problems, refactoring legacy code, performance work and code review. I design agent workflows with deterministic checks and human escalation, and I watch both output quality and token costs. Open to remote contract work.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Skills</h2>
+    <dl class="stack">
+      <dt>Languages</dt><dd>TypeScript, JavaScript, Python (working), SQL; C++ (earlier career)</dd>
+      <dt>AI and LLMs</dt><dd>Claude Code, Anthropic and OpenAI APIs, MCP servers and tools, agent design, RAG, prompt and context engineering, LLM output evaluation, token cost control</dd>
+      <dt>Backend</dt><dd>Node.js, NestJS, Express, PostgreSQL, MongoDB, Redis, RabbitMQ, REST, webhooks</dd>
+      <dt>Frontend and mobile</dt><dd>React, Next.js, React Native and Expo, Electron, Flutter</dd>
+      <dt>Infrastructure and tooling</dt><dd>Docker, CI/CD, EAS, Cloudflare Workers, GCP, AWS, Firebase, Playwright, Git and GitHub, Jira</dd>
+      <dt>Engineering</dt><dd>Debugging, refactoring, performance optimization, system design, RBAC and multi-tenant SaaS, code review, release management</dd>
+    </dl>
+  </section>
+
+  <section>
+    <h2>Experience</h2>
+
+    <div class="job">
+      <h3>AlemX — Product Owner, Mobile App (contract)</h3>
+      <p class="when">Aug 2026 – present, remote</p>
+      <p>An AI super-app (messenger, feed, attention-based ad marketplace, stablecoin wallet) preparing for a global launch. I work as an independent contractor reporting to the CEO. <a href="cases/alemx-ops.html">Read the case study</a></p>
+      <ul>
+        <li>Built an autonomous development “operator” on Claude Code: a persistent agent connected to WhatsApp, Jira, GitHub and EAS through MCP and hooks, with an allow-list for external actions. It classifies bug reports, files and triages tickets, takes fixes through independent AI review and local CI, and merges to dev once formal conditions are met. Decisions about money, roles and deadlines go to a human. Day one: 7&nbsp;merges with no rollbacks; later up to 21&nbsp;merges a day.</li>
+        <li>Took over quality and delivery of the iOS and Android app (React Native, Expo). Two weeks after joining, shipped the first store release in four months, then versions 2.0.4 through 2.0.19. Hotfixes now reach the stores within 3&nbsp;hours.</li>
+        <li>Built the EAS release pipeline from scratch: iOS builds without a Mac and automatic submission to the App Store and Google Play via API. Set the team’s development rules: branching rules, PRs to dev only, and a dev → rc → main release train.</li>
+        <li>Got the demo path (sign-up → feed → post → paid chat → wallet) ready for an investor demo, which ran without a single failure. The team’s bug-fix throughput grew to 15–29&nbsp;PRs a day.</li>
+        <li>Coordinated a three-person QA team and contractors; moved analytics to Firebase Analytics and Crashlytics; closed about 25&nbsp;security alerts.</li>
+      </ul>
+      <p class="tech">React Native, Expo, TypeScript, Redux Toolkit, TanStack Query, Firebase, EAS; review of Python and Node.js backends; Claude Code, MCP</p>
+    </div>
+
+    <div class="job">
+      <h3>Prezentashki.ru — CTO and Co-founder</h3>
+      <p class="when">May 2026 – present, remote</p>
+      <p>An AI presentation generator. My partner runs marketing; I own all of engineering and product. <a href="cases/prezentashki.html">Read the case study</a></p>
+      <ul>
+        <li>Designed and launched the production LLM pipeline (GPT-4o for text, Flux for images), which has generated about 16,000 slides. Also own the prompt architecture, output quality control, token economics, PDF and PPTX export, and online payments.</li>
+        <li>2,600+ sign-ups, 1,400+ online payments, and 38% of sign-ups go on to pay (as of July 25, 2026).</li>
+        <li>Run the infrastructure on my own: blue-green deploys with Docker Compose, prod and preprod environments, daily backups with an off-site copy in S3.</li>
+        <li>Built a Telegram agent that let my non-technical partner get answers about the business and manage ad campaigns without a developer: scripts did the math, and every change waited for his approval.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <h3>Linked Helper — Lead Software Engineer</h3>
+      <p class="when">Mar 2025 – Apr 2026, remote</p>
+      <p>B2B SaaS for LinkedIn sales automation with 10,000+ daily active users.</p>
+      <ul>
+        <li>Built LLM features for sales messaging: generating and editing messages based on conversation context, CRM pipeline stage, goal, language and tone. Handled prompt design, typed structured outputs, context limits, and graceful degradation when the provider is down.</li>
+        <li>Designed and implemented the RBAC and workspace model (shared LinkedIn accounts, multi-account management, group licensing); replaced access checks built on heavy multi-level SQL joins with a single cached check.</li>
+        <li>Set up an AI-assisted development workflow: an agent pulled context from Jira, Figma and the repository and helped with implementation, review and UI checks, while engineers stayed in control.</li>
+      </ul>
+      <p class="tech">TypeScript, Node.js, NestJS, PostgreSQL, Redis, RabbitMQ, Electron, Next.js and React, OpenAI API</p>
+    </div>
+
+    <div class="job">
+      <h3>Flomni — Senior Backend Engineer</h3>
+      <p class="when">Sep 2024 – Feb 2025, remote</p>
+      <p>An omnichannel conversational platform: chatbots, HR automation, handoff to human operators.</p>
+      <ul>
+        <li>Added LLM features to the core product. Led the refactoring of the legacy codebase, which made it more stable and faster. Built complex backend features from scratch and worked directly with B2B clients on the specs.</li>
+      </ul>
+      <p class="tech">Node.js, TypeScript, MongoDB, Redis</p>
+    </div>
+
+    <div class="job">
+      <h3>FLATSHARING — CTO and Co-founder</h3>
+      <p class="when">Oct 2017 – Sep 2024, Ufa</p>
+      <p>Proptech: contactless check-in for short-term rentals using smart locks.</p>
+      <ul>
+        <li>Designed and built most of the system end to end: backend services, business logic and IoT integration with smart locks. Scaled the fault-tolerant backend to about 15,000 check-ins a month and 4,000 daily active users.</li>
+        <li>Migrated the main database from Firestore to MongoDB to handle search-heavy queries, which cut transaction costs significantly.</li>
+        <li>Built and led engineering teams of up to 10 people: hiring, onboarding, delivery. When the market turned down, restructured the IT department and cut infrastructure costs.</li>
+        <li>In parallel (Apr–Dec 2023, part-time): Team Lead at Samolet Plus, leading a cross-functional team (frontend, backend, mobile) that built the Samolet+ Arenda product.</li>
+      </ul>
+      <p class="tech">Node.js, TypeScript, MongoDB, Firestore, Flutter, GCP</p>
+    </div>
+
+    <div class="job">
+      <h3>Earlier experience</h3>
+      <p class="when">2016–2020</p>
+      <ul>
+        <li>NTC Optimo: C++ software for cost estimation in the oil and gas industry, parsers for government PDF documents.</li>
+        <li>MKU CIT: the Revizor Ufa mobile app in Flutter, Nuxt.js and MongoDB, C# and MS SQL.</li>
+        <li>MK Razvitie: an Express.js backend for food-ordering automation.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2>Projects</h2>
+    <div class="job">
+      <h3><a href="cases/agent-hub.html">Personal AI hub</a></h3>
+      <p class="when">2026</p>
+      <p>A multi-agent assistant system on Claude Code: MCP servers for Linear, Google Calendar and Apple Reminders, voice capture from an iPhone, a dedicated agent per project with mail between them, and background inbox triage.</p>
+    </div>
+    <div class="job">
+      <h3>TG Power</h3>
+      <p class="when">2026</p>
+      <p>A full-stack platform for running training programs inside Telegram: TypeScript on Cloudflare, webhook delivery, lesson scheduling and an author dashboard.</p>
+    </div>
+    <div class="job">
+      <h3>Neuro Anatoliy</h3>
+      <p>A Telegram AI assistant on Cloudflare Workers AI: RAG over a parsed product catalog, safety guardrails, response validation and regeneration.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Education and languages</h2>
+    <div class="measure">
+      <p><strong>Ufa State Petroleum Technical University</strong>, B.Eng. in Software Engineering, 2011–2015. Prize winner in regional olympiads in mathematics, physics and computer science; competed in university programming contests in Kyiv and Saransk.</p>
+      <p>Russian: native. English: intermediate (B1–B2), comfortable reading and writing technical material.</p>
+    </div>
+  </section>
+</main>
+
+<footer class="wrap">
+  <p>Rinat Taysin, AI automation engineer. <a href="mailto:evilandfox@gmail.com">evilandfox@gmail.com</a>, <a href="https://www.linkedin.com/in/rinat-taysin-2b31ab225">LinkedIn</a>, <a href="https://github.com/evilandfox">GitHub</a></p>
+</footer>
+</body>
+</html>

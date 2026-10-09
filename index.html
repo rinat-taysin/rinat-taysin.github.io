@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ринат Тайсин — инженер AI-автоматизации</title>
+<meta name="description" content="Строю агентные системы на LLM, которые снимают рутину с работающего бизнеса: разбор входящих, трекер, исполнение, проверки. Кейсы со схемами и цифрами.">
+<link rel="alternate" hreflang="en" href="en/index.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&amp;family=Unbounded:wght@500;600&display=swap">
+<link rel="stylesheet" href="assets/style.css">
+<script src="assets/theme.js"></script>
+</head>
+<body>
+<header class="wrap top">
+  <a class="home" href="index.html">Ринат Тайсин</a>
+  <nav>
+    <a href="#cases">Кейсы</a>
+    <a href="cv.html">Резюме</a>
+    <a href="en/index.html" lang="en" hreflang="en">EN</a>
+    <button class="theme-toggle" type="button" aria-label="Сменить тему">Тема</button>
+  </nav>
+</header>
+
+<main class="wrap">
+  <div class="hero">
+    <h1>Агенты, которые берут рутину на&nbsp;себя</h1>
+    <p class="lead">Ринат Тайсин, инженер AI-автоматизации и техлид. Строю системы на&nbsp;Claude и&nbsp;других LLM, которые разбирают входящие, ведут трекер, пишут и проверяют код, а&nbsp;человеку оставляют только решения.</p>
+    <p class="sub">10&nbsp;лет в&nbsp;разработке, бывший CTO стартапа. Довожу AI-системы до&nbsp;работы в&nbsp;живом бизнесе: проверки делает код, права агентов записаны, токены посчитаны. Удалённо, проектно или на&nbsp;полную ставку.</p>
+    <ul class="contacts">
+      <li><a href="mailto:evilandfox@gmail.com">evilandfox@gmail.com</a></li>
+      <li><a href="https://www.linkedin.com/in/rinat-taysin-2b31ab225">LinkedIn</a></li>
+      <li><a href="https://github.com/evilandfox">GitHub</a></li>
+      <li><a href="cv.html">Резюме</a></li>
+    </ul>
+
+    <figure class="route">
+      <svg class="diagram" viewBox="0 0 960 190" role="img" aria-labelledby="route-title">
+        <title id="route-title">Как устроены мои системы: входящие из мессенджеров и трекеров разбирает агент, исполнение проверяет код, человек получает только решение с вариантом по умолчанию</title>
+        <defs>
+          <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z"/>
+          </marker>
+        </defs>
+        <g class="node"><rect x="1" y="20" width="190" height="64" rx="8"/><text x="18" y="46">Входящие</text><text class="small" x="18" y="68">чаты, трекер, голос</text></g>
+        <path class="edge hot" d="M191,52 H241" marker-end="url(#arrow)"/>
+        <g class="node agent"><rect x="243" y="20" width="200" height="64" rx="8"/><text x="260" y="46">Агент разбирает</text><text class="small" x="260" y="68">тип, владелец, срочность</text></g>
+        <path class="edge hot" d="M443,52 H493" marker-end="url(#arrow)"/>
+        <g class="node agent"><rect x="495" y="20" width="200" height="64" rx="8"/><text x="512" y="46">Агент делает</text><text class="small" x="512" y="68">тикет, ответ, код, отчёт</text></g>
+        <path class="edge hot" d="M695,52 H745" marker-end="url(#arrow)"/>
+        <g class="node code"><rect x="747" y="20" width="210" height="64" rx="8"/><text x="764" y="46">Код проверяет</text><text class="small" x="764" y="68">тесты, права, лимиты</text></g>
+        <path class="edge ask" d="M345,84 V140 H493" marker-end="url(#arrow)"/>
+        <path class="edge ask" d="M852,84 V140 H697" marker-end="url(#arrow)"/>
+        <g class="node human"><rect x="495" y="112" width="200" height="64" rx="8"/><text x="512" y="138">Человек решает</text><text class="small" x="512" y="160">с готовым вариантом</text></g>
+      </svg>
+      <ul class="legend">
+        <li class="agent">агент на модели</li>
+        <li class="code">код без модели</li>
+        <li class="human">решение человека: деньги, люди, сроки</li>
+      </ul>
+    </figure>
+  </div>
+
+  <section id="cases">
+    <h2>Кейсы</h2>
+    <ul class="cases">
+      <li class="case-row lead-case">
+        <div>
+          <h3><a href="cases/alemx-ops.html">Операционный агент продуктовой команды</a></h3>
+          <p>Мобильное приложение AlemX: баги приходят потоком в&nbsp;WhatsApp, релиз стоит четыре месяца. Агент разбирает репорты, заводит тикеты, ведёт фикс через независимое AI-ревью и&nbsp;CI до&nbsp;мержа, а&nbsp;вопросы о&nbsp;деньгах, людях и&nbsp;сроках приносит человеку с&nbsp;готовой рекомендацией.</p>
+          <p class="tags">Claude Code, MCP, хуки, Jira, GitHub, WhatsApp, EAS</p>
+        </div>
+        <p class="fact"><strong>до&nbsp;21&nbsp;мержа в&nbsp;день</strong><span>первый стор-релиз через 2&nbsp;недели после входа</span></p>
+      </li>
+      <li class="case-row">
+        <div>
+          <h3><a href="cases/agent-hub.html">Операционный отдел из агентов</a></h3>
+          <p>Одна система на несколько проектов: оператор в&nbsp;мессенджере, постоянный агент на каждый проект, фоновые исполнители по задачам трекера, ежедневный обход застрявших дел и&nbsp;один список «что делать сейчас».</p>
+          <p class="tags">Claude Code, Node.js, Linear, Jira, мессенджеры, Планировщик Windows</p>
+        </div>
+        <p class="fact"><strong>5&nbsp;постоянных агентов</strong><span>и&nbsp;10&nbsp;фоновых задач; дежурство кодом без токенов</span></p>
+      </li>
+      <li class="case-row">
+        <div>
+          <h3><a href="cases/prezentashki.html">Презенташки: AI-генератор презентаций</a></h3>
+          <p>Пишешь тему&nbsp;— получаешь готовую презентацию с&nbsp;текстом и&nbsp;картинками, в&nbsp;PDF или PPTX. Техника и&nbsp;продукт целиком на&nbsp;мне. Ещё сделал партнёру Telegram-ассистента: на&nbsp;вопросы о&nbsp;рекламе отвечает он, а&nbsp;не&nbsp;разработчик.</p>
+          <p class="tags">GPT-4o, Flux, Node.js, React, PostgreSQL, Docker</p>
+        </div>
+        <p class="fact"><strong>2&nbsp;600+ регистраций</strong><span>38% из них доходят до&nbsp;оплаты, срез на 25.07.2026</span></p>
+      </li>
+      <li class="case-row">
+        <div>
+          <h3><a href="cases/risk.html">РИСК: претензии в&nbsp;грузоперевозках</a></h3>
+          <p>B2B-платформа, которая ведёт перевозчика от&nbsp;неоплаченного рейса до&nbsp;претензии и&nbsp;судебного приказа. ИИ помогает с&nbsp;черновиками и&nbsp;подсказывает модератору, а&nbsp;суммы, сроки и&nbsp;юридический текст считает код.</p>
+          <p class="tags">Claude Sonnet и Haiku, pgvector, Hono, React, PostgreSQL</p>
+        </div>
+        <p class="fact"><strong>15&nbsp;релизов за&nbsp;18&nbsp;дней</strong><span>после запуска в&nbsp;бой</span></p>
+      </li>
+      <li class="case-row">
+        <div>
+          <h3><a href="cases/tools.html">Инструменты для агентов</a></h3>
+          <p>То, на&nbsp;чём стоят системы выше: голосовой ввод в&nbsp;любое окно, хранилище ключей, которое агенты используют, но не&nbsp;видят, единый вход в&nbsp;мессенджеры с&nbsp;белыми списками.</p>
+          <p class="tags">.NET, Node.js, MCP, Groq</p>
+        </div>
+        <p class="fact"><strong>13&nbsp;инструментов</strong><span>в общем наборе для всех агентов</span></p>
+      </li>
+    </ul>
+  </section>
+
+  <section id="approach">
+    <h2>Как работаю</h2>
+    <ul class="principles">
+      <li><b>Сначала рутина, потом модель</b><p>Смотрю, на&nbsp;что уходят часы людей, и&nbsp;автоматизирую самое частое. Что можно посчитать кодом, считает код.</p></li>
+      <li><b>Человек решает, агент готовит</b><p>Деньги, люди, сроки и&nbsp;всё необратимое идут человеку одним вопросом: варианты, рекомендация, что будет по&nbsp;умолчанию.</p></li>
+      <li><b>Права агента записаны в&nbsp;коде</b><p>Белые списки действий, хуки, страж мержа, ключи, которые агент не&nbsp;видит. Рамки держит не&nbsp;промпт.</p></li>
+      <li><b>Живые данные в&nbsp;трекере</b><p>Агенты пишут туда, где команда уже работает: Jira, Linear, мессенджеры, календарь. Людям не&nbsp;нужно осваивать новый сервис.</p></li>
+    </ul>
+  </section>
+
+  <section id="stack">
+    <h2>Технологии</h2>
+    <dl class="stack">
+      <dt>Агенты и LLM</dt><dd>Claude Code (постоянные сессии, субагенты, хуки, скиллы, git worktree), Anthropic и&nbsp;OpenAI API, MCP-серверы, RAG и&nbsp;pgvector, маскировка персональных данных, оценка ответов, счёт токенов</dd>
+      <dt>Бэкенд</dt><dd>TypeScript, Node.js, NestJS, Express, Hono, PostgreSQL, MongoDB, Redis, RabbitMQ; читаю и&nbsp;ревьюю Python</dd>
+      <dt>Фронтенд и мобильное</dt><dd>React, Next.js, React Native и&nbsp;Expo, Electron</dd>
+      <dt>Инфраструктура</dt><dd>Docker Compose, blue-green деплой, GitHub Actions, EAS, Cloudflare Workers</dd>
+      <dt>Интеграции</dt><dd>Jira, Linear, GitHub, Figma, WhatsApp, Telegram, Google Calendar, Яндекс Директ и&nbsp;Метрика, App Store и&nbsp;Google Play API</dd>
+    </dl>
+  </section>
+
+  <section id="contacts">
+    <h2>Связаться</h2>
+    <div class="measure">
+      <p>Ищу задачи, где AI-система должна работать каждый день, а&nbsp;не&nbsp;на&nbsp;демо. Пишите на&nbsp;<a href="mailto:evilandfox@gmail.com">evilandfox@gmail.com</a> или в&nbsp;<a href="https://www.linkedin.com/in/rinat-taysin-2b31ab225">LinkedIn</a>. Опыт подробно&nbsp;— в&nbsp;<a href="cv.html">резюме</a>.</p>
+    </div>
+  </section>
+</main>
+
+<footer class="wrap">
+  <p>Ринат Тайсин, инженер AI-автоматизации. <a href="mailto:evilandfox@gmail.com">evilandfox@gmail.com</a>, <a href="https://www.linkedin.com/in/rinat-taysin-2b31ab225">LinkedIn</a>, <a href="https://github.com/evilandfox">GitHub</a></p>
+</footer>
+</body>
+</html>

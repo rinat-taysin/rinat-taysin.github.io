@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>An AI operator for the AlemX product team — Rinat Taysin</title>
+<meta name="description" content="A Claude Code agent triages bugs from WhatsApp and runs tickets, PRs, reviews, merges and releases for a mobile app. Decisions about money, people and deadlines stay with a human.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&amp;family=Unbounded:wght@500;600&amp;display=swap">
+<link rel="stylesheet" href="../../assets/style.css">
+<script src="../../assets/theme.js"></script>
+</head>
+<body>
+<header class="wrap top">
+  <a class="home" href="../index.html">Rinat Taysin</a>
+  <nav>
+    <a href="../index.html#cases">Case studies</a>
+    <a href="../cv.html">CV</a>
+    <a href="../../cases/alemx-ops.html" lang="ru" hreflang="ru">RU</a>
+    <button class="theme-toggle" type="button" aria-label="Switch theme">Theme</button>
+  </nav>
+</header>
+
+<main class="wrap">
+  <div class="case-head">
+    <a class="back" href="../index.html#cases">← All case studies</a>
+    <h1>An AI operator handles the team’s routine; people make the calls</h1>
+    <p class="lead">AlemX is an AI super-app live on the App Store and Google Play. I joined as the mobile Product Owner and built an operations agent that triages bugs from the team chat and drives tickets, PRs, reviews, merges and releases. The first store release in 4 months shipped two weeks after I started, and hotfixes now reach the stores in 3 hours.</p>
+    <dl class="meta">
+      <div><dt>Role</dt><dd>Mobile Product Owner (contract), designed and built the system</dd></div>
+      <div><dt>When</dt><dd>Since August 2026</dd></div>
+      <div><dt>Scale</dt><dd>Product team, 3-person QA team, contractors; app in both stores</dd></div>
+    </dl>
+  </div>
+
+  <div class="case-body">
+    <section>
+      <h2>The business problem</h2>
+      <div class="measure">
+        <p>A small team, and the main store release had been stuck for about 4 months. Bug reports poured into a WhatsApp group from QA, management and marketing. Some were filed against outdated builds, and every one of those wasted an investigation.</p>
+        <p>Releases depended on a single person. Progress was measured in closed bugs and merged PRs. A part-time Product Owner can’t also be the dispatcher and the reviewer.</p>
+        <p>The goal: take dispatching off people’s plates (who fixes what, where it stands, what to retest, when it ships) without handing a machine the calls a human is accountable for.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>What I built</h2>
+      <div class="measure">
+        <p>Two always-on Claude Code agents with plain code around them. The split is simple: anything with a ticket, PR or build number, or anything in the team chat, goes to the operator. Everything else goes to the PO assistant.</p>
+        <ul>
+          <li><b>Operator.</b> Reads the team chat, filters out duplicates and bugs from old builds, files tickets, hands work to coding agents, takes PRs through to merge and tells QA what to retest.</li>
+          <li><b>PO assistant.</b> Goals, store releases, communication with management.</li>
+          <li><b>Coding agents in git worktrees.</b> Sonnet writes the code and Opus, the stronger model, reviews it. The author can veto, and review stops after two rounds.</li>
+          <li><b>Merge guard.</b> Lets a branch into dev only when tests pass, review is done and the branch is trusted. Hooks block any merge that skips it.</li>
+          <li><b>Watchdog.</b> A script checks the agents and the WhatsApp bridge every 5 minutes and restarts anything that fell over, no model involved.</li>
+          <li><b>Scheduled passes.</b> Morning plan, a midday sweep for anything forgotten, a Friday weekly summary, an evening retro.</li>
+          <li><b>Release pipeline.</b> Set up EAS from scratch: iOS builds without a Mac, automatic submission to the App Store and Google Play through their APIs. PRs go to dev only, then ride the dev → rc → main train.</li>
+        </ul>
+      </div>
+      <figure class="figure-wide">
+        <svg class="diagram" viewBox="0 0 960 450" role="img" aria-labelledby="d-title">
+          <title id="d-title">Bug flow: WhatsApp report, triage, ticket, coding agent, AI review, local CI, merge guard, merge to dev, message to QA. The coding agent, review, CI and merge guard run inside an allow-list and hooks boundary. New features, money, roles and deadlines, plus untrusted branches, go to a human, who sends work back to the coding agent or approves the merge.</title>
+          <defs>
+            <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0,0 L10,5 L0,10 z"/>
+            </marker>
+          </defs>
+
+          <g class="node code"><rect x="20" y="160" width="750" height="170" rx="12"/></g>
+          <text class="small" x="160" y="184">allow-list and hooks: approved commands only, no merge around the guard</text>
+
+          <g class="node"><rect x="20" y="50" width="190" height="60" rx="8"/><text x="34" y="76">WhatsApp report</text><text class="small" x="34" y="96">from QA and managers</text></g>
+          <g class="node agent"><rect x="260" y="50" width="220" height="60" rx="8"/><text x="274" y="76">Triage</text><text class="small" x="274" y="96">duplicate? old build?</text></g>
+          <g class="node"><rect x="530" y="50" width="180" height="60" rx="8"/><text x="544" y="76">Jira ticket</text><text class="small" x="544" y="96">with priority</text></g>
+
+          <g class="node agent"><rect x="40" y="210" width="150" height="60" rx="8"/><text x="54" y="236">Coding agent</text><text class="small" x="54" y="256">Sonnet, worktree</text></g>
+          <g class="node agent"><rect x="230" y="210" width="150" height="60" rx="8"/><text x="244" y="236">AI review</text><text class="small" x="244" y="256">Opus, up to 2 rounds</text></g>
+          <g class="node code"><rect x="420" y="210" width="150" height="60" rx="8"/><text x="434" y="236">Local CI</text><text class="small" x="434" y="256">tsc, eslint, tests</text></g>
+          <g class="node code"><rect x="610" y="210" width="150" height="60" rx="8"/><text x="624" y="236">Merge guard</text><text class="small" x="624" y="256">tests and review</text></g>
+
+          <g class="node human"><rect x="795" y="210" width="155" height="60" rx="8"/><text x="809" y="236">Human (PO)</text><text class="small" x="809" y="256">decides, says OK</text></g>
+
+          <g class="node"><rect x="610" y="370" width="150" height="60" rx="8"/><text x="624" y="396">Merge to dev</text><text class="small" x="624" y="416">train to rc, main</text></g>
+          <g class="node"><rect x="320" y="370" width="240" height="60" rx="8"/><text x="334" y="396">QA: what to retest</text><text class="small" x="334" y="416">plus a daily report</text></g>
+
+          <path class="edge hot" d="M210,80 H258" marker-end="url(#arrow)"/>
+          <path class="edge hot" d="M480,80 H528" marker-end="url(#arrow)"/>
+          <path class="edge hot" d="M620,110 V135 H120 V208" marker-end="url(#arrow)"/>
+          <path class="edge hot" d="M190,240 H228" marker-end="url(#arrow)"/>
+          <path class="edge hot" d="M380,240 H418" marker-end="url(#arrow)"/>
+          <path class="edge hot" d="M570,240 H608" marker-end="url(#arrow)"/>
+          <path class="edge hot" d="M685,270 V368" marker-end="url(#arrow)"/>
+          <path class="edge hot" d="M610,400 H562" marker-end="url(#arrow)"/>
+
+          <path class="edge" d="M305,270 V288 H130 V272" marker-end="url(#arrow)"/>
+          <text class="small" x="150" y="284">review notes</text>
+          <path class="edge" d="M495,270 V306 H100 V272" marker-end="url(#arrow)"/>
+          <text class="small" x="200" y="322">CI failed</text>
+
+          <path class="edge ask" d="M370,50 V24 H920 V208" marker-end="url(#arrow)"/>
+          <text class="small" x="725" y="42">features, money, roles, dates</text>
+          <path class="edge ask" d="M760,240 H793" marker-end="url(#arrow)"/>
+          <path class="edge ask" d="M820,210 V145 H140 V208" marker-end="url(#arrow)"/>
+          <path class="edge ask" d="M872,270 V400 H762" marker-end="url(#arrow)"/>
+        </svg>
+        <ul class="legend">
+          <li class="agent">AI agent</li>
+          <li class="code">plain code, no model</li>
+          <li class="human">human decision</li>
+          <li>external services and the team</li>
+        </ul>
+        <figcaption>How a bug travels from a chat message to a merge. Blue arrows are the main flow, gray ones send work back to the coding agent, the dashed amber lines are questions to a human and the answers. The dashed frame marks the zone where only allow-listed commands run.</figcaption>
+      </figure>
+      <div class="measure">
+        <h3>Where the agent can't go alone</h3>
+        <ul>
+          <li>Money, people, the contract and messages to management need a human OK first.</li>
+          <li>A question to a human comes as one message: options A and B, a recommendation, a deadline and a default. If nobody answers, the agent runs the default only when it can be undone.</li>
+          <li>A session without an assigned role can’t run any external command: hooks block it. The agent posts to WhatsApp only through a wrapper, pushes through a single script that scans changes for secrets, and runs third-party code only in an isolated container.</li>
+          <li>A “stop” command bypasses the agent entirely.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <h2>Results</h2>
+      <ul class="results">
+        <li><strong>7 merges</strong><span>on day one with no rollbacks; later up to 21 merges a day</span></li>
+        <li><strong>15–29 PRs</strong><span>of bug fixes a day across the team</span></li>
+        <li><strong>2 weeks</strong><span>to the first store release in 4 months; then versions 2.0.4 → 2.0.19</span></li>
+        <li><strong>3 hours</strong><span>from hotfix to the stores</span></li>
+        <li><strong>~25</strong><span>security alerts closed</span></li>
+      </ul>
+      <div class="measure"><p>The investor demo (sign-up, feed, post, paid chat, wallet) ran without a glitch. Along the way I coordinated a 3-person QA team and outside contractors.</p></div>
+    </section>
+
+    <section>
+      <h2>Stack</h2>
+      <dl class="stack">
+        <dt>Agents</dt><dd>Claude Code: persistent sessions, hooks, MCP, subagents, git worktrees; Sonnet and Opus</dd>
+        <dt>Code</dt><dd>Node.js scripts, PowerShell, Docker for isolation</dd>
+        <dt>Integrations</dt><dd>Jira, GitHub, WhatsApp bridge (MCP, read-only), Figma</dd>
+        <dt>Releases</dt><dd>EAS, App Store Connect API, Google Play API</dd>
+        <dt>App</dt><dd>React Native, Expo, TypeScript, Firebase Analytics and Crashlytics</dd>
+      </dl>
+    </section>
+
+    <nav class="next" aria-label="Other case studies">
+      <a href="../index.html">← Home</a>
+      <a href="agent-hub.html">An operations team of AI agents →</a>
+    </nav>
+  </div>
+</main>
+
+<footer class="wrap">
+  <p>Rinat Taysin, AI automation engineer. <a href="mailto:evilandfox@gmail.com">evilandfox@gmail.com</a>, <a href="https://www.linkedin.com/in/rinat-taysin-2b31ab225">LinkedIn</a>, <a href="https://github.com/evilandfox">GitHub</a></p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Операционный агент продуктовой команды AlemX — Ринат Тайсин</title>
+<meta name="description" content="Агент на Claude Code разбирает баги из WhatsApp, ведёт тикеты, PR, ревью, мерж и релизы мобильного приложения. Решения о деньгах, людях и сроках остаются за человеком.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&amp;family=Unbounded:wght@500;600&amp;display=swap">
+<link rel="stylesheet" href="../assets/style.css">
+<script src="../assets/theme.js"></script>
+</head>
+<body>
+<header class="wrap top">
+  <a class="home" href="../index.html">Ринат Тайсин</a>
+  <nav>
+    <a href="../index.html#cases">Кейсы</a>
+    <a href="../cv.html">Резюме</a>
+    <a href="../en/cases/alemx-ops.html" lang="en" hreflang="en">EN</a>
+    <button class="theme-toggle" type="button" aria-label="Сменить тему">Тема</button>
+  </nav>
+</header>
+
+<main class="wrap">
+  <div class="case-head">
+    <a class="back" href="../index.html#cases">← Все кейсы</a>
+    <h1>Рутину команды разбирает агент, решения остаются за людьми</h1>
+    <p class="lead">AlemX&nbsp;— AI super-app в App Store и Google Play. Я пришёл продакт-оунером мобильного приложения и построил операционного агента: он разбирает баги из рабочего чата, ведёт тикеты, PR, ревью, мерж и релизы. Первый стор-релиз за 4&nbsp;месяца вышел через 2&nbsp;недели, хотфиксы доезжают до сторов за 3&nbsp;часа.</p>
+    <dl class="meta">
+      <div><dt>Роль</dt><dd>Product Owner мобильного приложения по контракту, автор системы</dd></div>
+      <div><dt>Когда</dt><dd>С августа 2026</dd></div>
+      <div><dt>Масштаб</dt><dd>Продуктовая команда, QA из 3&nbsp;человек, подрядчики; приложение в двух сторах</dd></div>
+    </dl>
+  </div>
+
+  <div class="case-body">
+    <section>
+      <h2>Задача бизнеса</h2>
+      <div class="measure">
+        <p>Команда небольшая, а главный стор-релиз стоял около 4&nbsp;месяцев. Баги шли потоком в WhatsApp-группу от QA, руководства и маркетинга. Часть касалась устаревшей сборки, и&nbsp;каждый такой баг расследовали впустую.</p>
+        <p>Релизы держались на одном человеке. Прогресс команда меряет закрытыми багами и&nbsp;PR. Продакт-оунер на частичной занятости не успевает быть заодно диспетчером и ревьюером.</p>
+        <p>Задача: снять с людей диспетчерскую работу&nbsp;— кто что чинит, в каком статусе, что ретестить, когда релиз. Но решения, за которые отвечает человек, машине не отдавать.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Что построено</h2>
+      <div class="measure">
+        <p>Два постоянных агента на Claude Code и код вокруг них. Правило разделения простое: есть номер тикета, PR или сборки, или это чат команды&nbsp;— дело оператора. Остальное&nbsp;— штурмана.</p>
+        <ul>
+          <li><b>Оператор.</b> Читает чат команды, отсеивает дубли и баги старых сборок, заводит тикеты, раздаёт работу исполнителям, ведёт PR до мержа и сообщает QA, что ретестить.</li>
+          <li><b>Штурман-ассистент продакт-оунера.</b> Цели, релизы в сторы, общение с руководством.</li>
+          <li><b>Исполнители в git worktree.</b> Код пишет одна модель, проверяет другая, более сильная: Sonnet пишет, Opus ревьюит. У автора есть право вето, раундов ревью не больше двух.</li>
+          <li><b>Страж мержа.</b> Пускает ветку в dev, только если прошли тесты и ревью и ветке можно доверять. Мерж в обход закрыт хуками.</li>
+          <li><b>Сторож.</b> Скрипт раз в 5&nbsp;минут проверяет агентов и мост WhatsApp и поднимает упавших без участия модели.</li>
+          <li><b>Проходы по расписанию.</b> Утренний план, дневной поиск забытого, пятничный итог недели, вечерний ретро-разбор.</li>
+          <li><b>Релизный контур.</b> Настроил EAS с нуля: iOS-сборки без Mac, отправка в App Store и Google Play через API. PR идут только в dev, дальше поездом dev → rc → main.</li>
+        </ul>
+      </div>
+      <figure class="figure-wide">
+        <svg class="diagram" viewBox="0 0 960 450" role="img" aria-labelledby="d-title">
+          <title id="d-title">Путь бага: репорт в WhatsApp, триаж, тикет, исполнитель, AI-ревью, локальный CI, страж мержа, мерж в dev, сообщение QA. Исполнитель, ревью, CI и страж работают внутри рамки allow-list и хуков. Новые фичи, деньги, роли и сроки, а также недоверенные ветки уходят человеку; он возвращает работу исполнителю или разрешает мерж.</title>
+          <defs>
+            <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0,0 L10,5 L0,10 z"/>
+            </marker>
+          </defs>
+
+          <g class="node code"><rect x="20" y="160" width="750" height="170" rx="12"/></g>
+          <text class="small" x="160" y="184">allow-list и хуки: только разрешённые команды, мерж в обход закрыт</text>
+
+          <g class="node"><rect x="20" y="50" width="190" height="60" rx="8"/><text x="34" y="76">Репорт в WhatsApp</text><text class="small" x="34" y="96">от QA и руководства</text></g>
+          <g class="node agent"><rect x="260" y="50" width="220" height="60" rx="8"/><text x="274" y="76">Триаж</text><text class="small" x="274" y="96">дубль? старая сборка?</text></g>
+          <g class="node"><rect x="530" y="50" width="180" height="60" rx="8"/><text x="544" y="76">Тикет в Jira</text><text class="small" x="544" y="96">с приоритетом</text></g>
+
+          <g class="node agent"><rect x="40" y="210" width="150" height="60" rx="8"/><text x="54" y="236">Исполнитель</text><text class="small" x="54" y="256">Sonnet, worktree</text></g>
+          <g class="node agent"><rect x="230" y="210" width="150" height="60" rx="8"/><text x="244" y="236">AI-ревью</text><text class="small" x="244" y="256">Opus, до 2 раундов</text></g>
+          <g class="node code"><rect x="420" y="210" width="150" height="60" rx="8"/><text x="434" y="236">Локальный CI</text><text class="small" x="434" y="256">tsc, eslint, тесты</text></g>
+          <g class="node code"><rect x="610" y="210" width="150" height="60" rx="8"/><text x="624" y="236">Страж мержа</text><text class="small" x="624" y="256">тесты и ревью</text></g>
+
+          <g class="node human"><rect x="795" y="210" width="155" height="60" rx="8"/><text x="809" y="236">Человек (PO)</text><text class="small" x="809" y="256">решение и «ок»</text></g>
+
+          <g class="node"><rect x="610" y="370" width="150" height="60" rx="8"/><text x="624" y="396">Мерж в dev</text><text class="small" x="624" y="416">поезд в rc и main</text></g>
+          <g class="node"><rect x="320" y="370" width="240" height="60" rx="8"/><text x="334" y="396">QA: что ретестить</text><text class="small" x="334" y="416">и отчёт дня</text></g>
+
+          <path class="edge hot" d="M210,80 H258" marker-end="url(#arrow)"/>
+          <path class="edge hot" d="M480,80 H528" marker-end="url(#arrow)"/>
+          <path class="edge hot" d="M620,110 V135 H120 V208" marker-end="url(#arrow)"/>
+          <path class="edge hot" d="M190,240 H228" marker-end="url(#arrow)"/>
+          <path class="edge hot" d="M380,240 H418" marker-end="url(#arrow)"/>
+          <path class="edge hot" d="M570,240 H608" marker-end="url(#arrow)"/>
+          <path class="edge hot" d="M685,270 V368" marker-end="url(#arrow)"/>
+          <path class="edge hot" d="M610,400 H562" marker-end="url(#arrow)"/>
+
+          <path class="edge" d="M305,270 V288 H130 V272" marker-end="url(#arrow)"/>
+          <text class="small" x="150" y="284">замечания</text>
+          <path class="edge" d="M495,270 V306 H100 V272" marker-end="url(#arrow)"/>
+          <text class="small" x="200" y="322">CI красный</text>
+
+          <path class="edge ask" d="M370,50 V24 H920 V208" marker-end="url(#arrow)"/>
+          <text class="small" x="725" y="42">фича, деньги, роли, сроки</text>
+          <path class="edge ask" d="M760,240 H793" marker-end="url(#arrow)"/>
+          <path class="edge ask" d="M820,210 V145 H140 V208" marker-end="url(#arrow)"/>
+          <path class="edge ask" d="M872,270 V400 H762" marker-end="url(#arrow)"/>
+        </svg>
+        <ul class="legend">
+          <li class="agent">агент на модели</li>
+          <li class="code">код без модели</li>
+          <li class="human">решение человека</li>
+          <li>внешние сервисы и команда</li>
+        </ul>
+        <figcaption>Путь бага от сообщения в чате до мержа. Синие стрелки&nbsp;— основной поток, серые&nbsp;— возврат исполнителю, жёлтый пунктир&nbsp;— вопрос человеку и его ответ. Пунктирная рамка&nbsp;— зона, где команды проходят только по allow-list.</figcaption>
+      </figure>
+      <div class="measure">
+        <h3>Где агенту нельзя</h3>
+        <ul>
+          <li>Деньги, люди, контракт и сообщения руководству&nbsp;— только после «ок» человека.</li>
+          <li>Вопрос человеку приходит одним сообщением: варианты A и B, рекомендация, срок и вариант по умолчанию. По умолчанию агент выполняет только обратимое.</li>
+          <li>Без роли хук запрещает любую внешнюю команду. В WhatsApp агент пишет только через обёртку, пушит через один скрипт, который сверяет изменения на ключи. Чужой код запускает только в изолированном контейнере.</li>
+          <li>Команда «стоп» срабатывает в&nbsp;обход агента.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <h2>Результат</h2>
+      <ul class="results">
+        <li><strong>7 мержей</strong><span>в первый день, без откатов; позже до&nbsp;21&nbsp;мержа в&nbsp;день</span></li>
+        <li><strong>15–29 PR</strong><span>по багам в день на всю команду</span></li>
+        <li><strong>2 недели</strong><span>до первого стор-релиза за 4&nbsp;месяца; дальше версии 2.0.4 → 2.0.19</span></li>
+        <li><strong>3 часа</strong><span>от хотфикса до сторов</span></li>
+        <li><strong>~25</strong><span>закрытых security-алертов</span></li>
+      </ul>
+      <div class="measure"><p>Демо для инвесторов&nbsp;— регистрация, лента, пост, платный чат, кошелёк&nbsp;— прошло без сбоев. Параллельно координировал QA-команду из 3&nbsp;человек и подрядчиков.</p></div>
+    </section>
+
+    <section>
+      <h2>Стек</h2>
+      <dl class="stack">
+        <dt>Агенты</dt><dd>Claude Code: постоянные сессии, хуки, MCP, субагенты, git worktree; Sonnet и Opus</dd>
+        <dt>Код</dt><dd>Node.js-скрипты, PowerShell, Docker для изоляции</dd>
+        <dt>Интеграции</dt><dd>Jira, GitHub, мост WhatsApp (MCP, чтение), Figma</dd>
+        <dt>Релизы</dt><dd>EAS, App Store Connect API, Google Play API</dd>
+        <dt>Приложение</dt><dd>React Native, Expo, TypeScript, Firebase Analytics и Crashlytics</dd>
+      </dl>
+    </section>
+
+    <nav class="next" aria-label="Другие кейсы">
+      <a href="../index.html">← На главную</a>
+      <a href="agent-hub.html">Операционный отдел из&nbsp;агентов →</a>
+    </nav>
+  </div>
+</main>
+
+<footer class="wrap">
+  <p>Ринат Тайсин, инженер AI-автоматизации. <a href="mailto:evilandfox@gmail.com">evilandfox@gmail.com</a>, <a href="https://www.linkedin.com/in/rinat-taysin-2b31ab225">LinkedIn</a>, <a href="https://github.com/evilandfox">GitHub</a></p>
+</footer>
+</body>
+</html>

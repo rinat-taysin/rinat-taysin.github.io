@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Инструменты для агентов — Ринат Тайсин</title>
+<meta name="description" content="Общий набор из 13 инструментов, на котором стоят агентные системы: мессенджеры, трекеры, Figma, ключи, браузер, сборки и диктовка. Права каждого агента задаёт его конфиг, а не код инструмента.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&amp;family=Unbounded:wght@500;600&amp;display=swap">
+<link rel="stylesheet" href="../assets/style.css">
+<script src="../assets/theme.js"></script>
+</head>
+<body>
+<header class="wrap top">
+  <a class="home" href="../index.html">Ринат Тайсин</a>
+  <nav>
+    <a href="../index.html#cases">Кейсы</a>
+    <a href="../cv.html">Резюме</a>
+    <a href="../en/cases/tools.html" lang="en" hreflang="en">EN</a>
+    <button class="theme-toggle" type="button" aria-label="Сменить тему">Тема</button>
+  </nav>
+</header>
+
+<main class="wrap">
+  <div class="case-head">
+    <a class="back" href="../index.html#cases">← Все кейсы</a>
+    <h1>Один набор инструментов на всех агентов, у каждого свои права</h1>
+    <p class="lead">Агентам нужны мессенджеры, трекеры, макеты, ключи и браузер. Я собрал это в общий набор из 13&nbsp;инструментов: каждый написан один раз, а что можно конкретному агенту, решает его конфиг. Новый проект подключается строкой настроек, а не новой копией кода.</p>
+    <dl class="meta">
+      <div><dt>Роль</dt><dd>Автор и единственный разработчик</dd></div>
+      <div><dt>Когда</dt><dd>С сентября 2026</dd></div>
+      <div><dt>Масштаб</dt><dd>13&nbsp;инструментов, ими пользуются 5&nbsp;постоянных агентов</dd></div>
+    </dl>
+  </div>
+
+  <div class="case-body">
+    <section>
+      <h2>Задача бизнеса</h2>
+      <div class="measure">
+        <p>У меня работают несколько агентных систем: команда мобильного приложения, проекты партнёров, личный хаб. Каждой нужен доступ к одному и тому же&nbsp;— чатам, задачам, дизайну, ключам API.</p>
+        <p>Без общего набора каждому проекту нужна своя копия: свой клиент трекера, свой мост к&nbsp;мессенджеру, своё место для ключей. Ошибку приходится чинить в&nbsp;каждой копии, а&nbsp;понять, какой агент что видит, можно только по&nbsp;коду каждой.</p>
+        <p>Мне нужно было одно место для общего кода и чёткая граница: агент проекта видит свои чаты и задачи, чужие&nbsp;— нет.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Что построено</h2>
+      <div class="measure">
+        <p>Главное правило набора: инструменты не знают своих потребителей. В коде нет ни названий проектов, ни списков чатов. Каждый агент при подключении передаёт свой конфиг, и там написано всё, что ему можно: какие чаты читать и куда писать, какие проекты в трекере, какие макеты, какой профиль браузера, из какого хранилища брать ключи. Права проверяет сам инструмент, поэтому их не обойти ни из командной строки, ни через MCP.</p>
+      </div>
+      <figure class="figure-wide">
+        <svg class="diagram" viewBox="0 0 960 486" role="img" aria-labelledby="d-title">
+          <title id="d-title">Слои набора: агенты и человек сверху, под агентами конфиг доступа, ниже 13 инструментов, внизу внешние сервисы</title>
+          <defs>
+            <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0,0 L10,5 L0,10 z"/>
+            </marker>
+          </defs>
+
+          <g class="node agent"><rect x="20" y="20" width="330" height="56" rx="8"/><text x="36" y="44">Штурман хаба</text><text class="small" x="36" y="64">постоянная сессия Claude Code</text></g>
+          <g class="node agent"><rect x="370" y="20" width="330" height="56" rx="8"/><text x="386" y="44">Агенты проектов</text><text class="small" x="386" y="64">по агенту на проект</text></g>
+          <g class="node human"><rect x="740" y="20" width="200" height="56" rx="8"/><text x="756" y="44">Человек</text><text class="small" x="756" y="64">хоткей и голос</text></g>
+
+          <g class="node code"><rect x="20" y="110" width="680" height="56" rx="8"/><text x="36" y="134">Конфиг доступа потребителя</text><text class="small" x="36" y="154">что можно этому агенту: чаты, проекты, макеты, ключи, профиль браузера</text></g>
+
+          <g class="node"><rect x="12" y="192" width="936" height="176" rx="10"/><text class="small" x="28" y="212">общий набор: 13 инструментов</text></g>
+          <g class="node code"><rect x="28" y="224" width="208" height="56" rx="8"/><text x="44" y="248">Связь</text><text class="small" x="44" y="268">Max, WhatsApp, Telegram</text></g>
+          <g class="node code"><rect x="252" y="224" width="208" height="56" rx="8"/><text x="268" y="248">Трекеры</text><text class="small" x="268" y="268">Linear, Jira</text></g>
+          <g class="node code"><rect x="476" y="224" width="208" height="56" rx="8"/><text x="492" y="248">Figma</text><text class="small" x="492" y="268">макеты по снимку</text></g>
+          <g class="node code"><rect x="28" y="296" width="208" height="56" rx="8"/><text x="44" y="320">Ключница</text><text class="small" x="44" y="340">значения агенту не видны</text></g>
+          <g class="node code"><rect x="252" y="296" width="208" height="56" rx="8"/><text x="268" y="320">Браузер</text><text class="small" x="268" y="340">свой Chrome у агента</text></g>
+          <g class="node code"><rect x="476" y="296" width="208" height="56" rx="8"/><text x="492" y="320">Сборка</text><text class="small" x="492" y="340">пул аккаунтов EAS</text></g>
+          <g class="node code"><rect x="740" y="224" width="192" height="56" rx="8"/><text x="756" y="248">GroqDictate</text><text class="small" x="756" y="268">диктовка из трея</text></g>
+
+          <g class="node"><rect x="20" y="410" width="920" height="56" rx="8"/><text x="36" y="434">Внешние сервисы</text><text class="small" x="36" y="454">мессенджеры, Linear, Jira, Figma, Chrome, EAS, Groq, Bitwarden</text></g>
+
+          <path class="edge hot" d="M185,76 V108" marker-end="url(#arrow)"/>
+          <path class="edge hot" d="M535,76 V108" marker-end="url(#arrow)"/>
+          <path class="edge" d="M360,166 V190" marker-end="url(#arrow)"/>
+          <path class="edge ask" d="M836,76 V222" marker-end="url(#arrow)"/>
+          <path class="edge" d="M360,368 V408" marker-end="url(#arrow)"/>
+          <path class="edge" d="M836,280 V408" marker-end="url(#arrow)"/>
+        </svg>
+        <ul class="legend">
+          <li class="agent">агент на модели</li>
+          <li class="code">код без модели</li>
+          <li class="human">человек</li>
+          <li>внешние сервисы</li>
+        </ul>
+        <figcaption>Агенты обращаются к инструментам только через свой конфиг доступа. Диктовкой человек пользуется напрямую.</figcaption>
+      </figure>
+      <div class="measure">
+        <h3>GroqDictate: диктовка в любое окно</h3>
+        <p>Жму горячую клавишу и говорю. Запись уходит на распознавание в Groq, лёгкая языковая модель чистит текст от оговорок, словарь поправляет имена и термины, и готовый текст вставляется туда, где стоял курсор. Так я голосом ставлю задачи агентам, пишу письма и заметки и не переключаюсь в отдельное приложение. Это один .exe на .NET размером около 1,8&nbsp;МБ, без установщика.</p>
+        <h3>Ключница: ключи под замком</h3>
+        <p>Ключи API и токены лежат зашифрованными, по хранилищу на проект, а боевые&nbsp;— отдельно от разработки. Мастер-копия&nbsp;— в Bitwarden. Агент ключей не видит вообще: команды «показать значение» нет, он запускает нужную программу через Ключницу, и ключи попадают только в окружение этой программы. Токены больше не&nbsp;нужно копировать между проектами вручную.</p>
+        <h3>Связь: один вход в мессенджеры</h3>
+        <p>Мессенджер Max, WhatsApp и Telegram подключены одним MCP-сервером с локальным архивом переписки. Агент проекта видит только чаты из своего белого списка и пишет только туда, куда ему разрешено. Агенту не нужно держать свою сессию в мессенджере, а мне не нужно проверять, не читает ли он лишнего.</p>
+        <h3>Трекеры: Linear и Jira в границах проекта</h3>
+        <p>Одна библиотека, командная строка и MCP-сервер на всех. В конфиге указано, какие команды и проекты агенту можно читать и где писать. Чужие задачи до него не доходят: фильтр уходит в запрос к трекеру, а ответ проверяется ещё раз. Инструмент сам следит за лимитом запросов на ключ, чтобы несколько агентов не исчерпали его вместе.</p>
+        <h3>Figma: макеты без расхода квоты</h3>
+        <p>Агенту, который верстает экран, нужен макет, а квота официального API у Figma маленькая. Инструмент раз в сутки проверяет версию файла и делает снимок на диск, и днём агенты читают макеты только из него&nbsp;— сколько угодно раз и без лимитов. Каждый потребитель видит только свои файлы.</p>
+        <p>Остальное&nbsp;— проще: свой профиль Chrome у каждого агента, чтобы они не перехватывали вкладки друг друга, пул аккаунтов для мобильных сборок и рантайм постоянных агентских сессий.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Результат</h2>
+      <ul class="results">
+        <li><strong>13</strong><span>инструментов в общем наборе</span></li>
+        <li><strong>5</strong><span>постоянных агентов работают на&nbsp;одном коде</span></li>
+        <li><strong>≈&nbsp;20&nbsp;000</strong><span>строк кода: Node.js, PowerShell, Python</span></li>
+        <li><strong>73</strong><span>коммита с 29&nbsp;сентября 2026</span></li>
+        <li><strong>10</strong><span>тестовых файлов</span></li>
+        <li><strong>~1,8&nbsp;МБ</strong><span>весь GroqDictate, один .exe</span></li>
+      </ul>
+      <div class="measure"><p>Срез на 9&nbsp;октября 2026. Ключи всех проектов теперь в одном зашифрованном месте, а права каждого агента читаются из одного конфига.</p></div>
+    </section>
+
+    <section>
+      <h2>Стек</h2>
+      <dl class="stack">
+        <dt>Агенты</dt><dd>Claude Code: MCP-серверы, хуки, постоянные сессии</dd>
+        <dt>Код</dt><dd>Node.js (ESM), PowerShell, Python, C#/.NET (GroqDictate)</dd>
+        <dt>Интеграции</dt><dd>Max, WhatsApp, Telegram, Linear, Jira, Figma, Chrome, EAS, Groq</dd>
+        <dt>Ключи</dt><dd>DPAPI + AES-GCM, мастер-копия в Bitwarden</dd>
+      </dl>
+    </section>
+
+    <nav class="next" aria-label="Другие кейсы">
+      <a href="risk.html">← РИСК: претензии в&nbsp;грузоперевозках</a>
+      <a href="../index.html#cases">Все кейсы →</a>
+    </nav>
+  </div>
+</main>
+
+<footer class="wrap">
+  <p>Ринат Тайсин, инженер AI-автоматизации. <a href="mailto:evilandfox@gmail.com">evilandfox@gmail.com</a>, <a href="https://www.linkedin.com/in/rinat-taysin-2b31ab225">LinkedIn</a>, <a href="https://github.com/evilandfox">GitHub</a></p>
+</footer>
+</body>
+</html>

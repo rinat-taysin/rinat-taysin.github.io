@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shared tools for AI agents — Rinat Taysin</title>
+<meta name="description" content="A shared set of 13 tools that my agent systems run on: messengers, issue trackers, Figma, secrets, browser, mobile builds and dictation. Each agent's permissions live in its own config, not in tool code.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&amp;family=Unbounded:wght@500;600&amp;display=swap">
+<link rel="stylesheet" href="../../assets/style.css">
+<script src="../../assets/theme.js"></script>
+</head>
+<body>
+<header class="wrap top">
+  <a class="home" href="../index.html">Rinat Taysin</a>
+  <nav>
+    <a href="../index.html#cases">Case studies</a>
+    <a href="../cv.html">CV</a>
+    <a href="../../cases/tools.html" lang="ru" hreflang="ru">RU</a>
+    <button class="theme-toggle" type="button" aria-label="Switch theme">Theme</button>
+  </nav>
+</header>
+
+<main class="wrap">
+  <div class="case-head">
+    <a class="back" href="../index.html#cases">← All case studies</a>
+    <h1>One toolkit for every agent, each with its own permissions</h1>
+    <p class="lead">My agents need chat apps, issue trackers, design files, API keys and a browser. I built all of that once, as a shared set of 13 tools. What a given agent may touch is set in that agent's config, so adding a new project means a few lines of settings, not another copy of the code.</p>
+    <dl class="meta">
+      <div><dt>Role</dt><dd>Author and sole developer</dd></div>
+      <div><dt>When</dt><dd>Since September 2026</dd></div>
+      <div><dt>Scale</dt><dd>13 tools serving 5 always-on agents</dd></div>
+    </dl>
+  </div>
+
+  <div class="case-body">
+    <section>
+      <h2>The problem</h2>
+      <div class="measure">
+        <p>I run several agent systems: one for a mobile app team, some for partner projects, and a personal hub. They all need the same things: chats, tasks, designs, API keys.</p>
+        <p>Without a shared kit, every project needs its own copy: its own tracker client, its own messenger bridge, its own place for keys. A bug has to be fixed in every copy, and the only way to tell which agent can see what is to read each one’s code.</p>
+        <p>I needed one home for the shared code and a clear boundary: a project's agent sees its own chats and tasks and nothing else.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>What I built</h2>
+      <div class="measure">
+        <p>The core rule: tools don't know who uses them. There are no project names or chat lists in the code. Each agent passes its own config when it connects, and that config lists everything it's allowed to do: which chats to read and where to post, which tracker projects, which design files, which browser profile, which key vault. The permission check lives inside the tool, so it applies the same way from the command line and over MCP.</p>
+      </div>
+      <figure class="figure-wide">
+        <svg class="diagram" viewBox="0 0 960 486" role="img" aria-labelledby="d-title">
+          <title id="d-title">Layers: agents and a person on top, a per-agent access config below the agents, then 13 tools, then external services</title>
+          <defs>
+            <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0,0 L10,5 L0,10 z"/>
+            </marker>
+          </defs>
+
+          <g class="node agent"><rect x="20" y="20" width="330" height="56" rx="8"/><text x="36" y="44">Hub agent</text><text class="small" x="36" y="64">always-on Claude Code session</text></g>
+          <g class="node agent"><rect x="370" y="20" width="330" height="56" rx="8"/><text x="386" y="44">Project agents</text><text class="small" x="386" y="64">one per project</text></g>
+          <g class="node human"><rect x="740" y="20" width="200" height="56" rx="8"/><text x="756" y="44">Person</text><text class="small" x="756" y="64">hotkey and voice</text></g>
+
+          <g class="node code"><rect x="20" y="110" width="680" height="56" rx="8"/><text x="36" y="134">Per-agent access config</text><text class="small" x="36" y="154">what this agent may use: chats, projects, designs, keys, browser profile</text></g>
+
+          <g class="node"><rect x="12" y="192" width="936" height="176" rx="10"/><text class="small" x="28" y="212">shared toolkit: 13 tools</text></g>
+          <g class="node code"><rect x="28" y="224" width="208" height="56" rx="8"/><text x="44" y="248">Messaging</text><text class="small" x="44" y="268">Max, WhatsApp, Telegram</text></g>
+          <g class="node code"><rect x="252" y="224" width="208" height="56" rx="8"/><text x="268" y="248">Trackers</text><text class="small" x="268" y="268">Linear, Jira</text></g>
+          <g class="node code"><rect x="476" y="224" width="208" height="56" rx="8"/><text x="492" y="248">Figma</text><text class="small" x="492" y="268">designs from a snapshot</text></g>
+          <g class="node code"><rect x="28" y="296" width="208" height="56" rx="8"/><text x="44" y="320">Key vault</text><text class="small" x="44" y="340">agents never see values</text></g>
+          <g class="node code"><rect x="252" y="296" width="208" height="56" rx="8"/><text x="268" y="320">Browser</text><text class="small" x="268" y="340">one Chrome profile each</text></g>
+          <g class="node code"><rect x="476" y="296" width="208" height="56" rx="8"/><text x="492" y="320">Builds</text><text class="small" x="492" y="340">pool of EAS accounts</text></g>
+          <g class="node code"><rect x="740" y="224" width="192" height="56" rx="8"/><text x="756" y="248">GroqDictate</text><text class="small" x="756" y="268">tray dictation</text></g>
+
+          <g class="node"><rect x="20" y="410" width="920" height="56" rx="8"/><text x="36" y="434">External services</text><text class="small" x="36" y="454">messengers, Linear, Jira, Figma, Chrome, EAS, Groq, Bitwarden</text></g>
+
+          <path class="edge hot" d="M185,76 V108" marker-end="url(#arrow)"/>
+          <path class="edge hot" d="M535,76 V108" marker-end="url(#arrow)"/>
+          <path class="edge" d="M360,166 V190" marker-end="url(#arrow)"/>
+          <path class="edge ask" d="M836,76 V222" marker-end="url(#arrow)"/>
+          <path class="edge" d="M360,368 V408" marker-end="url(#arrow)"/>
+          <path class="edge" d="M836,280 V408" marker-end="url(#arrow)"/>
+        </svg>
+        <ul class="legend">
+          <li class="agent">AI agent</li>
+          <li class="code">plain code, no model</li>
+          <li class="human">person</li>
+          <li>external services</li>
+        </ul>
+        <figcaption>Agents reach the tools only through their own access config. Dictation is used by a person directly.</figcaption>
+      </figure>
+      <div class="measure">
+        <h3>GroqDictate: dictate into any window</h3>
+        <p>I press a hotkey and talk. The audio goes to Groq for speech recognition, a small language model cleans up false starts, a word list fixes names and terms, and the text is pasted wherever the cursor was. That's how I give tasks to agents and write messages and notes by voice without switching apps. It's a single .NET .exe of about 1.8 MB, no installer.</p>
+        <h3>Key vault: secrets stay locked</h3>
+        <p>API keys and tokens are stored encrypted, one vault per project, with production kept apart from development. The master copy lives in Bitwarden. Agents never see a key: there is no “show value” command. An agent runs a program through the vault, and the keys go only into that program's environment. Nobody copies tokens between projects by hand anymore.</p>
+        <h3>Messaging: one entry point for chat apps</h3>
+        <p>The Max messenger, WhatsApp and Telegram sit behind one MCP server with a local message archive. A project's agent sees only the chats on its allowlist and can post only where it's allowed to. Agents don't need their own messenger sessions, and I don't have to check whether one is reading more than it should.</p>
+        <h3>Trackers: Linear and Jira, scoped per project</h3>
+        <p>One library, CLI and MCP server for everyone. The config says which teams and projects an agent can read and where it can write. Other projects' issues never reach it: the filter goes into the tracker query, and the response is checked again. The tool also watches the per-key rate limit, so several agents can't burn through it together.</p>
+        <h3>Figma: designs without spending API quota</h3>
+        <p>An agent building a screen needs the design, but Figma's official API quota is small. Once a day the tool checks the file version and saves a snapshot to disk, and during the day agents read designs only from that snapshot, as often as they like. Each agent sees only its own files.</p>
+        <p>The rest is simpler: a separate Chrome profile per agent so they don't grab each other's tabs, a pool of accounts for mobile builds, and the runtime for the always-on agent sessions.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Results</h2>
+      <ul class="results">
+        <li><strong>13</strong><span>tools in the shared set</span></li>
+        <li><strong>5</strong><span>always-on agents run on the same code</span></li>
+        <li><strong>~20,000</strong><span>lines of Node.js, PowerShell and Python</span></li>
+        <li><strong>73</strong><span>commits since September 29, 2026</span></li>
+        <li><strong>10</strong><span>test files</span></li>
+        <li><strong>~1.8 MB</strong><span>all of GroqDictate, one .exe</span></li>
+      </ul>
+      <div class="measure"><p>As of October 9, 2026. Keys for every project now sit in one encrypted place, and each agent's permissions are read from a single config.</p></div>
+    </section>
+
+    <section>
+      <h2>Stack</h2>
+      <dl class="stack">
+        <dt>Agents</dt><dd>Claude Code: MCP servers, hooks, always-on sessions</dd>
+        <dt>Code</dt><dd>Node.js (ESM), PowerShell, Python, C#/.NET (GroqDictate)</dd>
+        <dt>Integrations</dt><dd>Max, WhatsApp, Telegram, Linear, Jira, Figma, Chrome, EAS, Groq</dd>
+        <dt>Secrets</dt><dd>DPAPI + AES-GCM, master copy in Bitwarden</dd>
+      </dl>
+    </section>
+
+    <nav class="next" aria-label="More case studies">
+      <a href="risk.html">← RISK: payment claims for freight carriers</a>
+      <a href="../index.html#cases">All case studies →</a>
+    </nav>
+  </div>
+</main>
+
+<footer class="wrap">
+  <p>Rinat Taysin, AI automation engineer. <a href="mailto:evilandfox@gmail.com">evilandfox@gmail.com</a>, <a href="https://www.linkedin.com/in/rinat-taysin-2b31ab225">LinkedIn</a>, <a href="https://github.com/evilandfox">GitHub</a></p>
+</footer>
+</body>
+</html>

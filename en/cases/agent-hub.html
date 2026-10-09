@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>An operations team of AI agents — Rinat Taysin</title>
+<meta name="description" content="A multi-agent system for one person running several projects. It takes requests from the messenger, files them into trackers, does the work in the background and leaves the human only the decisions.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&amp;family=Unbounded:wght@500;600&display=swap">
+<link rel="stylesheet" href="../../assets/style.css">
+<script src="../../assets/theme.js"></script>
+</head>
+<body>
+<header class="wrap top">
+  <a class="home" href="../index.html">Rinat Taysin</a>
+  <nav>
+    <a href="../index.html#cases">Case studies</a>
+    <a href="../cv.html">CV</a>
+    <a href="../../cases/agent-hub.html" lang="ru" hreflang="ru">RU</a>
+    <button class="theme-toggle" type="button" aria-label="Switch theme">Theme</button>
+  </nav>
+</header>
+
+<main class="wrap">
+  <div class="case-head">
+    <a class="back" href="../index.html#cases">← All case studies</a>
+    <h1>An operations team of AI agents that leaves me only the decisions</h1>
+    <p class="lead">I run several projects at once: a mobile app I work on under contract, a partner’s B2B platform, and my own AI service. Instead of tracking all of it in my head, I built a system of agents. It listens to my messenger, files incoming requests into trackers, works on tasks in the background, and brings me only the decisions. It’s where I worked out the patterns I now use to automate business operations.</p>
+    <dl class="meta">
+      <div><dt>Role</dt><dd>Sole designer and developer</dd></div>
+      <div><dt>When</dt><dd>Since July 2026, in daily use</dd></div>
+      <div><dt>Scale</dt><dd>5 always-on agents, 10 scheduled jobs</dd></div>
+    </dl>
+  </div>
+
+  <div class="case-body">
+    <section>
+      <h2>The business problem</h2>
+      <div class="measure">
+        <p>Any team that handles a steady flow of requests has the same problem. Messages arrive in chat apps and as voice notes, tasks live in several trackers, work stalls between people, and the manager is the one who keeps track of what matters most right now. That makes the manager the bottleneck.</p>
+        <p>I handed that routine to agents: watching trackers and messengers, sorting incoming messages and voice notes, picking what to do next, chasing stalled work, watching logins and outages, backups, and disk cleanup. The goal: I make the top-level calls, and agents do the rest.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>What I built</h2>
+      <div class="measure">
+        <p>It’s the same pipeline a business runs: messenger intake → tracker → execution → only decisions reach the human. Model-based agents and plain code split the work: anything that can be computed is computed by a script.</p>
+        <ul>
+          <li><b>Operator.</b> Plain code, no model. Listens to the Max messenger, transcribes voice, and routes messages between agents every 15 seconds. At 9 a.m. it sends one “Decisions” batch: questions from agents, each with a recommendation and a default.</li>
+          <li><b>Hub agent.</b> The central agent, an always-on Claude Code session. It thinks, replies in the messenger, and hands larger jobs to background workers.</li>
+          <li><b>Desk agents.</b> A “desk” is one area of work, such as a project or my personal errands, and each desk has its own always-on agent. All of them follow a shared contract and talk through the hub using five message types: reply, question, request to another desk, request to the hub, and “needs the owner.” Every restart opens a fresh chat and carries over only open items; all desks restart nightly at 4 a.m.</li>
+          <li><b>Lanes (background workers).</b> Background Claude sessions, one Linear task each, each in its own git worktree, up to three in parallel. They report back “done” or “failed,” and the hub agent merges.</li>
+          <li><b>Inbox triage.</b> Takes dictated notes, voice memos from the phone, and the Linear inbox, and files them into trackers without asking me anything.</li>
+          <li><b>Priority list.</b> One ranked list across all areas, recomputed on every request: quick tasks (under 30 minutes) first, then anything due within 48 hours, then anything with a real consequence, then the rest by priority. If hours pile up in one area while something urgent waits elsewhere, I get a short nudge, no more than twice on a weekday.</li>
+          <li><b>Stall sweep.</b> A check every 30 minutes plus a daily sweep of all desks. A stalled task goes back to the agent that owns it until it moves, and the check looks at the task itself, not at a status flag. Once a week there’s a retro: 8 subagents review the week from different angles, and a list of proposed fixes comes to me for approval.</li>
+          <li><b>Watchdog.</b> Every 10 minutes it checks processes, service logins, Docker (restarting it when needed), and disks. One message per failure per day.</li>
+          <li><b>Nightly jobs.</b> Document backup to the cloud, photo transfer from the phone, cleanup to the Recycle Bin, and a weekly startup-apps checkup. All plain code, no model.</li>
+          <li><b>Toolkit.</b> 13 shared tools: one MCP gateway to messengers with per-agent chat allowlists, trackers, Figma, a separate browser profile for each agent, and an encrypted key vault. Agents run commands with keys but never see the values.</li>
+        </ul>
+      </div>
+      <figure class="figure-wide">
+        <svg class="diagram" viewBox="0 0 960 440" role="img" aria-labelledby="d-title">
+          <title id="d-title">Diagram: the owner writes in a messenger, the operator passes the message to the hub agent, which works with desk agents, background workers (lanes), and inbox triage; the stall sweep, watchdog, priority list, and nightly jobs are plain code; a shared toolkit and key vault sit underneath everything.</title>
+          <defs>
+            <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0,0 L10,5 L0,10 z"/>
+            </marker>
+          </defs>
+
+          <g class="node code"><rect x="20" y="20" width="200" height="56" rx="8"/><text x="36" y="44">Nightly jobs</text><text class="small" x="36" y="64">backup, photos, cleanup</text></g>
+          <g class="node code"><rect x="260" y="20" width="200" height="56" rx="8"/><text x="276" y="44">Watchdog</text><text class="small" x="276" y="64">every 10 min</text></g>
+          <g class="node code"><rect x="740" y="20" width="200" height="56" rx="8"/><text x="756" y="44">Stall sweep</text><text class="small" x="756" y="64">every 30 min</text></g>
+
+          <g class="node human"><rect x="20" y="140" width="200" height="56" rx="8"/><text x="36" y="164">Owner</text><text class="small" x="36" y="184">messenger, voice</text></g>
+          <g class="node code"><rect x="260" y="140" width="200" height="56" rx="8"/><text x="276" y="164">Operator</text><text class="small" x="276" y="184">listens and routes</text></g>
+          <g class="node agent"><rect x="500" y="140" width="200" height="56" rx="8"/><text x="516" y="164">Hub agent</text><text class="small" x="516" y="184">thinks and replies</text></g>
+          <g class="node agent"><rect x="740" y="140" width="200" height="56" rx="8"/><text x="756" y="164">Desk agents</text><text class="small" x="756" y="184">always-on sessions</text></g>
+
+          <g class="node"><rect x="20" y="270" width="200" height="56" rx="8"/><text x="36" y="294">Trackers</text><text class="small" x="36" y="314">Linear, calendar</text></g>
+          <g class="node agent"><rect x="260" y="270" width="200" height="56" rx="8"/><text x="276" y="294">Inbox triage</text><text class="small" x="276" y="314">voice, notes, inbox</text></g>
+          <g class="node agent"><rect x="500" y="270" width="200" height="56" rx="8"/><text x="516" y="294">Lanes</text><text class="small" x="516" y="314">task in a git worktree</text></g>
+          <g class="node code"><rect x="740" y="270" width="200" height="56" rx="8"/><text x="756" y="294">Priority list</text><text class="small" x="756" y="314">one task right now</text></g>
+
+          <g class="node code"><rect x="20" y="370" width="920" height="56" rx="8"/><text x="36" y="394">Toolkit and key vault</text><text class="small" x="36" y="414">messengers, trackers, Figma, browser, keys — shared code, no project data</text></g>
+
+          <path class="edge" d="M360,76 V136" marker-end="url(#arrow)"/>
+          <path class="edge" d="M840,76 V136" marker-end="url(#arrow)"/>
+          <path class="edge hot" d="M220,158 H256" marker-end="url(#arrow)"/>
+          <path class="edge ask" d="M260,180 H224" marker-end="url(#arrow)"/>
+          <path class="edge hot" d="M460,158 H496" marker-end="url(#arrow)"/>
+          <path class="edge" d="M500,180 H464" marker-end="url(#arrow)"/>
+          <path class="edge" d="M700,158 H736" marker-end="url(#arrow)"/>
+          <path class="edge" d="M740,180 H704" marker-end="url(#arrow)"/>
+          <path class="edge" d="M580,196 V266" marker-end="url(#arrow)"/>
+          <path class="edge" d="M620,270 V200" marker-end="url(#arrow)"/>
+          <text class="small" x="628" y="238">done</text>
+          <path class="edge" d="M515,196 L452,266" marker-end="url(#arrow)"/>
+          <path class="edge" d="M260,298 H224" marker-end="url(#arrow)"/>
+          <path class="edge" d="M840,196 V266" marker-end="url(#arrow)"/>
+          <text class="small" x="848" y="238">needs owner</text>
+          <path class="edge" d="M770,270 L690,200" marker-end="url(#arrow)"/>
+        </svg>
+        <ul class="legend">
+          <li class="agent">model-based agent</li>
+          <li class="code">plain code, no model</li>
+          <li class="human">human decision</li>
+          <li>external services</li>
+        </ul>
+        <figcaption>Only three things come back to the owner: an answer, a question with a default, and an outage alert (dashed line). Everything else moves between agents as messages through the hub.</figcaption>
+      </figure>
+    </section>
+
+    <section>
+      <h2>Results</h2>
+      <ul class="results">
+        <li><strong>182 commits</strong><span>in the hub repository since July 25, 2026</span></li>
+        <li><strong>~11,200 lines</strong><span>of Node.js: 28 scripts and 28 modules, 23 test files</span></li>
+        <li><strong>13 tools</strong><span>in the shared toolkit: ~20,000 lines, 73 commits since September 29, 2026</span></li>
+        <li><strong>5 + 10</strong><span>always-on agents and scheduled background jobs</span></li>
+        <li><strong>$0 in tokens</strong><span>for the operator, watchdog, stall sweep, and nightly jobs, which run without a model</span></li>
+      </ul>
+      <div class="measure"><p>As of October 9, 2026. The system messages me first only with an answer, an outage alert, a question with a default, a twice-daily fact summary or the weekly review.</p></div>
+    </section>
+
+    <section>
+      <h2>What it looks like</h2>
+      <figure class="figure-wide">
+        <svg class="diagram" viewBox="0 0 960 410" role="img" aria-labelledby="chat-title">
+          <title id="chat-title">Illustrated chat. Left: the owner asks “What now?” and the hub replies with one task, reply to a PR review in project X, with the reason, time estimate, and first step. Right: the morning “Decisions” batch with a question from a desk, a recommendation, and a default; the owner replies “Yes.”</title>
+
+          <g class="node human"><rect x="300" y="40" width="140" height="40" rx="14"/><text x="316" y="65">What now?</text></g>
+          <text class="small" x="12" y="104">Hub</text>
+          <g class="node agent"><rect x="10" y="112" width="430" height="152" rx="14"/>
+            <text x="26" y="140">Reply to the PR review in project X</text>
+            <text class="small" x="26" y="164">Why: the reviewer has been waiting since morning;</text>
+            <text class="small" x="26" y="184">release is on Thursday.</text>
+            <text class="small" x="26" y="204">Known: three comments, two of them about naming.</text>
+            <text class="small" x="26" y="224">Takes about 20 minutes. First step: open the PR</text>
+            <text class="small" x="26" y="244">and start with the empty-list test comment.</text>
+          </g>
+          <g class="node human"><rect x="350" y="282" width="90" height="40" rx="14"/><text x="366" y="307">Done</text></g>
+          <g class="node agent"><rect x="10" y="340" width="430" height="56" rx="14"/><text x="26" y="373">Closed. Ask when you want the next one.</text></g>
+
+          <text class="small" x="512" y="32">Hub, 9:00</text>
+          <g class="node agent"><rect x="510" y="40" width="430" height="182" rx="14"/>
+            <text x="526" y="66">Decisions (1)</text>
+            <text class="small" x="526" y="90">Project Y desk asks: e2e tests fail on an old</text>
+            <text class="small" x="526" y="110">Android version; everything else is green.</text>
+            <text class="small" x="526" y="134">Recommendation: turn off that run and open</text>
+            <text class="small" x="526" y="154">a task to fix it.</text>
+            <text class="small" x="526" y="178">Default: I’ll do exactly that tomorrow at 12:00</text>
+            <text class="small" x="526" y="198">unless you reply.</text>
+          </g>
+          <g class="node human"><rect x="870" y="240" width="70" height="40" rx="14"/><text x="889" y="265">Yes</text></g>
+          <g class="node agent"><rect x="510" y="298" width="430" height="56" rx="14"/><text x="526" y="331">Got it: run turned off, task created.</text></g>
+        </svg>
+        <figcaption>Illustration: a sample messenger chat, made-up data. Left: one task on request, with context and a first step. Right: an agent’s question with a recommendation and a default.</figcaption>
+      </figure>
+    </section>
+
+    <section>
+      <h2>Principles</h2>
+      <ul class="principles">
+        <li><b>Code computes, the model judges</b><p>Anything that can be computed without an LLM is done by a script. The model only makes judgment calls, and I pick the lightest one that does the job.</p></li>
+        <li><b>The system doesn’t start conversations</b><p>Only a short, closed list: an answer, an outage, a question with a default, a fact summary, a weekly review.</p></li>
+        <li><b>Agents carry the backlog, not the human</b><p>Every open task has an owning desk. Unanswered items don’t pile up on the human; an agent keeps pushing them.</p></li>
+        <li><b>Keys stay locked</b><p>Agents never see key values. Each desk’s permissions are an allowlist in its config.</p></li>
+        <li><b>Every rule lives in one place</b><p>A correction goes straight into code, a test, a hook, or an instruction. Outdated rules get deleted, not stacked next to the new ones.</p></li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Stack</h2>
+      <dl class="stack">
+        <dt>Agents</dt><dd>Claude Code: always-on sessions, subagents, git worktrees, skills, hooks, MCP</dd>
+        <dt>Code</dt><dd>Node.js (ESM), PowerShell, Python, C#/.NET; Windows Terminal and Windows Task Scheduler</dd>
+        <dt>Trackers</dt><dd>Linear, Jira, Google Calendar, Apple Reminders (iCloud)</dd>
+        <dt>Messaging and voice</dt><dd>Max, WhatsApp, Telegram; Groq for speech recognition</dd>
+        <dt>Keys and data</dt><dd>Key vault on DPAPI and AES-GCM with Bitwarden as the master copy; Yandex Disk REST API; Figma</dd>
+      </dl>
+    </section>
+
+    <nav class="next" aria-label="Other case studies">
+      <a href="alemx-ops.html">← An operations agent for a product team</a>
+      <a href="prezentashki.html">Prezentashki: an AI presentation generator →</a>
+    </nav>
+  </div>
+</main>
+
+<footer class="wrap">
+  <p>Rinat Taysin, AI automation engineer. <a href="mailto:evilandfox@gmail.com">evilandfox@gmail.com</a>, <a href="https://www.linkedin.com/in/rinat-taysin-2b31ab225">LinkedIn</a>, <a href="https://github.com/evilandfox">GitHub</a></p>
+</footer>
+</body>
+</html>

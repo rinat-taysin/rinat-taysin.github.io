@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Операционный отдел из агентов&nbsp;— Ринат Тайсин</title>
+<meta name="description" content="Мультиагентная система для человека, который ведёт несколько проектов: входящие из мессенджера, трекеры, фоновое исполнение, человеку&nbsp;— только решения.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&amp;family=Unbounded:wght@500;600&display=swap">
+<link rel="stylesheet" href="../assets/style.css">
+<script src="../assets/theme.js"></script>
+</head>
+<body>
+<header class="wrap top">
+  <a class="home" href="../index.html">Ринат Тайсин</a>
+  <nav>
+    <a href="../index.html#cases">Кейсы</a>
+    <a href="../cv.html">Резюме</a>
+    <a href="../en/cases/agent-hub.html" lang="en" hreflang="en">EN</a>
+    <button class="theme-toggle" type="button" aria-label="Сменить тему">Тема</button>
+  </nav>
+</header>
+
+<main class="wrap">
+  <div class="case-head">
+    <a class="back" href="../index.html#cases">← Все кейсы</a>
+    <h1>Операционный отдел из агентов: человеку остаются только решения</h1>
+    <p class="lead">Я веду несколько проектов сразу: мобильное приложение по контракту, B2B-платформу партнёра и собственный AI-сервис. Чтобы не держать их в голове, построил систему агентов: она слушает мессенджер, раскладывает входящие по трекерам, делает задачи в фоне и приносит мне только решения. На ней я обкатал приёмы, которые потом переношу в автоматизацию бизнеса.</p>
+    <dl class="meta">
+      <div><dt>Роль</dt><dd>Автор и единственный разработчик</dd></div>
+      <div><dt>Когда</dt><dd>С июля 2026, в ежедневной работе</dd></div>
+      <div><dt>Масштаб</dt><dd>5&nbsp;постоянных агентов, 10&nbsp;фоновых задач</dd></div>
+    </dl>
+  </div>
+
+  <div class="case-body">
+    <section>
+      <h2>Задача бизнеса</h2>
+      <div class="measure">
+        <p>Та же задача у любого отдела с потоком обращений. Сообщения приходят в мессенджеры и голосом, задачи разбросаны по нескольким трекерам, дела застревают между людьми, а что сейчас важнее всего, помнит руководитель. Он и становится узким местом.</p>
+        <p>Я снял с себя эту рутину: слежение за трекерами и мессенджерами, разбор входящих и голосовых, выбор «что сейчас», возврат застрявших дел, контроль входов и аварий, бэкапы и уборку дисков. Мне остаются решения, остальное делают агенты.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Что построено</h2>
+      <div class="measure">
+        <p>Цепочка та же, что в бизнесе: входящие из мессенджера → трекер → исполнение → человеку только решения. Работу делят агенты на модели и обычный код: что можно посчитать, считает скрипт.</p>
+        <ul>
+          <li><b>Оператор.</b> Код без модели. Слушает мессенджер Max, расшифровывает голос, раз в 15&nbsp;секунд разводит письма агентов. В 09:00 присылает одну пачку «Решения»: вопросы агентов с рекомендацией и вариантом по умолчанию.</li>
+          <li><b>Штурман хаба.</b> Центральный агент: постоянная сессия Claude Code. Думает, отвечает в&nbsp;мессенджер, крупное отдаёт фоновым исполнителям.</li>
+          <li><b>Штурманы столов.</b> Стол&nbsp;— рабочее место агента по&nbsp;одному направлению: проект или личные дела. На&nbsp;каждом&nbsp;— постоянная сессия, у&nbsp;всех общий контракт. Общаются письмами через хаб: ответ, вопрос, просьба другому столу, просьба хабу, «нужен человек». Перезапуск&nbsp;— всегда новый чат, передаётся только открытое; ночью в 04:00&nbsp;— плановый перезапуск.</li>
+          <li><b>Лэйны&nbsp;— фоновые исполнители.</b> Сессии Claude по одной задаче Linear, каждая в своём git worktree, до трёх параллельно. Итог&nbsp;— письмом «готово» или «не вышло», сливает штурман.</li>
+          <li><b>Разбор входящих.</b> Надиктованное, голосовые с телефона и Linear Inbox раскладывает по трекерам без вопросов ко мне.</li>
+          <li><b>Поток внимания.</b> Один список дел по всем направлениям, каждый раз считается заново: сначала быстрые дела до&nbsp;30&nbsp;минут, потом со&nbsp;сроком в&nbsp;ближайшие 48&nbsp;часов, потом те, у&nbsp;которых есть последствие, остальное&nbsp;— по&nbsp;приоритету. Если часы уходят в одно направление, а другое горит,&nbsp;— короткий пинг, не чаще двух раз в будний день.</li>
+          <li><b>Обход застоя.</b> Проверка раз в&nbsp;30&nbsp;минут и&nbsp;ежедневный обход столов. Стоящее дело возвращается агенту-владельцу, пока не сдвинется; проверяется само дело, а не отметка. Раз в неделю&nbsp;— ретро: 8&nbsp;субагентов разбирают неделю с&nbsp;разных сторон, план правок&nbsp;— мне на согласие.</li>
+          <li><b>Сторож.</b> Каждые 10&nbsp;минут проверяет процессы, входы в сервисы, Docker с самолечением и диски. Одно сообщение на поломку в сутки.</li>
+          <li><b>Ночные задания.</b> Копия документов в облако, перенос фото с телефона, уборка в Корзину, недельный осмотр автозапуска. Всё кодом, без модели.</li>
+          <li><b>Инструментарий.</b> 13&nbsp;общих инструментов: единый MCP-вход в мессенджеры с белыми списками чатов, трекеры, Figma, браузер со своим профилем на каждого агента, шифрованная Ключница&nbsp;— агенты запускают команды с ключами, но значений не видят.</li>
+        </ul>
+      </div>
+      <figure class="figure-wide">
+        <svg class="diagram" viewBox="0 0 960 440" role="img" aria-labelledby="d-title">
+          <title id="d-title">Схема: человек пишет в мессенджер, оператор передаёт сообщение штурману хаба, тот работает со штурманами столов, фоновыми лэйнами и разбором входящих; обход застоя, сторож, поток внимания и ночные задания работают кодом; под всем&nbsp;— общий инструментарий и Ключница.</title>
+          <defs>
+            <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0,0 L10,5 L0,10 z"/>
+            </marker>
+          </defs>
+
+          <g class="node code"><rect x="20" y="20" width="200" height="56" rx="8"/><text x="36" y="44">Ночные задания</text><text class="small" x="36" y="64">копия, фото, уборка</text></g>
+          <g class="node code"><rect x="260" y="20" width="200" height="56" rx="8"/><text x="276" y="44">Сторож</text><text class="small" x="276" y="64">каждые 10 мин</text></g>
+          <g class="node code"><rect x="740" y="20" width="200" height="56" rx="8"/><text x="756" y="44">Обход застоя</text><text class="small" x="756" y="64">каждые 30 мин</text></g>
+
+          <g class="node human"><rect x="20" y="140" width="200" height="56" rx="8"/><text x="36" y="164">Человек</text><text class="small" x="36" y="184">мессенджер, голос</text></g>
+          <g class="node code"><rect x="260" y="140" width="200" height="56" rx="8"/><text x="276" y="164">Оператор</text><text class="small" x="276" y="184">слушает и разводит</text></g>
+          <g class="node agent"><rect x="500" y="140" width="200" height="56" rx="8"/><text x="516" y="164">Штурман хаба</text><text class="small" x="516" y="184">думает и отвечает</text></g>
+          <g class="node agent"><rect x="740" y="140" width="200" height="56" rx="8"/><text x="756" y="164">Штурманы столов</text><text class="small" x="756" y="184">постоянные сессии</text></g>
+
+          <g class="node"><rect x="20" y="270" width="200" height="56" rx="8"/><text x="36" y="294">Трекеры</text><text class="small" x="36" y="314">Linear, календарь</text></g>
+          <g class="node agent"><rect x="260" y="270" width="200" height="56" rx="8"/><text x="276" y="294">Разбор входящих</text><text class="small" x="276" y="314">голос, заметки, Inbox</text></g>
+          <g class="node agent"><rect x="500" y="270" width="200" height="56" rx="8"/><text x="516" y="294">Лэйны</text><text class="small" x="516" y="314">задача в git worktree</text></g>
+          <g class="node code"><rect x="740" y="270" width="200" height="56" rx="8"/><text x="756" y="294">Поток внимания</text><text class="small" x="756" y="314">одно дело сейчас</text></g>
+
+          <g class="node code"><rect x="20" y="370" width="920" height="56" rx="8"/><text x="36" y="394">Инструментарий и Ключница</text><text class="small" x="36" y="414">мессенджеры, трекеры, Figma, браузер, ключи&nbsp;— общий код без данных проектов</text></g>
+
+          <path class="edge" d="M360,76 V136" marker-end="url(#arrow)"/>
+          <path class="edge" d="M840,76 V136" marker-end="url(#arrow)"/>
+          <path class="edge hot" d="M220,158 H256" marker-end="url(#arrow)"/>
+          <path class="edge ask" d="M260,180 H224" marker-end="url(#arrow)"/>
+          <path class="edge hot" d="M460,158 H496" marker-end="url(#arrow)"/>
+          <path class="edge" d="M500,180 H464" marker-end="url(#arrow)"/>
+          <path class="edge" d="M700,158 H736" marker-end="url(#arrow)"/>
+          <path class="edge" d="M740,180 H704" marker-end="url(#arrow)"/>
+          <path class="edge" d="M580,196 V266" marker-end="url(#arrow)"/>
+          <path class="edge" d="M620,270 V200" marker-end="url(#arrow)"/>
+          <text class="small" x="628" y="238">готово</text>
+          <path class="edge" d="M515,196 L452,266" marker-end="url(#arrow)"/>
+          <path class="edge" d="M260,298 H224" marker-end="url(#arrow)"/>
+          <path class="edge" d="M840,196 V266" marker-end="url(#arrow)"/>
+          <text class="small" x="848" y="238">нужен человек</text>
+          <path class="edge" d="M770,270 L690,200" marker-end="url(#arrow)"/>
+        </svg>
+        <ul class="legend">
+          <li class="agent">агент на модели</li>
+          <li class="code">код без модели</li>
+          <li class="human">решение человека</li>
+          <li>внешние сервисы</li>
+        </ul>
+        <figcaption>Человеку возвращаются три вещи&nbsp;— ответ, вопрос с вариантом по умолчанию и сообщение об аварии (пунктир). Остальное агенты передают друг другу письмами через хаб.</figcaption>
+      </figure>
+    </section>
+
+    <section>
+      <h2>Результат</h2>
+      <ul class="results">
+        <li><strong>182&nbsp;коммита</strong><span>в репозитории хаба с 25.07.2026</span></li>
+        <li><strong>≈&nbsp;11&nbsp;200 строк</strong><span>Node.js: 28 скриптов и 28 модулей, 23 тестовых файла</span></li>
+        <li><strong>13 инструментов</strong><span>общий инструментарий: ≈&nbsp;20&nbsp;000 строк, 73 коммита с 29.09.2026</span></li>
+        <li><strong>5 + 10</strong><span>постоянных агентов и&nbsp;фоновых задач планировщика</span></li>
+        <li><strong>$0 за токены</strong><span>оператор, сторож, обход застоя и ночные задания работают без модели</span></li>
+      </ul>
+      <div class="measure"><p>Данные на 09.10.2026. Система первой не пишет&nbsp;— кроме ответа, аварии, вопроса с вариантом по умолчанию, сводки фактов дважды в день и недельной сверки.</p></div>
+    </section>
+
+    <section>
+      <h2>Как это выглядит</h2>
+      <figure class="figure-wide">
+        <svg class="diagram" viewBox="0 0 960 410" role="img" aria-labelledby="chat-title">
+          <title id="chat-title">Иллюстрация переписки. Слева: человек спрашивает «Что сейчас?», хаб отвечает одним делом&nbsp;— ответить на ревью PR в проекте X&nbsp;— с причиной, временем и первым шагом. Справа: утренняя пачка «Решения» с вопросом стола, рекомендацией и вариантом по умолчанию; человек отвечает «Да».</title>
+
+          <g class="node human"><rect x="300" y="40" width="140" height="40" rx="14"/><text x="316" y="65">Что сейчас?</text></g>
+          <text class="small" x="12" y="104">Хаб</text>
+          <g class="node agent"><rect x="10" y="112" width="430" height="152" rx="14"/>
+            <text x="26" y="140">Ответить на ревью PR в проекте X</text>
+            <text class="small" x="26" y="164">Зачем: ревьюер ждёт с утра, релиз в четверг.</text>
+            <text class="small" x="26" y="184">Что известно: три замечания, два&nbsp;— про имена.</text>
+            <text class="small" x="26" y="204">Займёт около 20 минут.</text>
+            <text class="small" x="26" y="224">Первый шаг: открыть PR и начать с замечания</text>
+            <text class="small" x="26" y="244">про тест на пустой список.</text>
+          </g>
+          <g class="node human"><rect x="330" y="282" width="110" height="40" rx="14"/><text x="346" y="307">Готово</text></g>
+          <g class="node agent"><rect x="10" y="340" width="430" height="56" rx="14"/><text x="26" y="373">Закрыл. Следующее&nbsp;— когда спросишь.</text></g>
+
+          <text class="small" x="512" y="32">Хаб, 09:00</text>
+          <g class="node agent"><rect x="510" y="40" width="430" height="182" rx="14"/>
+            <text x="526" y="66">Решения (1)</text>
+            <text class="small" x="526" y="90">Стол проекта Y спрашивает: e2e-тесты падают</text>
+            <text class="small" x="526" y="110">на старой версии Android, остальное зелёное.</text>
+            <text class="small" x="526" y="134">Рекомендую: отключить этот прогон и завести</text>
+            <text class="small" x="526" y="154">задачу на починку.</text>
+            <text class="small" x="526" y="178">По умолчанию: так и сделаю завтра в 12:00,</text>
+            <text class="small" x="526" y="198">если не ответишь.</text>
+          </g>
+          <g class="node human"><rect x="870" y="240" width="70" height="40" rx="14"/><text x="891" y="265">Да</text></g>
+          <g class="node agent"><rect x="510" y="298" width="430" height="56" rx="14"/><text x="526" y="331">Принято: прогон отключён, задача заведена.</text></g>
+        </svg>
+        <figcaption>Иллюстрация: пример переписки в мессенджере, данные условные. Слева&nbsp;— одно дело по запросу, с контекстом и первым шагом. Справа&nbsp;— вопрос агента с рекомендацией и вариантом по умолчанию.</figcaption>
+      </figure>
+    </section>
+
+    <section>
+      <h2>Принципы</h2>
+      <ul class="principles">
+        <li><b>Код считает, модель судит</b><p>Всё, что можно посчитать без LLM, считает скрипт. Модель&nbsp;— только для суждения, и самая лёгкая из подходящих.</p></li>
+        <li><b>Система первой не пишет</b><p>Только короткий закрытый список: ответ, авария, вопрос с вариантом по умолчанию, сводка фактов, недельная сверка.</p></li>
+        <li><b>Долг у агентов, не у человека</b><p>У каждого открытого дела есть стол-владелец. Неотвеченное не копится у человека&nbsp;— его двигает агент.</p></li>
+        <li><b>Ключи под замком</b><p>Агенты значений ключей не видят. Права каждого стола&nbsp;— белый список в его конфиге.</p></li>
+        <li><b>Правило живёт в одном доме</b><p>Поправка сразу уходит в код, тест, хук или инструкцию. Устаревшее удаляется, а не копится рядом.</p></li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Стек</h2>
+      <dl class="stack">
+        <dt>Агенты</dt><dd>Claude Code: постоянные сессии, субагенты, git worktree, скиллы, хуки, MCP</dd>
+        <dt>Код</dt><dd>Node.js (ESM), PowerShell, Python, C#/.NET; Windows Terminal и Планировщик Windows</dd>
+        <dt>Трекеры</dt><dd>Linear, Jira, Google Calendar, Apple Reminders (iCloud)</dd>
+        <dt>Связь и голос</dt><dd>Max, WhatsApp, Telegram; Groq для распознавания речи</dd>
+        <dt>Ключи и данные</dt><dd>Ключница на DPAPI и AES-GCM, мастер-копия в Bitwarden; Яндекс.Диск REST; Figma</dd>
+      </dl>
+    </section>
+
+    <nav class="next" aria-label="Другие кейсы">
+      <a href="alemx-ops.html">← Операционный агент продуктовой команды</a>
+      <a href="prezentashki.html">Презенташки: AI-генератор презентаций →</a>
+    </nav>
+  </div>
+</main>
+
+<footer class="wrap">
+  <p>Ринат Тайсин, инженер AI-автоматизации. <a href="mailto:evilandfox@gmail.com">evilandfox@gmail.com</a>, <a href="https://www.linkedin.com/in/rinat-taysin-2b31ab225">LinkedIn</a>, <a href="https://github.com/evilandfox">GitHub</a></p>
+</footer>
+</body>
+</html>
