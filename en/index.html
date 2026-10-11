@@ -4,142 +4,818 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Rinat Taysin — AI automation engineer</title>
-<meta name="description" content="I build LLM agent systems that take routine work off a running business: triaging inbound requests, keeping trackers current, shipping and checking code. Case studies with diagrams and numbers.">
+<meta name="description" content="Rinat Taysin brings AI into a business end to end. CV and case studies with diagrams and numbers on one page.">
 <link rel="alternate" hreflang="ru" href="../index.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&amp;family=Unbounded:wght@500;600&display=swap">
 <link rel="stylesheet" href="../assets/style.css">
+<link rel="stylesheet" href="../assets/onepage.css">
 <script src="../assets/theme.js"></script>
 </head>
-<body>
-<header class="wrap top">
-  <a class="home" href="index.html">Rinat Taysin</a>
-  <nav>
-    <a href="#cases">Case studies</a>
-    <a href="cv.html">CV</a>
-    <a href="../index.html" lang="ru" hreflang="ru">RU</a>
-    <button class="theme-toggle" type="button" aria-label="Switch theme">Theme</button>
-  </nav>
+<!-- Hide RISK: data-hide="risk" removes the case, the menu item and the entry in the experience list (client named since 11 Oct, NDA lifted) -->
+<body class="one" data-hide="">
+<header class="bar">
+  <div class="wrap bar-in">
+    <a class="home" href="#top">Rinat Taysin</a>
+    <nav class="toc" aria-label="Page sections">
+      <a href="#cv">CV</a>
+      <span class="grp">Case studies</span>
+      <a href="#alemx-ops">AlemX</a>
+      <a href="#agent-hub">Agent team</a>
+      <a href="#prezentashki">Prezentashki</a>
+      <a class="is-risk" href="#risk">RISK</a>
+      <a href="#tools">Tools</a>
+      <a href="#contacts">Contact</a>
+    </nav>
+    <div class="bar-tools">
+      <a href="../index.html" lang="ru" hreflang="ru">RU</a>
+      <button class="theme-toggle" type="button" aria-label="Switch theme">Theme</button>
+    </div>
+  </div>
 </header>
 
 <main class="wrap">
-  <div class="hero">
-    <h1>AI agents that take routine work off your team</h1>
+  <div class="intro" id="top">
     <img class="portrait" src="../img/portrait.webp" width="480" height="480" alt="Rinat Taysin">
-    <p class="lead">I’m Rinat Taysin, an AI automation engineer and tech lead. I build systems on Claude and other LLMs that triage incoming requests, keep the tracker up to date, write and review code, so people are left with just the decisions.</p>
-    <p class="sub">Ten years in software, former startup CTO. I get AI systems out of the demo stage and into daily use in a real business. Checks run in code, every agent has hard limits on what it may do, and I keep an eye on token costs. Remote, contract or full-time.</p>
-    <ul class="contacts">
-      <li><a href="mailto:evilandfox@gmail.com">evilandfox@gmail.com</a></li>
-      <li><a href="https://www.linkedin.com/in/rinat-taysin-2b31ab225">LinkedIn</a></li>
-      <li><a href="https://github.com/rinat-taysin">GitHub</a></li>
-      <li><a href="cv.html">CV</a></li>
-    </ul>
-
-    <figure class="route">
-      <svg class="diagram" viewBox="0 0 960 190" role="img" aria-labelledby="route-title">
-        <title id="route-title">How my systems work: an agent triages requests from chats and trackers, code checks the work, and a person gets only the decision, with a default option ready</title>
-        <defs>
-          <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-            <path d="M0,0 L10,5 L0,10 z"/>
-          </marker>
-        </defs>
-        <g class="node"><rect x="1" y="20" width="190" height="64" rx="8"/><text x="18" y="46">Incoming</text><text class="small" x="18" y="68">chats, tracker, voice</text></g>
-        <path class="edge hot" d="M191,52 H241" marker-end="url(#arrow)"/>
-        <g class="node agent"><rect x="243" y="20" width="200" height="64" rx="8"/><text x="260" y="46">Agent triages</text><text class="small" x="260" y="68">type, owner, urgency</text></g>
-        <path class="edge hot" d="M443,52 H493" marker-end="url(#arrow)"/>
-        <g class="node agent"><rect x="495" y="20" width="200" height="64" rx="8"/><text x="512" y="46">Agent does the work</text><text class="small" x="512" y="68">ticket, reply, code, report</text></g>
-        <path class="edge hot" d="M695,52 H745" marker-end="url(#arrow)"/>
-        <g class="node code"><rect x="747" y="20" width="210" height="64" rx="8"/><text x="764" y="46">Code checks it</text><text class="small" x="764" y="68">tests, permissions, limits</text></g>
-        <path class="edge ask" d="M345,84 V140 H493" marker-end="url(#arrow)"/>
-        <path class="edge ask" d="M852,84 V140 H697" marker-end="url(#arrow)"/>
-        <g class="node human"><rect x="495" y="112" width="200" height="64" rx="8"/><text x="512" y="138">A person decides</text><text class="small" x="512" y="160">default option ready</text></g>
-      </svg>
-      <ul class="legend">
-        <li class="agent">LLM agent</li>
-        <li class="code">plain code, no model</li>
-        <li class="human">human decision: money, people, deadlines</li>
+    <div>
+      <h1>Rinat Taysin</h1>
+      <p class="pos">I bring AI into a business end&nbsp;to&nbsp;end: I build it and check the result myself.</p>
+      <p class="facts">AI engineer and tech lead, 10&nbsp;years in software, former startup CTO. Based in Kazan, working remotely.</p>
+      <ul class="actions">
+        <li><a class="btn main" href="mailto:evilandfox@gmail.com">evilandfox@gmail.com</a></li>
+        <li><a class="btn" href="cv.html">CV on its own page</a></li>
+        <li><a class="btn" href="https://www.linkedin.com/in/rinat-taysin-2b31ab225">LinkedIn</a></li>
+        <li><a class="btn" href="https://github.com/rinat-taysin">GitHub</a></li>
       </ul>
-    </figure>
+    </div>
   </div>
 
-  <section id="cases">
-    <h2>Case studies</h2>
-    <ul class="cases">
-      <li class="case-row lead-case">
-        <div>
-          <h3><a href="cases/alemx-ops.html">An operations agent for a product team</a></h3>
-          <p>AlemX mobile app: bug reports pour in through WhatsApp and the store release had been stuck for four months. The agent triages reports, files tickets and takes each fix through independent AI review and CI to a merge. Questions about money, people and deadlines go to a human, with a recommendation attached.</p>
-          <p class="tags">Claude Code, MCP, hooks, Jira, GitHub, WhatsApp, EAS</p>
-        </div>
-        <p class="fact"><strong>Up to 21 merges a&nbsp;day</strong><span>first store release two weeks after I joined</span></p>
-      </li>
-      <li class="case-row">
-        <div>
-          <h3><a href="cases/agent-hub.html">An operations team of AI agents</a></h3>
-          <p>One system across several projects: an operator in the messenger, a persistent agent per project, background workers for tracker tasks, a daily sweep for stalled work, and a single answer to “what should I do now?”</p>
-          <p class="tags">Claude Code, Node.js, Linear, Jira, messengers, Windows Task Scheduler</p>
-        </div>
-        <p class="fact"><strong>5 persistent agents</strong><span>plus 10 scheduled jobs; monitoring runs as plain code, zero tokens</span></p>
-      </li>
-      <li class="case-row">
-        <div>
-          <h3><a href="cases/prezentashki.html">Prezentashki: an AI presentation generator</a></h3>
-          <p>A service that turns a topic into a finished deck with text, images and PDF or PPTX export. I own all of engineering and product. I also built a Telegram assistant that answers my business partner’s questions about ads, so he doesn’t need a developer for them.</p>
-          <p class="tags">GPT-4o, Flux, Node.js, React, PostgreSQL, Docker</p>
-        </div>
-        <p class="fact"><strong>2,600+ sign-ups</strong><span>38% of them go on to pay, as of July 25, 2026</span></p>
-      </li>
-      <li class="case-row">
-        <div>
-          <h3><a href="cases/risk.html">RISK: payment claims for freight carriers</a></h3>
-          <p>A B2B platform that takes a carrier from an unpaid trip to a formal claim and a court order. AI helps with drafts and gives moderators a checklist, while amounts, deadlines and legal wording stay in code and templates.</p>
-          <p class="tags">Claude Sonnet and Haiku, pgvector, Hono, React, PostgreSQL</p>
-        </div>
-        <p class="fact"><strong>15 releases in 18&nbsp;days</strong><span>after going live</span></p>
-      </li>
-      <li class="case-row">
-        <div>
-          <h3><a href="cases/tools.html">Tools for agents</a></h3>
-          <p>The groundwork under everything above: voice dictation into any window, a key vault that agents can use but never read, and a single gateway to messengers with per-agent allow-lists.</p>
-          <p class="tags">.NET, Node.js, MCP, Groq</p>
-        </div>
-        <p class="fact"><strong>13 tools</strong><span>in one shared kit for every agent</span></p>
-      </li>
-    </ul>
-  </section>
+  <!-- ============ CV ============ -->
+  <section class="block" id="cv" aria-labelledby="cv-h">
+    <h2 class="block-h" id="cv-h">CV</h2>
+    <div class="cv1">
+      <ul class="about">
+        <li>10&nbsp;years of TypeScript, Node.js and Python. Former startup CTO and lead engineer.</li>
+        <li>Since 2024 I have built LLM systems for businesses that are already running: agents on Claude Code and MCP, LLM features in B2B SaaS, RAG, integrations with Jira, GitHub, Figma, Linear and calendars.</li>
+        <li>Whatever code can check, code checks. Money, people and irreversible steps stay with a human.</li>
+      </ul>
 
-  <section id="approach">
-    <h2>How I work</h2>
-    <ul class="principles">
-      <li><b>Routine first, model second</b><p>I find where people actually lose hours and automate the most frequent work first. Anything that can be computed is computed in code.</p></li>
-      <li><b>Agents prepare, people decide</b><p>Money, people, deadlines and anything irreversible go to a human as one question: options, a recommendation, and what happens by default.</p></li>
-      <li><b>Agent permissions live in code</b><p>Action allow-lists, hooks, a merge guard, secrets the agent can use but never see. The prompt isn’t what keeps it in bounds.</p></li>
-      <li><b>Live data stays in the tracker</b><p>Agents work where the team already works: Jira, Linear, messengers, the calendar. Nobody has to learn a new tool.</p></li>
-    </ul>
-  </section>
+      <div class="jobs">
+        <div class="job1">
+          <div class="jh"><h3>AlemX <span>— Product Owner, mobile app (contract)</span></h3><p class="when">Aug 2026 – present</p></div>
+          <p>An AI super-app in the App Store and Google Play: messenger, feed, an ad marketplace that pays for attention, a stablecoin wallet. I work as a part-time contractor and report to the CEO. <a href="#alemx-ops">Case study below</a></p>
+          <ul>
+            <li>Built a system of two Claude Code agents: a bug from the team chat becomes a Jira ticket, a fix, an AI review, a CI run and a merge.</li>
+            <li>In 2&nbsp;months: 9&nbsp;store releases and about 700&nbsp;PRs, up to 50 a day. An urgent hotfix reaches the stores in about 3&nbsp;hours.</li>
+          </ul>
+          <details>
+            <summary>4 more points</summary>
+            <ul>
+              <li>The operator sorts through testers’ findings from WhatsApp, creates tickets, hands tasks to developer agents (up to 4&nbsp;in parallel) and takes each PR through to the merge. The release agent keeps the release plan, ships to the stores and writes the management a summary every evening.</li>
+              <li>Sonnet writes the code, Opus reviews it with veto power. Then comes local CI (tsc, eslint, tests) and a merge guard with 8&nbsp;checks. For UI changes the agent looks at an emulator before the testers do.</li>
+              <li>External actions go through an allow-list in hooks; money, people and the contract need my decision. Since 29&nbsp;Sep the agents have run more than 1,000&nbsp;times, and I accepted their recommendation in 324 of 348 cases.</li>
+              <li>The first store release in 4&nbsp;months came 2&nbsp;weeks after I joined. I built the EAS release pipeline from scratch: iOS builds without a Mac, submission to the App Store and Google Play through the API. The investor demo went without a hitch.</li>
+            </ul>
+          </details>
+          <p class="tech">Claude Code (persistent sessions, subagents, hooks, MCP, git worktree), Node.js, React Native, Expo, TypeScript, Firebase, EAS; Jira, GitHub, WhatsApp, Figma</p>
+        </div>
 
-  <section id="stack">
-    <h2>Technologies</h2>
-    <dl class="stack">
-      <dt>Agents and LLMs</dt><dd>Claude Code (persistent sessions, subagents, hooks, skills, git worktrees), Anthropic and OpenAI APIs, MCP servers, RAG with pgvector, PII masking, output evaluation, token cost control</dd>
-      <dt>Backend</dt><dd>TypeScript, Node.js, NestJS, Express, Hono, PostgreSQL, MongoDB, Redis, RabbitMQ; I read and review Python</dd>
-      <dt>Frontend and mobile</dt><dd>React, Next.js, React Native and Expo, Electron</dd>
-      <dt>Infrastructure</dt><dd>Docker Compose, blue-green deploys, GitHub Actions, EAS, Cloudflare Workers</dd>
-      <dt>Integrations</dt><dd>Jira, Linear, GitHub, Figma, WhatsApp, Telegram, Google Calendar, Yandex Direct and Metrica, App Store and Google Play APIs</dd>
-    </dl>
-  </section>
+        <div class="job1 is-risk">
+          <div class="jh"><h3>RISK <span>— technical director / lead developer</span></h3><p class="when">Aug 2026 – present</p></div>
+          <p>A closed B2B platform, <a href="https://vrisk.ru">vrisk.ru</a>, for carriers and freight forwarders who weren’t paid for a trip. The client is TEK Antares, Kazan. Part-time. <a href="#risk">Case study below</a></p>
+          <ul>
+            <li>From the case documents, AI (Claude Sonnet and Haiku) writes the pre-trial claim and the court filing, which is submitted through “Moi Arbitr”. Code calculates the penalty as a table for the judge, and the platform calls the debtor on its own.</li>
+            <li>The first version took 7&nbsp;weeks and went live on vrisk.ru on 21&nbsp;Sep 2026, with 16&nbsp;releases in the 3&nbsp;weeks since. One developer with Claude agents: ~980&nbsp;commits, 187&nbsp;ADRs. The client’s lawyer and its head are piloting the platform, and staff are joining.</li>
+          </ul>
+          <details>
+            <summary>3 more points</summary>
+            <ul>
+              <li>The AI adapter hides personal data: before a model call, names, phone numbers, emails and passport details are swapped for placeholders, and restored after the reply. The call log is stored without texts.</li>
+              <li>A model reply is accepted only if every amount, date, number and legal article in it appears in the input. Otherwise the document gets the template text.</li>
+              <li>AI features are switched on by flags as the lawyer checks them, and the product also works without a model. A claim draft is ready in about 45&nbsp;seconds. The assistant answers only from knowledge base cards (pgvector search).</li>
+            </ul>
+          </details>
+          <p class="tech">Node 22, TypeScript, Hono, Drizzle ORM, PostgreSQL + pgvector, Redis, S3; React, Vite, Ant Design; Docker Compose, GitHub Actions; Claude Sonnet and Haiku</p>
+        </div>
 
-  <section id="contacts">
-    <h2>Get in touch</h2>
-    <div class="measure">
-      <p>I’m looking for work where an AI system has to run every day, not just look good in a demo. Email <a href="mailto:evilandfox@gmail.com">evilandfox@gmail.com</a> or message me on <a href="https://www.linkedin.com/in/rinat-taysin-2b31ab225">LinkedIn</a>. Full experience is in my <a href="cv.html">CV</a>.</p>
+        <div class="job1">
+          <div class="jh"><h3>Prezentashki.ru <span>— CTO and co-founder</span></h3><p class="when">May 2026 – present</p></div>
+          <p>An AI presentation service. There are two of us: my partner runs marketing, I own the engineering and the product. <a href="#prezentashki">Case study below</a></p>
+          <ul>
+            <li>Launched LLM generation: GPT-4o writes the text, Flux draws the images, the output is a PDF or PPTX. About 16,000 slides generated.</li>
+            <li>2,600+ sign-ups and 1,400+ online payments; 38% of sign-ups reached payment (as of 25&nbsp;Jul 2026).</li>
+          </ul>
+          <details>
+            <summary>4 more points</summary>
+            <ul>
+              <li>Built the prompts, output quality checks, per-slide pricing based on tokens, and payments through CloudPayments.</li>
+              <li>I run the infrastructure alone: blue-green deploys in Docker Compose, prod and preprod, daily backups with a copy in external S3. The service covers its own costs.</li>
+              <li>I handle development, releases and support for the whole product by myself, together with agents. I coordinate the design and marketing contractors.</li>
+              <li>For my non-technical partner I built a Telegram agent that answers questions about Yandex Direct ads and changes campaigns only after he confirms.</li>
+            </ul>
+          </details>
+        </div>
+
+        <div class="job1">
+          <div class="jh"><h3>Linked Helper <span>— Lead Software Engineer</span></h3><p class="when">Feb 2025 – Apr 2026</p></div>
+          <p>B2B SaaS for sales automation on LinkedIn, 10,000+ users a day.</p>
+          <ul>
+            <li>Built LLM features for client messaging: they write and edit messages using the conversation, the CRM funnel stage, the goal, language and tone. Structured output, context limits; the product keeps working if the provider is down.</li>
+            <li>Moved development to an AI-driven SDLC with Codex: the agent gathered context from Jira, Figma and the repository and helped write code, review and check the UI, and an engineer verified the result.</li>
+          </ul>
+          <details>
+            <summary>2 more points</summary>
+            <ul>
+              <li>Designed the RBAC and workspace model: shared LinkedIn accounts, multi-account management, group licenses.</li>
+              <li>Replaced permission checks built on heavy multi-level SQL joins with a single cacheable check.</li>
+            </ul>
+          </details>
+          <p class="tech">TypeScript, Node.js, NestJS, PostgreSQL, Redis, RabbitMQ, Electron, Next.js and React, OpenAI API</p>
+        </div>
+
+        <div class="job1">
+          <div class="jh"><h3>Flomni <span>— Senior Backend Engineer</span></h3><p class="when">Sep 2024 – Feb 2025</p></div>
+          <p>An omnichannel conversation platform: chatbots, HR automation, handoff to a human operator.</p>
+          <ul>
+            <li>Added LLM features to the core product. Rewrote legacy code, which made the product more stable and faster. Built complex backend features from scratch and agreed requirements directly with B2B clients.</li>
+          </ul>
+          <p class="tech">Node.js, TypeScript, MongoDB, Redis</p>
+        </div>
+
+        <div class="job1">
+          <div class="jh"><h3>FLATSHARING <span>— CTO and co-founder</span></h3><p class="when">Oct 2017 – Sep 2024</p></div>
+          <p>Contactless check-in for short-term rentals with smart locks.</p>
+          <ul>
+            <li>Built most of the system: the backend, the business logic, the smart-lock integration. The backend handled ~15,000 check-ins a month and 4,000 users a day.</li>
+            <li>Built and led teams of up to 10&nbsp;developers: hiring, onboarding, delivery.</li>
+          </ul>
+          <details>
+            <summary>3 more points</summary>
+            <ul>
+              <li>Moved the main database from Firestore to MongoDB to handle heavy search queries; transaction costs dropped noticeably.</li>
+              <li>In a market downturn I restructured the IT department and cut infrastructure costs.</li>
+              <li>From April to December 2023, part-time, I was a team lead at Samolet Plus: I led the frontend, backend and mobile team for its Samolet+ Rent product.</li>
+            </ul>
+          </details>
+          <p class="tech">Node.js, TypeScript, MongoDB, Firestore, Flutter, GCP</p>
+        </div>
+
+        <div class="job1">
+          <div class="jh"><h3>Early career</h3><p class="when">2016–2020</p></div>
+          <ul>
+            <li>NTC Optimo: cost estimates for oil and gas in C++, parsers for government PDFs.</li>
+            <li>MKU TsIT: the “Revizor Ufa” mobile app on Flutter, Nuxt.js, MongoDB, C# and MS&nbsp;SQL.</li>
+            <li>MK Razvitie: an Express.js backend for food ordering.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="side">
+        <div>
+          <h3>Skills</h3>
+          <dl>
+            <dt>AI and LLM</dt><dd>Claude Code, MCP, Anthropic and OpenAI APIs, AI agents, RAG, pgvector, prompt engineering, answer quality evaluation, token costs</dd>
+            <dt>Languages</dt><dd>TypeScript, JavaScript, Python (working level), SQL; C++ early in my career</dd>
+            <dt>Backend</dt><dd>Node.js, NestJS, Express, Hono, PostgreSQL, MongoDB, Redis, RabbitMQ, REST, webhooks</dd>
+            <dt>Frontend and mobile</dt><dd>React, Next.js, React Native and Expo, Electron, Flutter</dd>
+            <dt>Infrastructure</dt><dd>Docker, CI/CD, GitHub Actions, EAS, Cloudflare Workers, GCP, AWS, Firebase, Playwright</dd>
+            <dt>Engineering</dt><dd>Debugging, refactoring, performance, system design, RBAC and multi-tenant SaaS, code review, releases</dd>
+          </dl>
+        </div>
+        <div>
+          <h3>Education and languages</h3>
+          <p>USPTU, BSc in Software Engineering, 2011–2015. Regional olympiad prizes in mathematics, physics and computer science; competed in student programming contests in Kyiv and Saransk.</p>
+          <p>Russian: native. English: B1–B2, I read and write technical English fluently.</p>
+        </div>
+        <div>
+          <h3>Own projects</h3>
+          <dl>
+            <dt>Personal AI hub, 2026</dt><dd>A system of Claude Code agents that runs my projects. <a href="#agent-hub">Case study below</a></dd>
+            <dt>TG Power, 2026</dt><dd>Learning programs inside Telegram: TypeScript on Cloudflare, webhooks, lesson scheduling, an author dashboard.</dd>
+            <dt>Neuro Anatoly</dt><dd>An AI assistant in Telegram on Cloudflare Workers AI: RAG over a product catalog, guardrails, answer checking and regeneration.</dd>
+          </dl>
+        </div>
+      </div>
     </div>
+  </section>
+
+  <!-- ============ Case studies ============ -->
+  <section class="block" id="cases" aria-labelledby="cases-h">
+    <h2 class="block-h" id="cases-h">Case studies</h2>
+    <ul class="legend cases-legend">
+      <li class="agent">agent on a model</li>
+      <li class="code">code, no model</li>
+      <li class="human">human decision: money, people, deadlines</li>
+    </ul>
+
+    <!-- AlemX -->
+    <section class="case" id="alemx-ops" aria-labelledby="alemx-ops-h">
+      <div class="case-h"><h3 id="alemx-ops-h">Agents take bugs from chat to merge</h3><p>AlemX, Product Owner of the mobile app on contract, since Aug 2026</p></div>
+      <div class="case-grid">
+        <div>
+          <dl class="tdr">
+            <div><dt>Problem</dt><dd>Bugs pile up in WhatsApp, there has been no store release for 4&nbsp;months, and shipping depends on one person.</dd></div>
+            <div class="did"><dt>What I did</dt><dd>Two persistent Claude Code agents. The operator takes a bug from the chat to the merge through a ticket, an AI review and CI. The release agent runs releases and the evening summary. I decide on money, people and deadlines.</dd></div>
+            <div class="res"><dt>Result</dt><dd>In 2&nbsp;months: 9&nbsp;releases and about 700&nbsp;PRs, a hotfix in the stores within 3&nbsp;hours.</dd></div>
+          </dl>
+          <ul class="nums">
+            <li><strong>9 releases</strong>to the stores in 2&nbsp;months</li>
+            <li><strong>~700 PRs</strong>merged, up to 50 a day</li>
+            <li><strong>324 of 348</strong>agent recommendations I accepted</li>
+            <li><strong>3 hours</strong>from hotfix to the stores</li>
+          </ul>
+          <p class="tags1">Claude Code, MCP, hooks, Jira, GitHub, WhatsApp, EAS</p>
+        </div>
+        <figure class="pic">
+          <svg class="diagram" viewBox="0 0 960 450" role="img" aria-labelledby="alemx-d">
+            <title id="alemx-d">Bug flow: WhatsApp report, triage, ticket, coding agent, AI review, local CI, merge guard, merge to dev, message to QA. The coding agent, review, CI and merge guard run inside an allow-list and hooks boundary. New features, money, roles and deadlines, plus untrusted branches, go to a human, who sends work back to the coding agent or approves the merge.</title>
+            <defs><marker id="arrow-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z"/></marker></defs>
+            <g class="node code"><rect x="20" y="160" width="750" height="170" rx="12"/></g>
+            <text class="small" x="160" y="184">allow-list and hooks: approved commands only, no merge around the guard</text>
+            <g class="node"><rect x="20" y="50" width="190" height="60" rx="8"/><text x="34" y="76">WhatsApp report</text><text class="small" x="34" y="96">from QA and managers</text></g>
+            <g class="node agent"><rect x="260" y="50" width="220" height="60" rx="8"/><text x="274" y="76">Triage</text><text class="small" x="274" y="96">duplicate? old build?</text></g>
+            <g class="node"><rect x="530" y="50" width="180" height="60" rx="8"/><text x="544" y="76">Jira ticket</text><text class="small" x="544" y="96">with priority</text></g>
+            <g class="node agent"><rect x="40" y="210" width="150" height="60" rx="8"/><text x="54" y="236">Coding agent</text><text class="small" x="54" y="256">Sonnet, worktree</text></g>
+            <g class="node agent"><rect x="230" y="210" width="150" height="60" rx="8"/><text x="244" y="236">AI review</text><text class="small" x="244" y="256">Opus, up to 2 rounds</text></g>
+            <g class="node code"><rect x="420" y="210" width="150" height="60" rx="8"/><text x="434" y="236">Local CI</text><text class="small" x="434" y="256">tsc, eslint, tests</text></g>
+            <g class="node code"><rect x="610" y="210" width="150" height="60" rx="8"/><text x="624" y="236">Merge guard</text><text class="small" x="624" y="256">tests and review</text></g>
+            <g class="node human"><rect x="795" y="210" width="155" height="60" rx="8"/><text x="809" y="236">Human (PO)</text><text class="small" x="809" y="256">decides, says OK</text></g>
+            <g class="node"><rect x="610" y="370" width="150" height="60" rx="8"/><text x="624" y="396">Merge to dev</text><text class="small" x="624" y="416">train to rc, main</text></g>
+            <g class="node"><rect x="320" y="370" width="240" height="60" rx="8"/><text x="334" y="396">QA: what to retest</text><text class="small" x="334" y="416">plus a daily report</text></g>
+            <path class="edge hot" d="M210,80 H258" marker-end="url(#arrow-a)"/>
+            <path class="edge hot" d="M480,80 H528" marker-end="url(#arrow-a)"/>
+            <path class="edge hot" d="M620,110 V135 H120 V208" marker-end="url(#arrow-a)"/>
+            <path class="edge hot" d="M190,240 H228" marker-end="url(#arrow-a)"/>
+            <path class="edge hot" d="M380,240 H418" marker-end="url(#arrow-a)"/>
+            <path class="edge hot" d="M570,240 H608" marker-end="url(#arrow-a)"/>
+            <path class="edge hot" d="M685,270 V368" marker-end="url(#arrow-a)"/>
+            <path class="edge hot" d="M610,400 H562" marker-end="url(#arrow-a)"/>
+            <path class="edge" d="M305,270 V288 H130 V272" marker-end="url(#arrow-a)"/>
+            <text class="small" x="150" y="284">review notes</text>
+            <path class="edge" d="M495,270 V306 H100 V272" marker-end="url(#arrow-a)"/>
+            <text class="small" x="200" y="322">CI failed</text>
+            <path class="edge ask" d="M370,50 V24 H920 V208" marker-end="url(#arrow-a)"/>
+            <text class="small" x="725" y="42">features, money, roles, dates</text>
+            <path class="edge ask" d="M760,240 H793" marker-end="url(#arrow-a)"/>
+            <path class="edge ask" d="M820,210 V145 H140 V208" marker-end="url(#arrow-a)"/>
+            <path class="edge ask" d="M872,270 V400 H762" marker-end="url(#arrow-a)"/>
+          </svg>
+          <figcaption>How a bug travels from a chat message to a merge. Yellow dashes are questions to me and my answers; the dashed frame marks the zone where only allow-listed commands run.</figcaption>
+        </figure>
+      </div>
+      <details class="more">
+        <summary>How it works and what the agent may not do</summary>
+        <div class="more-body">
+          <div>
+            <h4>Where I started</h4>
+            <ul>
+              <li>The team is small, and there had been no store release for about 4&nbsp;months.</li>
+              <li>Testers, managers and marketing posted bugs in a WhatsApp group. Some were about an old build, so the investigations were wasted.</li>
+              <li>Shipping depended on one person. The team measures progress in closed bugs and PRs.</li>
+              <li>I work part-time and can’t also be dispatcher and reviewer. The agents took over dispatching; the decisions stayed with people.</li>
+            </ul>
+            <h4>What the agent may not do</h4>
+            <ul>
+              <li>Money, people, the contract and messages to management need my OK.</li>
+              <li>A question reaches me as one message: options, a recommendation, a deadline and what happens by default. The agent itself does only what can be undone.</li>
+              <li>Without a role, a hook blocks every external command. In WhatsApp the agent writes through a wrapper, pushes with one script that checks for keys, and runs untrusted code only in a container.</li>
+              <li>The “stop” command works without going through the agent.</li>
+            </ul>
+          </div>
+          <div>
+            <h4>What it consists of</h4>
+            <ul>
+              <li><b>Operator.</b> Reads testers’ findings from WhatsApp, filters out duplicates and bugs from old builds, creates tickets, hands out tasks and takes each PR through to the merge. Tells the testers what to recheck.</li>
+              <li><b>Release agent.</b> The release plan, store submissions, the evening summary to management.</li>
+              <li><b>Developer agents.</b> Up to 4&nbsp;in parallel, each in its own git worktree. Sonnet writes, Opus reviews with veto power, no more than two review rounds.</li>
+              <li><b>Merge guard.</b> 8&nbsp;checks: tests, review, trust in the branch. Merging around it is blocked by hooks.</li>
+              <li><b>Emulator.</b> For UI changes the agent looks for itself, before the testers.</li>
+              <li><b>Watchdog.</b> Every 5&nbsp;minutes it checks the agents and the WhatsApp bridge and restarts crashed ones without a model.</li>
+              <li><b>Releases.</b> EAS from scratch: iOS without a Mac, submission to the App Store and Google Play through the API, a dev → rc → main train.</li>
+            </ul>
+          </div>
+          <div>
+            <h4>More facts</h4>
+            <ul>
+              <li>Since 29&nbsp;Sep the agents have run more than 1,000&nbsp;times.</li>
+              <li>The first release in 4&nbsp;months came 2&nbsp;weeks after I joined.</li>
+              <li>The investor demo (sign-up, feed, a post, a paid chat, the wallet) went without a hitch.</li>
+            </ul>
+            <p class="note">Data as of 9&nbsp;Oct 2026.</p>
+          </div>
+          <div>
+            <h4>Stack</h4>
+            <dl class="stack">
+              <dt>Agents</dt><dd>Claude Code: persistent sessions, hooks, MCP, subagents, git worktree; Sonnet and Opus</dd>
+              <dt>Code</dt><dd>Node.js scripts, PowerShell, Docker for isolation</dd>
+              <dt>Integrations</dt><dd>Jira, GitHub, WhatsApp bridge (MCP), Figma</dd>
+              <dt>Releases</dt><dd>EAS, App Store Connect API, Google Play API</dd>
+              <dt>App</dt><dd>React Native, Expo, TypeScript, Firebase</dd>
+            </dl>
+          </div>
+        </div>
+      </details>
+    </section>
+
+    <!-- Agent team -->
+    <section class="case" id="agent-hub" aria-labelledby="agent-hub-h">
+      <div class="case-h"><h3 id="agent-hub-h">A team of agents runs my projects</h3><p>My own project, in daily use since Jul 2026</p></div>
+      <div class="case-grid">
+        <div>
+          <dl class="tdr">
+            <div><dt>Problem</dt><dd>Several projects at once. Messages arrive in messengers and by voice, tasks are scattered across trackers, and stuck work has to be held in my head.</dd></div>
+            <div class="did"><dt>What I did</dt><dd>An operator listens to the messenger, each project has its own persistent agent, and background workers pick up tracker tasks. Code finds what’s stuck and works out what to do next.</dd></div>
+            <div class="res"><dt>Result</dt><dd>5&nbsp;persistent agents and 10&nbsp;background tasks. Scripts do the watching, so no tokens are spent on it.</dd></div>
+          </dl>
+          <ul class="nums">
+            <li><strong>5 + 10</strong>persistent agents and background tasks</li>
+            <li><strong>$0 in tokens</strong>for the operator, watchdog, stall sweep and nightly jobs</li>
+            <li><strong>182 commits</strong>since 25&nbsp;Jul 2026</li>
+            <li><strong>≈&nbsp;11,200 lines</strong>of Node.js, 23 test files</li>
+          </ul>
+          <p class="tags1">Claude Code, Node.js, Linear, Jira, messengers, Windows Task Scheduler</p>
+        </div>
+        <figure class="pic">
+          <svg class="diagram" viewBox="0 0 960 440" role="img" aria-labelledby="hub-d">
+            <title id="hub-d">Diagram: the owner writes in a messenger, the operator passes the message to the hub agent, which works with desk agents, background workers (lanes), and inbox triage; the stall sweep, watchdog, priority list, and nightly jobs are plain code; a shared toolkit and key vault sit underneath everything.</title>
+            <defs><marker id="arrow-h" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z"/></marker></defs>
+            <g class="node code"><rect x="20" y="20" width="200" height="56" rx="8"/><text x="36" y="44">Nightly jobs</text><text class="small" x="36" y="64">backup, photos, cleanup</text></g>
+            <g class="node code"><rect x="260" y="20" width="200" height="56" rx="8"/><text x="276" y="44">Watchdog</text><text class="small" x="276" y="64">every 10 min</text></g>
+            <g class="node code"><rect x="740" y="20" width="200" height="56" rx="8"/><text x="756" y="44">Stall sweep</text><text class="small" x="756" y="64">every 30 min</text></g>
+            <g class="node human"><rect x="20" y="140" width="200" height="56" rx="8"/><text x="36" y="164">Owner</text><text class="small" x="36" y="184">messenger, voice</text></g>
+            <g class="node code"><rect x="260" y="140" width="200" height="56" rx="8"/><text x="276" y="164">Operator</text><text class="small" x="276" y="184">listens and routes</text></g>
+            <g class="node agent"><rect x="500" y="140" width="200" height="56" rx="8"/><text x="516" y="164">Hub agent</text><text class="small" x="516" y="184">thinks and replies</text></g>
+            <g class="node agent"><rect x="740" y="140" width="200" height="56" rx="8"/><text x="756" y="164">Desk agents</text><text class="small" x="756" y="184">always-on sessions</text></g>
+            <g class="node"><rect x="20" y="270" width="200" height="56" rx="8"/><text x="36" y="294">Trackers</text><text class="small" x="36" y="314">Linear, calendar</text></g>
+            <g class="node agent"><rect x="260" y="270" width="200" height="56" rx="8"/><text x="276" y="294">Inbox triage</text><text class="small" x="276" y="314">voice, notes, inbox</text></g>
+            <g class="node agent"><rect x="500" y="270" width="200" height="56" rx="8"/><text x="516" y="294">Lanes</text><text class="small" x="516" y="314">task in a git worktree</text></g>
+            <g class="node code"><rect x="740" y="270" width="200" height="56" rx="8"/><text x="756" y="294">Priority list</text><text class="small" x="756" y="314">one task right now</text></g>
+            <g class="node code"><rect x="20" y="370" width="920" height="56" rx="8"/><text x="36" y="394">Toolkit and key vault</text><text class="small" x="36" y="414">messengers, trackers, Figma, browser, keys — shared code, no project data</text></g>
+            <path class="edge" d="M360,76 V136" marker-end="url(#arrow-h)"/>
+            <path class="edge" d="M840,76 V136" marker-end="url(#arrow-h)"/>
+            <path class="edge hot" d="M220,158 H256" marker-end="url(#arrow-h)"/>
+            <path class="edge ask" d="M260,180 H224" marker-end="url(#arrow-h)"/>
+            <path class="edge hot" d="M460,158 H496" marker-end="url(#arrow-h)"/>
+            <path class="edge" d="M500,180 H464" marker-end="url(#arrow-h)"/>
+            <path class="edge" d="M700,158 H736" marker-end="url(#arrow-h)"/>
+            <path class="edge" d="M740,180 H704" marker-end="url(#arrow-h)"/>
+            <path class="edge" d="M580,196 V266" marker-end="url(#arrow-h)"/>
+            <path class="edge" d="M620,270 V200" marker-end="url(#arrow-h)"/>
+            <text class="small" x="628" y="238">done</text>
+            <path class="edge" d="M515,196 L452,266" marker-end="url(#arrow-h)"/>
+            <path class="edge" d="M260,298 H224" marker-end="url(#arrow-h)"/>
+            <path class="edge" d="M840,196 V266" marker-end="url(#arrow-h)"/>
+            <text class="small" x="848" y="238">needs owner</text>
+            <path class="edge" d="M770,270 L690,200" marker-end="url(#arrow-h)"/>
+          </svg>
+          <figcaption>Only an answer, a question with a default, and an outage alert (dashed) reach me. Everything else the agents pass to each other through the hub.</figcaption>
+        </figure>
+      </div>
+      <details class="more">
+        <summary>What it consists of, a sample chat, the stack</summary>
+        <div class="more-body">
+          <div>
+            <h4>Where I started</h4>
+            <ul>
+              <li>I run a mobile app on contract, a partner’s B2B platform and my own AI service.</li>
+              <li>The bottleneck is whoever remembers what matters most. In any department with a stream of requests that is the manager; here it was me.</li>
+              <li>I handed the agents tracker and messenger monitoring, triage of inbox items and voice notes, choosing the next task, reviving stuck work, outage checks, backups and disk cleanup.</li>
+              <li>What works here I carry over into business automation.</li>
+            </ul>
+            <h4>System rules</h4>
+            <ul>
+              <li>Whatever can be computed without an LLM is computed by a script. The model is the lightest one that fits.</li>
+              <li>The system writes first in only five cases: a reply, an outage, a question with a default, a twice-daily summary of facts, and a weekly review.</li>
+              <li>Every open task has an owner agent, and it is the agent that moves it, not me.</li>
+              <li>Agents never see key values. Each one’s permissions are an allow-list in its config.</li>
+              <li>A new rule goes straight into code, a test, a hook or an instruction, and outdated rules are deleted.</li>
+            </ul>
+          </div>
+          <div>
+            <h4>What it consists of</h4>
+            <ul>
+              <li><b>Operator,</b> code without a model. Listens to the Max messenger, transcribes voice, routes agents’ messages every 15&nbsp;seconds. At 09:00 it sends one batch of questions with a recommendation and a default.</li>
+              <li><b>Hub agent.</b> A persistent Claude Code session: answers me and hands big jobs to background workers.</li>
+              <li><b>Desk agents.</b> One persistent session per project, talking by messages through the hub. At 04:00 they restart into a fresh chat and pick up only the open tasks.</li>
+              <li><b>Lanes.</b> A Claude session for one Linear task, each in its own git worktree, up to three in parallel.</li>
+              <li><b>Inbox triage.</b> Dictated notes, voice messages and the Linear Inbox are sorted into trackers without asking me.</li>
+              <li><b>Priority list.</b> One list across all projects: first tasks under 30&nbsp;minutes, then those due within 48&nbsp;hours, then those with consequences. If one project is on fire while I’m working in another, I get a short ping, at most twice a weekday.</li>
+              <li><b>Stall sweep.</b> Every 30&nbsp;minutes; it checks whether the task itself moved, not the status mark. Once a week 8&nbsp;subagents review the week, and I approve the change plan.</li>
+              <li><b>Watchdog.</b> Every 10&nbsp;minutes it checks processes, service logins, Docker and disks. It reports a given breakage once a day.</li>
+              <li><b>Nightly jobs.</b> Document backup to the cloud, phone photos, cleanup to the Recycle Bin, a look at autostart. All code.</li>
+              <li><b>Tools.</b> 13&nbsp;shared ones, <a href="#tools">a separate case study</a>.</li>
+            </ul>
+          </div>
+          <figure class="figure-wide full">
+            <svg class="diagram" viewBox="0 0 960 410" role="img" aria-labelledby="chat-d">
+              <title id="chat-d">Illustrated chat. Left: the owner asks “What now?” and the hub replies with one task, reply to a PR review in project X, with the reason, time estimate, and first step. Right: the morning “Decisions” batch with a question from a desk, a recommendation, and a default; the owner replies “Yes.”</title>
+              <g class="node human"><rect x="300" y="40" width="140" height="40" rx="14"/><text x="316" y="65">What now?</text></g>
+              <text class="small" x="12" y="104">Hub</text>
+              <g class="node agent"><rect x="10" y="112" width="430" height="152" rx="14"/>
+                <text x="26" y="140">Reply to the PR review in project X</text>
+                <text class="small" x="26" y="164">Why: the reviewer has been waiting since morning;</text>
+                <text class="small" x="26" y="184">release is on Thursday.</text>
+                <text class="small" x="26" y="204">Known: three comments, two of them about naming.</text>
+                <text class="small" x="26" y="224">Takes about 20 minutes. First step: open the PR</text>
+                <text class="small" x="26" y="244">and start with the empty-list test comment.</text>
+              </g>
+              <g class="node human"><rect x="350" y="282" width="90" height="40" rx="14"/><text x="366" y="307">Done</text></g>
+              <g class="node agent"><rect x="10" y="340" width="430" height="56" rx="14"/><text x="26" y="373">Closed. Ask when you want the next one.</text></g>
+              <text class="small" x="512" y="32">Hub, 9:00</text>
+              <g class="node agent"><rect x="510" y="40" width="430" height="182" rx="14"/>
+                <text x="526" y="66">Decisions (1)</text>
+                <text class="small" x="526" y="90">Project Y desk asks: e2e tests fail on an old</text>
+                <text class="small" x="526" y="110">Android version; everything else is green.</text>
+                <text class="small" x="526" y="134">Recommendation: turn off that run and open</text>
+                <text class="small" x="526" y="154">a task to fix it.</text>
+                <text class="small" x="526" y="178">Default: I’ll do exactly that tomorrow at 12:00</text>
+                <text class="small" x="526" y="198">unless you reply.</text>
+              </g>
+              <g class="node human"><rect x="870" y="240" width="70" height="40" rx="14"/><text x="889" y="265">Yes</text></g>
+              <g class="node agent"><rect x="510" y="298" width="430" height="56" rx="14"/><text x="526" y="331">Got it: run turned off, task created.</text></g>
+            </svg>
+            <figcaption>A sample chat with made-up data. Left: one task on request. Right: an agent’s question with a recommendation.</figcaption>
+          </figure>
+          <div>
+            <h4>More numbers</h4>
+            <ul>
+              <li>≈&nbsp;11,200 lines of Node.js: 28 scripts, 28 modules, 23 test files.</li>
+              <li>Shared tools: 13 of them, ≈&nbsp;20,000 lines, 73 commits since 29&nbsp;Sep 2026.</li>
+            </ul>
+            <p class="note">Data as of 9&nbsp;Oct 2026.</p>
+          </div>
+          <div>
+            <h4>Stack</h4>
+            <dl class="stack">
+              <dt>Agents</dt><dd>Claude Code: persistent sessions, subagents, git worktree, skills, hooks, MCP</dd>
+              <dt>Code</dt><dd>Node.js (ESM), PowerShell, Python, C#/.NET; Windows Terminal and Task Scheduler</dd>
+              <dt>Trackers</dt><dd>Linear, Jira, Google Calendar, Apple Reminders (iCloud)</dd>
+              <dt>Messaging and voice</dt><dd>Max, WhatsApp, Telegram; Groq for speech recognition</dd>
+              <dt>Keys and data</dt><dd>own vault on DPAPI and AES-GCM, master copy in Bitwarden; Yandex Disk REST; Figma</dd>
+            </dl>
+          </div>
+        </div>
+      </details>
+    </section>
+
+    <!-- Prezentashki -->
+    <section class="case" id="prezentashki" aria-labelledby="prezentashki-h">
+      <div class="case-h"><h3 id="prezentashki-h">Prezentashki: a topic in, a presentation out</h3><p><a href="https://prezentashki.ru">prezentashki.ru</a>, CTO and co-founder, since May 2026</p></div>
+      <div class="case-grid">
+        <div>
+          <dl class="tdr">
+            <div><dt>Problem</dt><dd>A student or teacher needs a presentation fast and cheap. An order shouldn’t wait for anyone’s hands, and my partner needs ad numbers without a developer.</dd></div>
+            <div class="did"><dt>What I did</dt><dd>After payment the server writes the text (GPT-4o), draws the images (Flux), assembles the slides and returns a PDF or PPTX. For my partner I built a Telegram ad assistant.</dd></div>
+            <div class="res"><dt>Result</dt><dd>2,600+ sign-ups, 38% reached payment. Not a single generation error from July to 7&nbsp;Sep 2026.</dd></div>
+          </dl>
+          <ul class="nums">
+            <li><strong>2,600+</strong>sign-ups as of 25&nbsp;Jul 2026</li>
+            <li><strong>38%</strong>of sign-ups reached payment</li>
+            <li><strong>88&nbsp;s</strong>median generation time, p90&nbsp;149&nbsp;s</li>
+            <li><strong>0 errors</strong>in generation, Jul to 7&nbsp;Sep 2026</li>
+          </ul>
+          <p class="tags1">GPT-4o, Flux, Node.js, React, PostgreSQL, Docker</p>
+        </div>
+        <figure class="pic">
+          <img src="../img/prez-slide-1.webp" alt="A generated slide, “Algebra basics”, in a blue style." width="1200" height="758" loading="lazy">
+          <figcaption>“Algebra basics”: text and images generated from the topic.</figcaption>
+        </figure>
+      </div>
+      <details class="more">
+        <summary>How the pipeline and the partner’s assistant work</summary>
+        <div class="more-body">
+          <div>
+            <h4>Where I started</h4>
+            <ul>
+              <li>The customer path: topic, number of slides, template, payment, a finished deck, edits in the editor, PDF or PPTX.</li>
+              <li>There are two of us: my partner runs marketing, I own the tech and the product. Customers come through paid ads.</li>
+            </ul>
+            <h4>The partner’s assistant</h4>
+            <ul>
+              <li>Cost per customer, the share of ad spend and profit are calculated by scripts from Yandex Direct and Metrica. The model only assembles the answer and explains it.</li>
+              <li>Any change in the ad account and any release goes to him as a request with ✅/❌ buttons. Nothing changes until he presses one.</li>
+              <li>He can ask by voice.</li>
+            </ul>
+          </div>
+          <div>
+            <h4>What I built</h4>
+            <ul>
+              <li><b>Order.</b> A “topic + slides + template” form, payment by card, SBP or subscription.</li>
+              <li><b>Statuses.</b> awaiting_payment → paid → generating → ready or failed. The server starts generation; the frontend only polls the status.</li>
+              <li><b>Reliability.</b> One order, one generation, even if the request arrives twice. Every ~30&nbsp;seconds a cron job picks up stuck orders.</li>
+              <li><b>Generation.</b> A plan from the topic, text and structure from GPT-4o and 4o-mini, an HTML template, about 6&nbsp;Flux images, export. The topic is taken from the request word for word.</li>
+              <li><b>Editor.</b> Editing in the browser, PDF through Puppeteer, PPTX through pptxgenjs.</li>
+              <li><b>Templates.</b> A catalog of HTML templates and my own exporter from Figma.</li>
+              <li><b>Speech text.</b> A paid feature: GPT-4o writes a talk to go with the slides.</li>
+              <li><b>Infrastructure.</b> Blue-green in Docker Compose behind nginx, prod and preprod, a release by tag through GitHub Actions, daily backups with a copy in S3. I write the code with Claude Code and Codex.</li>
+            </ul>
+          </div>
+          <figure class="figure-wide full">
+            <svg class="diagram" viewBox="0 0 960 376" role="img" aria-labelledby="prez-d">
+              <title id="prez-d">Diagram: the user fills in the form on the landing page, the API takes the order, and after payment it enters the generation queue; a model writes the slide text, Flux generates images, code fills the template and exports PDF or PPTX, and the finished deck goes back to the user. Separately: the partner asks the Telegram assistant, scripts calculate the numbers from Yandex Direct and Metrica, and any ad account change goes through only after the partner confirms.</title>
+              <defs><marker id="arrow-p" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z"/></marker></defs>
+              <text class="small" x="20" y="22">Product: from topic to finished deck</text>
+              <g class="node human"><rect x="20" y="36" width="200" height="56" rx="8"/><text x="36" y="60">User</text><text class="small" x="36" y="80">topic, slides, template</text></g>
+              <g class="node code"><rect x="260" y="36" width="200" height="56" rx="8"/><text x="276" y="60">Landing page</text><text class="small" x="276" y="80">order form and editor</text></g>
+              <g class="node code"><rect x="500" y="36" width="200" height="56" rx="8"/><text x="516" y="60">API</text><text class="small" x="516" y="80">order states</text></g>
+              <g class="node"><rect x="740" y="36" width="200" height="56" rx="8"/><text x="756" y="60">Payment</text><text class="small" x="756" y="80">card, SBP, subscription</text></g>
+              <g class="node code"><rect x="740" y="150" width="200" height="56" rx="8"/><text x="756" y="174">Generation queue</text><text class="small" x="756" y="194">DB lock, 30 s cron</text></g>
+              <g class="node agent"><rect x="500" y="150" width="200" height="56" rx="8"/><text x="516" y="174">Slide text</text><text class="small" x="516" y="194">GPT-4o / 4o-mini</text></g>
+              <g class="node agent"><rect x="260" y="150" width="200" height="56" rx="8"/><text x="276" y="174">Images</text><text class="small" x="276" y="194">Flux, about 6 per deck</text></g>
+              <g class="node code"><rect x="20" y="150" width="200" height="56" rx="8"/><text x="36" y="174">Template and export</text><text class="small" x="36" y="194">HTML → PDF, PPTX</text></g>
+              <text class="small" x="20" y="250">Partner’s routine: ad reports</text>
+              <g class="node human"><rect x="20" y="264" width="200" height="56" rx="8"/><text x="36" y="288">Partner ✅ / ❌</text><text class="small" x="36" y="308">question, voice, decision</text></g>
+              <g class="node agent"><rect x="260" y="264" width="200" height="56" rx="8"/><text x="276" y="288">Telegram assistant</text><text class="small" x="276" y="308">assembles and explains</text></g>
+              <g class="node code"><rect x="500" y="264" width="200" height="56" rx="8"/><text x="516" y="288">Report scripts</text><text class="small" x="516" y="308">CPA, ad spend, P&amp;L</text></g>
+              <g class="node"><rect x="740" y="264" width="200" height="56" rx="8"/><text x="756" y="288">Yandex Direct</text><text class="small" x="756" y="308">and Metrica APIs</text></g>
+              <path class="edge hot" d="M220,64 H256" marker-end="url(#arrow-p)"/>
+              <path class="edge hot" d="M460,64 H496" marker-end="url(#arrow-p)"/>
+              <path class="edge hot" d="M700,64 H736" marker-end="url(#arrow-p)"/>
+              <path class="edge hot" d="M840,92 V146" marker-end="url(#arrow-p)"/>
+              <text class="small" x="848" y="124">paid</text>
+              <path class="edge hot" d="M740,178 H704" marker-end="url(#arrow-p)"/>
+              <path class="edge hot" d="M500,178 H464" marker-end="url(#arrow-p)"/>
+              <path class="edge hot" d="M260,178 H224" marker-end="url(#arrow-p)"/>
+              <path class="edge hot" d="M120,150 V96" marker-end="url(#arrow-p)"/>
+              <text class="small" x="128" y="124">ready</text>
+              <path class="edge" d="M220,282 H256" marker-end="url(#arrow-p)"/>
+              <path class="edge ask" d="M260,304 H224" marker-end="url(#arrow-p)"/>
+              <path class="edge" d="M460,292 H496" marker-end="url(#arrow-p)"/>
+              <path class="edge" d="M700,282 H736" marker-end="url(#arrow-p)"/>
+              <path class="edge" d="M740,304 H704" marker-end="url(#arrow-p)"/>
+              <path class="edge ask" d="M120,320 V344 H840 V324" marker-end="url(#arrow-p)"/>
+              <text class="small" x="360" y="366">ad account changes only after ✅</text>
+            </svg>
+            <figcaption>Blue arrows are the order path; after payment it has no manual steps. The dashed line is the only place where the system waits for a person.</figcaption>
+          </figure>
+          <div>
+            <h4>More numbers</h4>
+            <ul>
+              <li>1,400+ online payments and ~16,000 slides as of 25&nbsp;Jul 2026.</li>
+              <li>Not a single order left without a presentation from July to 7&nbsp;Sep 2026.</li>
+              <li>11.3% of buyers purchased again, as of 7&nbsp;Sep 2026.</li>
+              <li>945 commits since 2&nbsp;May 2026, all the tech by one person with agents.</li>
+              <li>The service covers its own costs.</li>
+            </ul>
+            <p class="note">Sign-ups, payments and slides are a database snapshot from 25&nbsp;Jul 2026. Speed is for August 2026, errors are counted to 7&nbsp;Sep 2026.</p>
+          </div>
+          <div>
+            <h4>Stack</h4>
+            <dl class="stack">
+              <dt>Models</dt><dd>OpenAI GPT-4o and 4o-mini for text; Flux for images</dd>
+              <dt>Backend</dt><dd>Node 22, TypeScript, Express → Hono, Sequelize, PostgreSQL, Zod, OpenAPI</dd>
+              <dt>Frontend</dt><dd>React 19, Vite, TanStack Query</dd>
+              <dt>Export</dt><dd>Puppeteer (PDF), pptxgenjs (PPTX), HTML templates from Figma</dd>
+              <dt>Payments</dt><dd>CloudPayments: card, SBP, subscriptions</dd>
+              <dt>Infrastructure</dt><dd>Docker Compose, nginx, blue-green, GitHub Actions, GHCR, backups to S3</dd>
+              <dt>Assistant</dt><dd>Telegram Bot API, Yandex Direct and Metrica APIs</dd>
+            </dl>
+          </div>
+          <div class="shots full">
+            <figure><img src="../img/prez-templates.webp" alt="Six presentation templates: biology, algebra, creative, business, gaming, drawing." loading="lazy" width="1400" height="1204"><figcaption>Part of the template catalog, brought over from Figma.</figcaption></figure>
+            <figure><img src="../img/prez-slide-3.webp" alt="A generated slide, “Evolution of species”, with green graphics." loading="lazy" width="1200" height="758"><figcaption>“Evolution of species”: the same chain, another template.</figcaption></figure>
+          </div>
+        </div>
+      </details>
+    </section>
+
+    <!-- RISK (client named since 11 Oct; hide with data-hide="risk" on body) -->
+    <section class="case is-risk" id="risk" aria-labelledby="risk-h">
+      <div class="case-h"><h3 id="risk-h">RISK: an unpaid trip, and no lawyer on staff</h3><p><a href="https://vrisk.ru">vrisk.ru</a>, technical director / lead developer, since Aug 2026</p></div>
+      <div class="case-grid">
+        <div>
+          <dl class="tdr">
+            <div><dt>Problem</dt><dd>A client doesn’t pay a carrier for a trip, and a small transport company has no lawyer. Money is lost to deadlines and mistakes in the paperwork.</dd></div>
+            <div class="did"><dt>What I did</dt><dd>A platform that runs from the claim to the court, for TEK Antares (Kazan). AI writes the claim and the court filing from the case documents, code calculates the penalty and the deadlines, and the platform calls the debtor on its own.</dd></div>
+            <div class="res"><dt>Result</dt><dd>Live since 21&nbsp;Sep 2026, 7&nbsp;weeks after the start, with 16&nbsp;releases in 3&nbsp;weeks. The client’s lawyer and its head are piloting it, and staff are joining.</dd></div>
+          </dl>
+          <ul class="nums">
+            <li><strong>7 weeks</strong>from the 2&nbsp;Aug start to live on 21&nbsp;Sep 2026</li>
+            <li><strong>16 releases</strong>v1.0.0 → v1.0.15 in 3&nbsp;weeks</li>
+            <li><strong>≈&nbsp;45&nbsp;s</strong>for a claim draft</li>
+            <li><strong>~980 commits</strong>and 187 ADRs, one developer with Claude agents</li>
+          </ul>
+          <p class="tags1">Claude Sonnet and Haiku, pgvector, Hono, React, PostgreSQL</p>
+        </div>
+        <figure class="pic">
+          <svg class="diagram" viewBox="0 0 960 390" role="img" aria-labelledby="risk-d">
+            <title id="risk-d">Diagram: the carrier works in the portal, the portal calls the API, the API stores data in PostgreSQL with pgvector. The API sends documents to a template-based generator and calls the AI adapter: PII masking, then the Sonnet or Haiku model, then the number guard. An accepted response becomes a draft or a hint for the human moderator. The assistant answers from the knowledge base through the same adapter.</title>
+            <defs><marker id="arrow-r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z"/></marker></defs>
+            <g class="node human"><rect x="20" y="30" width="200" height="56" rx="8"/><text x="36" y="54">Carrier</text><text class="small" x="36" y="74">or freight forwarder</text></g>
+            <g class="node"><rect x="260" y="30" width="200" height="56" rx="8"/><text x="276" y="54">Portal</text><text class="small" x="276" y="74">claim wizard</text></g>
+            <g class="node code"><rect x="500" y="30" width="200" height="56" rx="8"/><text x="516" y="54">API</text><text class="small" x="516" y="74">Hono, AI flags</text></g>
+            <g class="node"><rect x="740" y="30" width="200" height="56" rx="8"/><text x="756" y="54">PostgreSQL + pgvector</text><text class="small" x="756" y="74">cases, registry, vectors</text></g>
+            <text class="small" x="600" y="156">AI adapter behind a flag: cli | api | mock | off</text>
+            <g class="node code"><rect x="20" y="170" width="200" height="56" rx="8"/><text x="36" y="194">Document generator</text><text class="small" x="36" y="214">template, PDF, mail</text></g>
+            <g class="node code"><rect x="260" y="170" width="200" height="56" rx="8"/><text x="276" y="194">PII masking</text><text class="small" x="276" y="214">name, phone → [NAME-1]</text></g>
+            <g class="node agent"><rect x="500" y="170" width="200" height="56" rx="8"/><text x="516" y="194">Model</text><text class="small" x="516" y="214">Claude Sonnet, Haiku</text></g>
+            <g class="node code"><rect x="740" y="170" width="200" height="56" rx="8"/><text x="756" y="194">Number guard</text><text class="small" x="756" y="214">unknown number → template</text></g>
+            <g class="node"><rect x="20" y="310" width="200" height="56" rx="8"/><text x="36" y="334">Knowledge base</text><text class="small" x="36" y="354">“Disputed situations”</text></g>
+            <g class="node agent"><rect x="260" y="310" width="200" height="56" rx="8"/><text x="276" y="334">Assistant</text><text class="small" x="276" y="354">answers from cards only</text></g>
+            <g class="node human"><rect x="500" y="310" width="200" height="56" rx="8"/><text x="516" y="334">Moderator</text><text class="small" x="516" y="354">decides on a checklist</text></g>
+            <g class="node"><rect x="740" y="310" width="200" height="56" rx="8"/><text x="756" y="334">Draft</text><text class="small" x="756" y="354">text or checklist</text></g>
+            <path class="edge hot" d="M220,58 H256" marker-end="url(#arrow-r)"/>
+            <path class="edge hot" d="M460,58 H496" marker-end="url(#arrow-r)"/>
+            <path class="edge" d="M700,58 H736" marker-end="url(#arrow-r)"/>
+            <path class="edge" d="M580,86 V128 H120 V166" marker-end="url(#arrow-r)"/>
+            <path class="edge" d="M360,128 V166" marker-end="url(#arrow-r)"/>
+            <path class="edge hot" d="M460,198 H496" marker-end="url(#arrow-r)"/>
+            <path class="edge hot" d="M700,198 H736" marker-end="url(#arrow-r)"/>
+            <path class="edge hot" d="M840,226 V306" marker-end="url(#arrow-r)"/>
+            <path class="edge ask" d="M740,338 H704" marker-end="url(#arrow-r)"/>
+            <path class="edge" d="M220,338 H256" marker-end="url(#arrow-r)"/>
+            <path class="edge" d="M360,310 V230" marker-end="url(#arrow-r)"/>
+          </svg>
+          <figcaption>The model sees only text with personal data masked, and the number guard checks its reply. Court documents come from the template-based generator.</figcaption>
+        </figure>
+      </div>
+      <details class="more">
+        <summary>How AI fits into the legal process</summary>
+        <div class="more-body">
+          <div>
+            <h4>Where I started</h4>
+            <ul>
+              <li>A carrier doesn’t know which claim to write, how long to wait, when to go to court or how to calculate the penalty.</li>
+              <li>The platform leads them from the claim through pre-trial settlement to a court order or a lawsuit, and assembles the documents itself.</li>
+              <li>A mistake in an amount or a date costs money. So the model must not invent numbers, see extra personal data, or break the product when it fails.</li>
+            </ul>
+            <h4>Where it stands</h4>
+            <ul>
+              <li>Started 2&nbsp;Aug 2026, live on vrisk.ru since 21&nbsp;Sep 2026, after 7&nbsp;weeks.</li>
+              <li>The client is TEK Antares, Kazan. The pilot is run by the client’s lawyer and its head; staff are joining.</li>
+              <li>16&nbsp;releases (v1.0.0 → v1.0.15) in 3&nbsp;weeks, ~980&nbsp;commits, 187&nbsp;ADRs. One developer with Claude AI agents.</li>
+            </ul>
+            <p class="note">Data as of 11&nbsp;Oct 2026. I don’t publish usage numbers. AI features are switched on by flags as the lawyer checks them.</p>
+          </div>
+          <div>
+            <h4>What I built</h4>
+            <p>First a platform without AI: whatever affects money and deadlines is calculated by code. Then AI on top of it, with three safeguards.</p>
+            <ul>
+              <li><b>Carrier portal.</b> A claim wizard: several demands in one draft, attachments, statuses, publication to the registry.</li>
+              <li><b>Counterparty registry.</b> A card by tax ID with claim statistics and monitoring.</li>
+              <li><b>Documents.</b> AI writes the pre-trial claim and the court filing from the case documents. A template assembles the PDF and the mail package; code calculates the penalty and outputs it as a table for the judge.</li>
+              <li><b>Court.</b> A court order or a lawsuit is filed through “Moi Arbitr”.</li>
+              <li><b>Service of documents.</b> The pre-trial claim can be sent through e-document services (Diadoc, SBIS, Astral). The service log exports to PDF.</li>
+              <li><b>Calls.</b> The platform calls the debtor automatically.</li>
+              <li><b>Data masking.</b> Before a model call, names, phone numbers, emails and passport details become placeholders like [NAME-1], and are restored after the reply. The call log has no texts.</li>
+              <li><b>Number guard.</b> A reply is accepted only if every amount, date, number and legal article in it appears in the input. Otherwise the document gets the template text.</li>
+              <li><b>Flags.</b> Each AI feature is switched on separately. If the model is unavailable, the product works without it.</li>
+              <li><b>Moderation and assistant.</b> For the moderator, AI prepares a checklist with evidence, and the moderator decides. The assistant answers only from the “Disputed situations” cards (pgvector search) and the case data.</li>
+              <li><b>The rest.</b> Payment reconciliation with the bank, SMS codes, support chat, pricing plans, an admin panel.</li>
+            </ul>
+          </div>
+          <div class="shots full">
+            <figure class="phone"><img src="../img/risk-ai-hint.webp" alt="The claim wizard: the claim summary field and an AI hint flagging an amount mismatch." loading="lazy" width="375" height="1026"><figcaption>The amount in the text doesn’t match the field: the field stays as it is and only a warning appears. Made-up data.</figcaption></figure>
+            <figure class="phone"><img src="../img/risk-kb-card.webp" alt="A knowledge base card: a step-by-step “What to do” guide linking to related cards." loading="lazy" width="375" height="1002"><figcaption>A knowledge base card. The assistant answers from cards like this.</figcaption></figure>
+            <figure><img src="../img/risk-desktop.webp" alt="Knowledge base admin in the desktop portal: a table of cards with review statuses." loading="lazy" width="1174" height="946"><figcaption>Knowledge base admin: every card has a review status. The interface is in Russian.</figcaption></figure>
+          </div>
+          <div class="full">
+            <h4>Stack</h4>
+            <dl class="stack">
+              <dt>AI</dt><dd>Claude Sonnet and Haiku through my own adapter: personal data masking, number guard, flags; pgvector</dd>
+              <dt>Backend</dt><dd>Node 22, TypeScript, Hono, Drizzle ORM; PostgreSQL, Redis, S3</dd>
+              <dt>Frontend</dt><dd>React, Vite, Ant Design</dd>
+              <dt>Infrastructure</dt><dd>Docker Compose; GitHub Actions: staging from main, production from a tag; GlitchTip</dd>
+            </dl>
+          </div>
+        </div>
+      </details>
+    </section>
+
+    <!-- Tools -->
+    <section class="case" id="tools" aria-labelledby="tools-h">
+      <div class="case-h"><h3 id="tools-h">One toolkit for all the agents</h3><p>My own project, since Sep 2026</p></div>
+      <div class="case-grid">
+        <div>
+          <dl class="tdr">
+            <div><dt>Problem</dt><dd>Several agent systems need the same chats, tasks, designs and keys. If every project has its own copy, it’s impossible to tell which agent sees what.</dd></div>
+            <div class="did"><dt>What I did</dt><dd>Each tool is written once, and an agent’s permissions live in its config and are enforced by the tool itself. The set includes dictation into any window, a vault of keys the agent can use but never see, and a single login for the messengers.</dd></div>
+            <div class="res"><dt>Result</dt><dd>13&nbsp;tools for 5&nbsp;persistent agents. A new project connects with one line in the settings.</dd></div>
+          </dl>
+          <ul class="nums">
+            <li><strong>13</strong>tools in the shared set</li>
+            <li><strong>5</strong>persistent agents on one codebase</li>
+            <li><strong>≈&nbsp;20,000</strong>lines: Node.js, PowerShell, Python</li>
+            <li><strong>73</strong>commits since 29&nbsp;Sep 2026</li>
+          </ul>
+          <p class="tags1">.NET, Node.js, MCP, Groq</p>
+        </div>
+        <figure class="pic">
+          <svg class="diagram" viewBox="0 0 960 486" role="img" aria-labelledby="tools-d">
+            <title id="tools-d">Layers: agents and a person on top, a per-agent access config below the agents, then 13 tools, then external services</title>
+            <defs><marker id="arrow-t" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z"/></marker></defs>
+            <g class="node agent"><rect x="20" y="20" width="330" height="56" rx="8"/><text x="36" y="44">Hub agent</text><text class="small" x="36" y="64">always-on Claude Code session</text></g>
+            <g class="node agent"><rect x="370" y="20" width="330" height="56" rx="8"/><text x="386" y="44">Project agents</text><text class="small" x="386" y="64">one per project</text></g>
+            <g class="node human"><rect x="740" y="20" width="200" height="56" rx="8"/><text x="756" y="44">Person</text><text class="small" x="756" y="64">hotkey and voice</text></g>
+            <g class="node code"><rect x="20" y="110" width="680" height="56" rx="8"/><text x="36" y="134">Per-agent access config</text><text class="small" x="36" y="154">what this agent may use: chats, projects, designs, keys, browser profile</text></g>
+            <g class="node"><rect x="12" y="192" width="936" height="176" rx="10"/><text class="small" x="28" y="212">shared toolkit: 13 tools</text></g>
+            <g class="node code"><rect x="28" y="224" width="208" height="56" rx="8"/><text x="44" y="248">Messaging</text><text class="small" x="44" y="268">Max, WhatsApp, Telegram</text></g>
+            <g class="node code"><rect x="252" y="224" width="208" height="56" rx="8"/><text x="268" y="248">Trackers</text><text class="small" x="268" y="268">Linear, Jira</text></g>
+            <g class="node code"><rect x="476" y="224" width="208" height="56" rx="8"/><text x="492" y="248">Figma</text><text class="small" x="492" y="268">designs from a snapshot</text></g>
+            <g class="node code"><rect x="28" y="296" width="208" height="56" rx="8"/><text x="44" y="320">Key vault</text><text class="small" x="44" y="340">agents never see values</text></g>
+            <g class="node code"><rect x="252" y="296" width="208" height="56" rx="8"/><text x="268" y="320">Browser</text><text class="small" x="268" y="340">one Chrome profile each</text></g>
+            <g class="node code"><rect x="476" y="296" width="208" height="56" rx="8"/><text x="492" y="320">Builds</text><text class="small" x="492" y="340">pool of EAS accounts</text></g>
+            <g class="node code"><rect x="740" y="224" width="192" height="56" rx="8"/><text x="756" y="248">GroqDictate</text><text class="small" x="756" y="268">tray dictation</text></g>
+            <g class="node"><rect x="20" y="410" width="920" height="56" rx="8"/><text x="36" y="434">External services</text><text class="small" x="36" y="454">messengers, Linear, Jira, Figma, Chrome, EAS, Groq, Bitwarden</text></g>
+            <path class="edge hot" d="M185,76 V108" marker-end="url(#arrow-t)"/>
+            <path class="edge hot" d="M535,76 V108" marker-end="url(#arrow-t)"/>
+            <path class="edge" d="M360,166 V190" marker-end="url(#arrow-t)"/>
+            <path class="edge ask" d="M836,76 V222" marker-end="url(#arrow-t)"/>
+            <path class="edge" d="M360,368 V408" marker-end="url(#arrow-t)"/>
+            <path class="edge" d="M836,280 V408" marker-end="url(#arrow-t)"/>
+          </svg>
+          <figcaption>Agents reach the tools only through their own config. I use dictation directly.</figcaption>
+        </figure>
+      </div>
+      <details class="more">
+        <summary>What’s inside: dictation, keys, messengers, trackers, Figma</summary>
+        <div class="more-body">
+          <div>
+            <h4>Where I started</h4>
+            <ul>
+              <li>The agents work for the mobile app, partners’ projects and my hub. All of them need chats, tasks, design and API keys.</li>
+              <li>Without a shared set, each project gets its own tracker client, its own messenger bridge and its own place for keys. A bug then has to be fixed in every copy.</li>
+            </ul>
+            <h4>The main rule</h4>
+            <p>The tools don’t know who is using them: there are no project names or chat lists in the code. An agent arrives with its own config that lists which chats it reads and writes to, and which projects, designs, browser profile and key vault it gets. The tool itself enforces the permissions, so they can’t be bypassed from the command line or through MCP.</p>
+          </div>
+          <div>
+            <h4>What’s inside</h4>
+            <ul>
+              <li><b>GroqDictate.</b> I press a hotkey and speak. Groq transcribes, a light model removes slips of the tongue, a dictionary fixes names, and the text lands wherever the cursor is. One .exe on .NET, ~1.8&nbsp;MB, no installer.</li>
+              <li><b>Key vault.</b> Keys are stored encrypted, one vault per project, production separate. The master copy is in Bitwarden. An agent can’t show a value: it runs a program through the vault, and the key goes only into that program’s environment.</li>
+              <li><b>Messaging.</b> Max, WhatsApp and Telegram through one MCP server with a local archive. An agent sees only chats on its allow-list and writes only where it’s allowed.</li>
+              <li><b>Trackers.</b> Linear and Jira: one library, a CLI and MCP. The filter goes straight into the query, and the answer is checked again. The tool divides the per-key request limit among the agents.</li>
+              <li><b>Figma.</b> Once a day the tool snapshots the designs to disk, and during the day the agents read them without limits. Each sees only its own files.</li>
+              <li><b>The rest.</b> A separate Chrome profile for each agent, a pool of accounts for mobile builds, launching persistent sessions.</li>
+            </ul>
+          </div>
+          <div>
+            <h4>More numbers</h4>
+            <ul>
+              <li>10 test files.</li>
+              <li>GroqDictate is a single ~1.8&nbsp;MB .exe.</li>
+              <li>All projects’ keys sit in one encrypted place, and agent permissions in one config.</li>
+            </ul>
+            <p class="note">Data as of 9&nbsp;Oct 2026.</p>
+          </div>
+          <div>
+            <h4>Stack</h4>
+            <dl class="stack">
+              <dt>Agents</dt><dd>Claude Code: MCP servers, hooks, persistent sessions</dd>
+              <dt>Code</dt><dd>Node.js (ESM), PowerShell, Python, C#/.NET (GroqDictate)</dd>
+              <dt>Integrations</dt><dd>Max, WhatsApp, Telegram, Linear, Jira, Figma, Chrome, EAS, Groq</dd>
+              <dt>Keys</dt><dd>DPAPI + AES-GCM, master copy in Bitwarden</dd>
+            </dl>
+          </div>
+        </div>
+      </details>
+    </section>
+  </section>
+
+  <!-- ============ Contact ============ -->
+  <section class="block" id="contacts" aria-labelledby="contacts-h">
+    <h2 class="block-h" id="contacts-h">Contact</h2>
+    <p class="contact-line">I’m looking for a project or part-time work, remote, from 15&nbsp;hours a week. I’d consider full-time too.</p>
+    <ul class="actions">
+      <li><a class="btn main" href="mailto:evilandfox@gmail.com">evilandfox@gmail.com</a></li>
+      <li><a class="btn" href="https://www.linkedin.com/in/rinat-taysin-2b31ab225">LinkedIn</a></li>
+      <li><a class="btn" href="https://github.com/rinat-taysin">GitHub</a></li>
+    </ul>
   </section>
 </main>
 
 <footer class="wrap">
-  <p>Rinat Taysin, AI automation engineer. <a href="mailto:evilandfox@gmail.com">evilandfox@gmail.com</a>, <a href="https://www.linkedin.com/in/rinat-taysin-2b31ab225">LinkedIn</a>, <a href="https://github.com/rinat-taysin">GitHub</a></p>
+  <p>Rinat Taysin, AI automation engineer. The CV on its own page: <a href="cv.html">cv.html</a>.</p>
 </footer>
+
+<script>
+// Highlight the current section in the table of contents; open all details before printing.
+(function () {
+  var links = Array.prototype.slice.call(document.querySelectorAll('.toc a'));
+  var map = {};
+  links.forEach(function (a) { map[a.getAttribute('href').slice(1)] = a; });
+  var targets = Object.keys(map).map(function (id) { return document.getElementById(id); }).filter(Boolean);
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        links.forEach(function (a) { a.classList.remove('on'); });
+        var a = map[e.target.id];
+        if (a) {
+          a.classList.add('on');
+          var toc = a.parentNode;
+          if (toc.scrollWidth > toc.clientWidth) toc.scrollTo({ left: a.offsetLeft - 16, behavior: 'auto' });
+        }
+      });
+    }, { rootMargin: '-30% 0px -65% 0px' });
+    targets.forEach(function (t) { io.observe(t); });
+  }
+  window.addEventListener('beforeprint', function () {
+    document.querySelectorAll('details').forEach(function (d) { d.open = true; });
+  });
+})();
+</script>
 </body>
 </html>

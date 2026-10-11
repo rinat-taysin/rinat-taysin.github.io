@@ -30,7 +30,8 @@
     <dl class="meta">
       <div><dt>Role</dt><dd>In charge of platform development</dd></div>
       <div><dt>When</dt><dd>Since August 2026, live since Sep 21, 2026</dd></div>
-      <div><dt>Scale</dt><dd>900+ commits, 180+ architecture decisions</dd></div>
+      <div><dt>Client</dt><dd>TEK Antares, Kazan</dd></div>
+      <div><dt>Scale</dt><dd>~980 commits, 187 architecture decisions, one developer with Claude agents</dd></div>
     </dl>
   </div>
 
@@ -50,7 +51,10 @@
         <ul>
           <li><b>Carrier portal.</b> A claim wizard: several demands in one draft, attachments, statuses, publishing to the registry.</li>
           <li><b>Counterparty registry.</b> A profile per company tax ID with claim statistics and a watch option.</li>
-          <li><b>Documents.</b> The pre-trial demand and the court order application, rendered from templates to PDF with a mailing package. The penalty calculator is plain code.</li>
+          <li><b>Documents.</b> AI writes the pre-trial claim and the court filing from the case documents. A template renders the PDF and the mailing package. Code calculates the penalty and outputs it as a table for the judge.</li>
+          <li><b>Court.</b> A court order or a lawsuit is filed through “Moi Arbitr”.</li>
+          <li><b>Service of documents.</b> The pre-trial claim can be sent through e-document services (Diadoc, SBIS, Astral). The service log exports to PDF.</li>
+          <li><b>Calls.</b> The platform calls the debtor automatically.</li>
           <li><b>Moderation.</b> A review queue with an SLA. The AI gives the human moderator a checklist of evidence and a recommendation. Code sets the threshold and weights; the moderator decides.</li>
           <li><b>AI adapter.</b> One entry point to the model, with cli, api, mock, and off drivers. Before the call it masks personal data: names, phone numbers, emails, and passport details become tokens like [NAME-1], and the real values go back in after the response. The call log stores no text.</li>
           <li><b>Number guard.</b> A model response is accepted only if every amount, date, reference number, and statute in it appears in the input. Otherwise the document falls back to the template.</li>
@@ -109,13 +113,13 @@
     <section>
       <h2>Results</h2>
       <ul class="results">
-        <li><strong>Sep 21, 2026</strong><span>platform went live, pilot underway</span></li>
-        <li><strong>15 releases</strong><span>in 18 days</span></li>
-        <li><strong>900+ commits</strong><span>since Aug 2, 2026</span></li>
-        <li><strong>180+ ADRs</strong><span>architecture decisions on record</span></li>
+        <li><strong>7 weeks</strong><span>from the Aug 2 start to live on Sep 21, 2026</span></li>
+        <li><strong>16 releases</strong><span>v1.0.0 → v1.0.15 in 3 weeks</span></li>
+        <li><strong>~980 commits</strong><span>since Aug 2, 2026</span></li>
+        <li><strong>187 ADRs</strong><span>architecture decisions on record</span></li>
         <li><strong>~45 s</strong><span>expected time for an AI draft; small tasks ~3 s</span></li>
       </ul>
-      <div class="measure"><p>As of Oct 9, 2026. The pilot has just started, so there are no user or revenue numbers here yet. AI features are turned on by flags as a lawyer reviews them.</p></div>
+      <div class="measure"><p>As of Oct 11, 2026. The pilot is run by the client’s lawyer and its head, and staff are joining. I don’t publish usage numbers. AI features are turned on by flags as a lawyer reviews them.</p></div>
     </section>
 
     <section>
