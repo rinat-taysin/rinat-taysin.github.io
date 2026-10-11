@@ -4,142 +4,815 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ринат Тайсин — инженер AI-автоматизации</title>
-<meta name="description" content="Строю агентные системы на LLM, которые снимают рутину с работающего бизнеса: разбор входящих, трекер, исполнение, проверки. Кейсы со схемами и цифрами.">
+<meta name="description" content="Ринат Тайсин внедряет ИИ в бизнес под ключ. Резюме и кейсы со схемами и цифрами на одной странице.">
 <link rel="alternate" hreflang="en" href="en/index.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&amp;family=Unbounded:wght@500;600&display=swap">
 <link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="assets/onepage.css">
 <script src="assets/theme.js"></script>
 </head>
-<body>
-<header class="wrap top">
-  <a class="home" href="index.html">Ринат Тайсин</a>
-  <nav>
-    <a href="#cases">Кейсы</a>
-    <a href="cv.html">Резюме</a>
-    <a href="en/index.html" lang="en" hreflang="en">EN</a>
-    <button class="theme-toggle" type="button" aria-label="Сменить тему">Тема</button>
-  </nav>
+<!-- Скрыть РИСК (NDA, ждём согласия компании): data-hide="risk" — пропадут кейс, пункт меню и место в опыте -->
+<body class="one" data-hide="">
+<header class="bar">
+  <div class="wrap bar-in">
+    <a class="home" href="#top">Ринат Тайсин</a>
+    <nav class="toc" aria-label="Разделы страницы">
+      <a href="#cv">Резюме</a>
+      <span class="grp">Кейсы</span>
+      <a href="#alemx-ops">AlemX</a>
+      <a href="#agent-hub">Отдел из&nbsp;агентов</a>
+      <a href="#prezentashki">Презенташки</a>
+      <a class="is-risk" href="#risk">РИСК</a>
+      <a href="#tools">Инструменты</a>
+      <a href="#contacts">Контакты</a>
+    </nav>
+    <div class="bar-tools">
+      <a href="en/index.html" lang="en" hreflang="en">EN</a>
+      <button class="theme-toggle" type="button" aria-label="Сменить тему">Тема</button>
+    </div>
+  </div>
 </header>
 
 <main class="wrap">
-  <div class="hero">
-    <h1>Агенты, которые берут рутину на&nbsp;себя</h1>
+  <div class="intro" id="top">
     <img class="portrait" src="img/portrait.webp" width="480" height="480" alt="Ринат Тайсин">
-    <p class="lead">Ринат Тайсин, инженер AI-автоматизации и техлид. Строю системы на&nbsp;Claude и&nbsp;других LLM, которые разбирают входящие, ведут трекер, пишут и проверяют код, а&nbsp;человеку оставляют только решения.</p>
-    <p class="sub">10&nbsp;лет в&nbsp;разработке, бывший CTO стартапа. Довожу AI-системы до&nbsp;работы в&nbsp;живом бизнесе: проверки делает код, права агентов записаны, токены посчитаны. Удалённо, проектно или на&nbsp;полную ставку.</p>
-    <ul class="contacts">
-      <li><a href="mailto:evilandfox@gmail.com">evilandfox@gmail.com</a></li>
-      <li><a href="https://www.linkedin.com/in/rinat-taysin-2b31ab225">LinkedIn</a></li>
-      <li><a href="https://github.com/rinat-taysin">GitHub</a></li>
-      <li><a href="cv.html">Резюме</a></li>
-    </ul>
-
-    <figure class="route">
-      <svg class="diagram" viewBox="0 0 960 190" role="img" aria-labelledby="route-title">
-        <title id="route-title">Как устроены мои системы: входящие из мессенджеров и трекеров разбирает агент, исполнение проверяет код, человек получает только решение с вариантом по умолчанию</title>
-        <defs>
-          <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-            <path d="M0,0 L10,5 L0,10 z"/>
-          </marker>
-        </defs>
-        <g class="node"><rect x="1" y="20" width="190" height="64" rx="8"/><text x="18" y="46">Входящие</text><text class="small" x="18" y="68">чаты, трекер, голос</text></g>
-        <path class="edge hot" d="M191,52 H241" marker-end="url(#arrow)"/>
-        <g class="node agent"><rect x="243" y="20" width="200" height="64" rx="8"/><text x="260" y="46">Агент разбирает</text><text class="small" x="260" y="68">тип, владелец, срочность</text></g>
-        <path class="edge hot" d="M443,52 H493" marker-end="url(#arrow)"/>
-        <g class="node agent"><rect x="495" y="20" width="200" height="64" rx="8"/><text x="512" y="46">Агент делает</text><text class="small" x="512" y="68">тикет, ответ, код, отчёт</text></g>
-        <path class="edge hot" d="M695,52 H745" marker-end="url(#arrow)"/>
-        <g class="node code"><rect x="747" y="20" width="210" height="64" rx="8"/><text x="764" y="46">Код проверяет</text><text class="small" x="764" y="68">тесты, права, лимиты</text></g>
-        <path class="edge ask" d="M345,84 V140 H493" marker-end="url(#arrow)"/>
-        <path class="edge ask" d="M852,84 V140 H697" marker-end="url(#arrow)"/>
-        <g class="node human"><rect x="495" y="112" width="200" height="64" rx="8"/><text x="512" y="138">Человек решает</text><text class="small" x="512" y="160">с готовым вариантом</text></g>
-      </svg>
-      <ul class="legend">
-        <li class="agent">агент на модели</li>
-        <li class="code">код без модели</li>
-        <li class="human">решение человека: деньги, люди, сроки</li>
+    <div>
+      <h1>Ринат Тайсин</h1>
+      <p class="pos">Внедряю ИИ в&nbsp;бизнес под ключ: делаю и&nbsp;сразу проверяю результат.</p>
+      <p class="facts">AI-инженер и&nbsp;техлид, 10&nbsp;лет в&nbsp;разработке, был CTO стартапа. Казань, работаю удалённо.</p>
+      <ul class="actions">
+        <li><a class="btn main" href="mailto:evilandfox@gmail.com">evilandfox@gmail.com</a></li>
+        <li><a class="btn" href="cv.html">Резюме отдельно</a></li>
+        <li><a class="btn" href="https://www.linkedin.com/in/rinat-taysin-2b31ab225">LinkedIn</a></li>
+        <li><a class="btn" href="https://github.com/rinat-taysin">GitHub</a></li>
       </ul>
-    </figure>
+    </div>
   </div>
 
-  <section id="cases">
-    <h2>Кейсы</h2>
-    <ul class="cases">
-      <li class="case-row lead-case">
-        <div>
-          <h3><a href="cases/alemx-ops.html">Операционный агент продуктовой команды</a></h3>
-          <p>Мобильное приложение AlemX: баги приходят потоком в&nbsp;WhatsApp, релиз стоит четыре месяца. Агент разбирает репорты, заводит тикеты, ведёт фикс через независимое AI-ревью и&nbsp;CI до&nbsp;мержа, а&nbsp;вопросы о&nbsp;деньгах, людях и&nbsp;сроках приносит человеку с&nbsp;готовой рекомендацией.</p>
-          <p class="tags">Claude Code, MCP, хуки, Jira, GitHub, WhatsApp, EAS</p>
-        </div>
-        <p class="fact"><strong>до&nbsp;21&nbsp;мержа в&nbsp;день</strong><span>первый стор-релиз через 2&nbsp;недели после входа</span></p>
-      </li>
-      <li class="case-row">
-        <div>
-          <h3><a href="cases/agent-hub.html">Операционный отдел из агентов</a></h3>
-          <p>Одна система на несколько проектов: оператор в&nbsp;мессенджере, постоянный агент на каждый проект, фоновые исполнители по задачам трекера, ежедневный обход застрявших дел и&nbsp;один список «что делать сейчас».</p>
-          <p class="tags">Claude Code, Node.js, Linear, Jira, мессенджеры, Планировщик Windows</p>
-        </div>
-        <p class="fact"><strong>5&nbsp;постоянных агентов</strong><span>и&nbsp;10&nbsp;фоновых задач; дежурство кодом без токенов</span></p>
-      </li>
-      <li class="case-row">
-        <div>
-          <h3><a href="cases/prezentashki.html">Презенташки: AI-генератор презентаций</a></h3>
-          <p>Пишешь тему&nbsp;— получаешь готовую презентацию с&nbsp;текстом и&nbsp;картинками, в&nbsp;PDF или PPTX. Техника и&nbsp;продукт целиком на&nbsp;мне. Ещё сделал партнёру Telegram-ассистента: на&nbsp;вопросы о&nbsp;рекламе отвечает он, а&nbsp;не&nbsp;разработчик.</p>
-          <p class="tags">GPT-4o, Flux, Node.js, React, PostgreSQL, Docker</p>
-        </div>
-        <p class="fact"><strong>2&nbsp;600+ регистраций</strong><span>38% из них доходят до&nbsp;оплаты, срез на 25.07.2026</span></p>
-      </li>
-      <li class="case-row">
-        <div>
-          <h3><a href="cases/risk.html">РИСК: претензии в&nbsp;грузоперевозках</a></h3>
-          <p>B2B-платформа, которая ведёт перевозчика от&nbsp;неоплаченного рейса до&nbsp;претензии и&nbsp;судебного приказа. ИИ помогает с&nbsp;черновиками и&nbsp;подсказывает модератору, а&nbsp;суммы, сроки и&nbsp;юридический текст считает код.</p>
-          <p class="tags">Claude Sonnet и Haiku, pgvector, Hono, React, PostgreSQL</p>
-        </div>
-        <p class="fact"><strong>15&nbsp;релизов за&nbsp;18&nbsp;дней</strong><span>после запуска в&nbsp;бой</span></p>
-      </li>
-      <li class="case-row">
-        <div>
-          <h3><a href="cases/tools.html">Инструменты для агентов</a></h3>
-          <p>То, на&nbsp;чём стоят системы выше: голосовой ввод в&nbsp;любое окно, хранилище ключей, которое агенты используют, но не&nbsp;видят, единый вход в&nbsp;мессенджеры с&nbsp;белыми списками.</p>
-          <p class="tags">.NET, Node.js, MCP, Groq</p>
-        </div>
-        <p class="fact"><strong>13&nbsp;инструментов</strong><span>в общем наборе для всех агентов</span></p>
-      </li>
-    </ul>
-  </section>
+  <!-- ============ Резюме ============ -->
+  <section class="block" id="cv" aria-labelledby="cv-h">
+    <h2 class="block-h" id="cv-h">Резюме</h2>
+    <div class="cv1">
+      <ul class="about">
+        <li>10&nbsp;лет пишу на&nbsp;TypeScript, Node.js и&nbsp;Python. Был CTO стартапа и&nbsp;ведущим инженером.</li>
+        <li>С&nbsp;2024 года строю системы на&nbsp;LLM для работающего бизнеса: агентов на&nbsp;Claude Code и&nbsp;MCP, LLM-функции в&nbsp;B2B SaaS, RAG, связки с&nbsp;Jira, GitHub, Figma, Linear и&nbsp;календарями.</li>
+        <li>Что можно проверить кодом, проверяет код. Деньги, люди и&nbsp;необратимые шаги остаются за&nbsp;человеком.</li>
+      </ul>
 
-  <section id="approach">
-    <h2>Как работаю</h2>
-    <ul class="principles">
-      <li><b>Сначала рутина, потом модель</b><p>Смотрю, на&nbsp;что уходят часы людей, и&nbsp;автоматизирую самое частое. Что можно посчитать кодом, считает код.</p></li>
-      <li><b>Человек решает, агент готовит</b><p>Деньги, люди, сроки и&nbsp;всё необратимое идут человеку одним вопросом: варианты, рекомендация, что будет по&nbsp;умолчанию.</p></li>
-      <li><b>Права агента записаны в&nbsp;коде</b><p>Белые списки действий, хуки, страж мержа, ключи, которые агент не&nbsp;видит. Рамки держит не&nbsp;промпт.</p></li>
-      <li><b>Живые данные в&nbsp;трекере</b><p>Агенты пишут туда, где команда уже работает: Jira, Linear, мессенджеры, календарь. Людям не&nbsp;нужно осваивать новый сервис.</p></li>
-    </ul>
-  </section>
+      <div class="jobs">
+        <div class="job1">
+          <div class="jh"><h3>AlemX <span>— Product Owner мобильного приложения (контракт)</span></h3><p class="when">август 2026 — сейчас</p></div>
+          <p>AI-супер-апп в&nbsp;App Store и&nbsp;Google Play: мессенджер, лента, рекламный маркетплейс с&nbsp;оплатой за&nbsp;внимание, кошелёк со&nbsp;стейблкоинами. Работаю подрядчиком на&nbsp;частичной занятости, подчиняюсь CEO. <a href="#alemx-ops">Кейс ниже</a></p>
+          <ul>
+            <li>Построил систему из&nbsp;двух агентов на&nbsp;Claude Code: баг из&nbsp;рабочего чата становится тикетом в&nbsp;Jira, фиксом, AI-ревью, прогоном CI и&nbsp;мержем.</li>
+            <li>За&nbsp;2&nbsp;месяца вышло 9&nbsp;релизов в&nbsp;сторы и&nbsp;около 700&nbsp;PR, до&nbsp;50 в&nbsp;день. Срочный хотфикс доходит до&nbsp;сторов примерно за&nbsp;3&nbsp;часа.</li>
+          </ul>
+          <details>
+            <summary>Ещё 4 пункта</summary>
+            <ul>
+              <li>Оператор разбирает находки тестировщиков из&nbsp;WhatsApp, заводит тикеты, раздаёт задачи агентам-разработчикам (до&nbsp;4&nbsp;параллельно) и&nbsp;ведёт PR до&nbsp;мержа. Штурман ведёт план релизов, выпуск в&nbsp;сторы и&nbsp;каждый вечер пишет руководству сводку за&nbsp;день.</li>
+              <li>Код пишет Sonnet, ревьюит Opus с&nbsp;правом вето. Дальше локальный CI (tsc, eslint, тесты) и&nbsp;страж мержа с&nbsp;8&nbsp;проверками. Изменения интерфейса агент смотрит на&nbsp;эмуляторе ещё до&nbsp;тестировщиков.</li>
+              <li>Внешние действия идут по&nbsp;allow-list в&nbsp;хуках, деньги, люди и&nbsp;договор&nbsp;— только по&nbsp;моему решению. С&nbsp;29.09 агенты запускались больше 1000&nbsp;раз, в&nbsp;324 случаях из&nbsp;348 я&nbsp;принял их рекомендацию.</li>
+              <li>Первый за&nbsp;4&nbsp;месяца релиз в&nbsp;сторы вышел через 2&nbsp;недели после моего прихода. Релизный конвейер на&nbsp;EAS собрал с&nbsp;нуля: iOS-сборка без Mac, отправка в&nbsp;App Store и&nbsp;Google Play через API. Демо для инвесторов прошло без сбоев.</li>
+            </ul>
+          </details>
+          <p class="tech">Claude Code (постоянные сессии, субагенты, хуки, MCP, git worktree), Node.js, React Native, Expo, TypeScript, Firebase, EAS; Jira, GitHub, WhatsApp, Figma</p>
+        </div>
 
-  <section id="stack">
-    <h2>Технологии</h2>
-    <dl class="stack">
-      <dt>Агенты и LLM</dt><dd>Claude Code (постоянные сессии, субагенты, хуки, скиллы, git worktree), Anthropic и&nbsp;OpenAI API, MCP-серверы, RAG и&nbsp;pgvector, маскировка персональных данных, оценка ответов, счёт токенов</dd>
-      <dt>Бэкенд</dt><dd>TypeScript, Node.js, NestJS, Express, Hono, PostgreSQL, MongoDB, Redis, RabbitMQ; читаю и&nbsp;ревьюю Python</dd>
-      <dt>Фронтенд и мобильное</dt><dd>React, Next.js, React Native и&nbsp;Expo, Electron</dd>
-      <dt>Инфраструктура</dt><dd>Docker Compose, blue-green деплой, GitHub Actions, EAS, Cloudflare Workers</dd>
-      <dt>Интеграции</dt><dd>Jira, Linear, GitHub, Figma, WhatsApp, Telegram, Google Calendar, Яндекс Директ и&nbsp;Метрика, App Store и&nbsp;Google Play API</dd>
-    </dl>
-  </section>
+        <div class="job1 is-risk">
+          <div class="jh"><h3>РИСК <span>— технический директор / ведущий разработчик</span></h3><p class="when">август 2026 — сейчас</p></div>
+          <p>Закрытая B2B-платформа <a href="https://vrisk.ru">vrisk.ru</a> для перевозчиков и&nbsp;экспедиторов, которым не&nbsp;заплатили за&nbsp;рейс. Заказчик&nbsp;— транспортно-логистическая компания из&nbsp;Казани. Частичная занятость. <a href="#risk">Кейс ниже</a></p>
+          <ul>
+            <li>По&nbsp;документам дела ИИ (Claude Sonnet и&nbsp;Haiku) пишет досудебную претензию и&nbsp;заявление в&nbsp;суд. Неустойку считает код, должника платформа обзванивает сама.</li>
+            <li>Платформа работает на&nbsp;vrisk.ru с&nbsp;21.09.2026, за&nbsp;первые 18&nbsp;дней вышло 15&nbsp;релизов. С&nbsp;05.10 её&nbsp;обкатывает компания заказчика.</li>
+          </ul>
+          <details>
+            <summary>Ещё 3 пункта</summary>
+            <ul>
+              <li>ИИ-адаптер прячет персональные данные: до&nbsp;вызова модели ФИО, телефоны, email и&nbsp;паспорт меняются на&nbsp;метки, после ответа возвращаются. Журнал вызовов хранится без текстов.</li>
+              <li>Ответ модели принимается, только если каждая сумма, дата, номер и&nbsp;статья есть во&nbsp;входных данных. Иначе в&nbsp;документ идёт шаблон.</li>
+              <li>ИИ-функции включаются флагами по&nbsp;мере проверки юристом, без модели продукт тоже работает. Черновик претензии готов примерно за&nbsp;45&nbsp;секунд. Помощник отвечает только по&nbsp;карточкам базы знаний (поиск на&nbsp;pgvector).</li>
+            </ul>
+          </details>
+          <p class="tech">Node 22, TypeScript, Hono, Drizzle ORM, PostgreSQL + pgvector, Redis, S3; React, Vite, Ant Design; Docker Compose, GitHub Actions; Claude Sonnet и&nbsp;Haiku</p>
+        </div>
 
-  <section id="contacts">
-    <h2>Связаться</h2>
-    <div class="measure">
-      <p>Ищу задачи, где AI-система должна работать каждый день, а&nbsp;не&nbsp;на&nbsp;демо. Пишите на&nbsp;<a href="mailto:evilandfox@gmail.com">evilandfox@gmail.com</a> или в&nbsp;<a href="https://www.linkedin.com/in/rinat-taysin-2b31ab225">LinkedIn</a>. Опыт подробно&nbsp;— в&nbsp;<a href="cv.html">резюме</a>.</p>
+        <div class="job1">
+          <div class="jh"><h3>Prezentashki.ru <span>— технический директор (CTO) и&nbsp;сооснователь</span></h3><p class="when">май 2026 — сейчас</p></div>
+          <p>AI-сервис презентаций. Нас двое: партнёр ведёт маркетинг, на&nbsp;мне вся техника и&nbsp;продукт. <a href="#prezentashki">Кейс ниже</a></p>
+          <ul>
+            <li>Запустил генерацию на&nbsp;LLM: GPT-4o пишет текст, Flux рисует картинки, на&nbsp;выходе PDF или PPTX. Сгенерировано около 16&nbsp;000 слайдов.</li>
+            <li>2&nbsp;600+ регистраций и&nbsp;1&nbsp;400+ онлайн-оплат, до&nbsp;оплаты дошли 38% (на&nbsp;25.07.2026).</li>
+          </ul>
+          <details>
+            <summary>Ещё 4 пункта</summary>
+            <ul>
+              <li>Сделал промпты, контроль качества вывода, цену слайда с&nbsp;учётом токенов и&nbsp;оплату через CloudPayments.</li>
+              <li>Один веду инфраструктуру: blue-green деплой в&nbsp;Docker Compose, prod и&nbsp;preprod, ежедневные бэкапы с&nbsp;копией во&nbsp;внешнем S3. Сервис окупает свои расходы.</li>
+              <li>Разработку, релизы и&nbsp;поддержку всего продукта веду один, вместе с&nbsp;агентами. Координирую подрядчиков по&nbsp;дизайну и&nbsp;маркетингу.</li>
+              <li>Партнёру без технического опыта сделал Telegram-агента: он отвечает про рекламу в&nbsp;Яндекс Директе и&nbsp;меняет кампании только после его подтверждения.</li>
+            </ul>
+          </details>
+        </div>
+
+        <div class="job1">
+          <div class="jh"><h3>Linked Helper <span>— Lead Software Engineer</span></h3><p class="when">февраль 2025 — апрель 2026</p></div>
+          <p>B2B SaaS для автоматизации продаж в&nbsp;LinkedIn, 10&nbsp;000+ пользователей в&nbsp;день.</p>
+          <ul>
+            <li>Сделал LLM-функции для переписки с&nbsp;клиентами: они пишут и&nbsp;правят сообщения с&nbsp;учётом диалога, этапа воронки в&nbsp;CRM, цели, языка и&nbsp;тона. Структурированный вывод, лимиты контекста; без провайдера продукт работает дальше.</li>
+            <li>Перевёл разработку на&nbsp;AI-driven SDLC с&nbsp;Codex: агент собирал контекст из&nbsp;Jira, Figma и&nbsp;репозитория, помогал писать код, ревьюить и&nbsp;проверять UI, а&nbsp;результат проверял инженер.</li>
+          </ul>
+          <details>
+            <summary>Ещё 2 пункта</summary>
+            <ul>
+              <li>Спроектировал модель RBAC и&nbsp;рабочих пространств: общие LinkedIn-аккаунты, управление несколькими аккаунтами, групповые лицензии.</li>
+              <li>Проверку прав на&nbsp;тяжёлых многоуровневых SQL-джойнах заменил одной кешируемой проверкой.</li>
+            </ul>
+          </details>
+          <p class="tech">TypeScript, Node.js, NestJS, PostgreSQL, Redis, RabbitMQ, Electron, Next.js и&nbsp;React, OpenAI API</p>
+        </div>
+
+        <div class="job1">
+          <div class="jh"><h3>Flomni <span>— Senior Backend Engineer</span></h3><p class="when">сентябрь 2024 — февраль 2025</p></div>
+          <p>Омниканальная платформа диалогов: чат-боты, HR-автоматизация, передача диалога оператору.</p>
+          <ul>
+            <li>Встраивал LLM-функции в&nbsp;основной продукт. Переписал легаси&nbsp;— продукт стал стабильнее и&nbsp;быстрее. Сложные бэкенд-функции делал с&nbsp;нуля, требования согласовывал прямо с&nbsp;B2B-клиентами.</li>
+          </ul>
+          <p class="tech">Node.js, TypeScript, MongoDB, Redis</p>
+        </div>
+
+        <div class="job1">
+          <div class="jh"><h3>FLATSHARING <span>— CTO и&nbsp;сооснователь</span></h3><p class="when">октябрь 2017 — сентябрь 2024</p></div>
+          <p>Бесконтактное заселение в&nbsp;краткосрочную аренду с&nbsp;умными замками.</p>
+          <ul>
+            <li>Построил бо́льшую часть системы: бэкенд, бизнес-логику, связку с&nbsp;умными замками. Бэкенд выдержал ~15&nbsp;000 заселений в&nbsp;месяц и&nbsp;4&nbsp;000 пользователей в&nbsp;день.</li>
+            <li>Собирал и&nbsp;вёл команды до&nbsp;10&nbsp;разработчиков: найм, онбординг, поставка.</li>
+          </ul>
+          <details>
+            <summary>Ещё 3 пункта</summary>
+            <ul>
+              <li>Перенёс основную базу с&nbsp;Firestore на&nbsp;MongoDB под тяжёлые поисковые запросы, расходы на&nbsp;транзакции заметно упали.</li>
+              <li>В&nbsp;спад рынка перестроил IT-отдел и&nbsp;срезал расходы на&nbsp;инфраструктуру.</li>
+              <li>С&nbsp;апреля по&nbsp;декабрь 2023 на&nbsp;частичной занятости был тимлидом в&nbsp;«Самолет Плюс»: вёл команду фронтенда, бэкенда и&nbsp;мобильной разработки продукта «Самолет+ Аренда».</li>
+            </ul>
+          </details>
+          <p class="tech">Node.js, TypeScript, MongoDB, Firestore, Flutter, GCP</p>
+        </div>
+
+        <div class="job1">
+          <div class="jh"><h3>Ранний опыт</h3><p class="when">2016–2020</p></div>
+          <ul>
+            <li>НТЦ «Оптимо»: сметные расчёты для нефтегаза на&nbsp;C++, парсеры государственных PDF.</li>
+            <li>МКУ ЦИТ: мобильное приложение «Ревизор Уфа» на&nbsp;Flutter, Nuxt.js, MongoDB, C# и&nbsp;MS&nbsp;SQL.</li>
+            <li>МК «Развитие»: бэкенд на&nbsp;Express.js для заказа еды.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="side">
+        <div>
+          <h3>Навыки</h3>
+          <dl>
+            <dt>AI и LLM</dt><dd>Claude Code, MCP, Anthropic и&nbsp;OpenAI API, AI-агенты, RAG, pgvector, prompt engineering, оценка качества ответов, расход токенов</dd>
+            <dt>Языки</dt><dd>TypeScript, JavaScript, Python (рабочий уровень), SQL; C++ в&nbsp;начале карьеры</dd>
+            <dt>Бэкенд</dt><dd>Node.js, NestJS, Express, Hono, PostgreSQL, MongoDB, Redis, RabbitMQ, REST, вебхуки</dd>
+            <dt>Фронтенд и мобильное</dt><dd>React, Next.js, React Native и&nbsp;Expo, Electron, Flutter</dd>
+            <dt>Инфраструктура</dt><dd>Docker, CI/CD, GitHub Actions, EAS, Cloudflare Workers, GCP, AWS, Firebase, Playwright</dd>
+            <dt>Инженерия</dt><dd>Отладка, рефакторинг, производительность, системный дизайн, RBAC и&nbsp;multi-tenant SaaS, код-ревью, релизы</dd>
+          </dl>
+        </div>
+        <div>
+          <h3>Образование и&nbsp;языки</h3>
+          <p>УГНТУ, бакалавр по&nbsp;программной инженерии, 2011–2015. Призёр региональных олимпиад по&nbsp;математике, физике и&nbsp;информатике, выступал на&nbsp;студенческих соревнованиях по&nbsp;программированию в&nbsp;Киеве и&nbsp;Саранске.</p>
+          <p>Русский&nbsp;— родной. Английский&nbsp;— B1–B2: свободно читаю и&nbsp;пишу на&nbsp;технические темы.</p>
+        </div>
+        <div>
+          <h3>Свои проекты</h3>
+          <dl>
+            <dt>Личный AI-хаб, 2026</dt><dd>Система агентов на&nbsp;Claude Code, которая ведёт мои проекты. <a href="#agent-hub">Кейс ниже</a></dd>
+            <dt>TG Power, 2026</dt><dd>Обучающие программы внутри Telegram: TypeScript на&nbsp;Cloudflare, вебхуки, расписание уроков, кабинет автора.</dd>
+            <dt>Нейро Анатолий</dt><dd>AI-ассистент в&nbsp;Telegram на&nbsp;Cloudflare Workers AI: RAG по&nbsp;каталогу товаров, ограничения, проверка ответа и&nbsp;перегенерация.</dd>
+          </dl>
+        </div>
+      </div>
     </div>
+  </section>
+
+  <!-- ============ Кейсы ============ -->
+  <section class="block" id="cases" aria-labelledby="cases-h">
+    <h2 class="block-h" id="cases-h">Кейсы</h2>
+    <ul class="legend cases-legend">
+      <li class="agent">агент на модели</li>
+      <li class="code">код без модели</li>
+      <li class="human">решение человека: деньги, люди, сроки</li>
+    </ul>
+
+    <!-- AlemX -->
+    <section class="case" id="alemx-ops" aria-labelledby="alemx-ops-h">
+      <div class="case-h"><h3 id="alemx-ops-h">Агенты ведут баги от&nbsp;чата до&nbsp;мержа</h3><p>AlemX, Product Owner мобильного приложения по&nbsp;контракту, с&nbsp;августа 2026</p></div>
+      <div class="case-grid">
+        <div>
+          <dl class="tdr">
+            <div><dt>Задача</dt><dd>Баги сыплются в&nbsp;WhatsApp, релиза в&nbsp;сторы нет 4&nbsp;месяца, выпуск держится на&nbsp;одном человеке.</dd></div>
+            <div class="did"><dt>Сделал</dt><dd>Два постоянных агента на&nbsp;Claude Code. Оператор доводит баг из&nbsp;чата до&nbsp;мержа через тикет, AI-ревью и&nbsp;CI. Штурман ведёт релизы и&nbsp;вечернюю сводку. Деньги, люди и&nbsp;сроки решаю я.</dd></div>
+            <div class="res"><dt>Результат</dt><dd>За&nbsp;2&nbsp;месяца&nbsp;— 9&nbsp;релизов и&nbsp;около 700&nbsp;PR, хотфикс в&nbsp;сторах через 3&nbsp;часа.</dd></div>
+          </dl>
+          <ul class="nums">
+            <li><strong>9 релизов</strong>в сторы за 2&nbsp;месяца</li>
+            <li><strong>~700 PR</strong>смержено, до 50 в день</li>
+            <li><strong>324 из 348</strong>рекомендаций агентов я принял</li>
+            <li><strong>3 часа</strong>от хотфикса до сторов</li>
+          </ul>
+          <p class="tags1">Claude Code, MCP, хуки, Jira, GitHub, WhatsApp, EAS</p>
+        </div>
+        <figure class="pic">
+          <svg class="diagram" viewBox="0 0 960 450" role="img" aria-labelledby="alemx-d">
+            <title id="alemx-d">Путь бага: репорт в WhatsApp, триаж, тикет, исполнитель, AI-ревью, локальный CI, страж мержа, мерж в dev, сообщение QA. Исполнитель, ревью, CI и страж работают внутри рамки allow-list и хуков. Новые фичи, деньги, роли и сроки, а также недоверенные ветки уходят человеку; он возвращает работу исполнителю или разрешает мерж.</title>
+            <defs><marker id="arrow-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z"/></marker></defs>
+            <g class="node code"><rect x="20" y="160" width="750" height="170" rx="12"/></g>
+            <text class="small" x="160" y="184">allow-list и хуки: только разрешённые команды, мерж в обход закрыт</text>
+            <g class="node"><rect x="20" y="50" width="190" height="60" rx="8"/><text x="34" y="76">Репорт в WhatsApp</text><text class="small" x="34" y="96">от QA и руководства</text></g>
+            <g class="node agent"><rect x="260" y="50" width="220" height="60" rx="8"/><text x="274" y="76">Триаж</text><text class="small" x="274" y="96">дубль? старая сборка?</text></g>
+            <g class="node"><rect x="530" y="50" width="180" height="60" rx="8"/><text x="544" y="76">Тикет в Jira</text><text class="small" x="544" y="96">с приоритетом</text></g>
+            <g class="node agent"><rect x="40" y="210" width="150" height="60" rx="8"/><text x="54" y="236">Исполнитель</text><text class="small" x="54" y="256">Sonnet, worktree</text></g>
+            <g class="node agent"><rect x="230" y="210" width="150" height="60" rx="8"/><text x="244" y="236">AI-ревью</text><text class="small" x="244" y="256">Opus, до 2 раундов</text></g>
+            <g class="node code"><rect x="420" y="210" width="150" height="60" rx="8"/><text x="434" y="236">Локальный CI</text><text class="small" x="434" y="256">tsc, eslint, тесты</text></g>
+            <g class="node code"><rect x="610" y="210" width="150" height="60" rx="8"/><text x="624" y="236">Страж мержа</text><text class="small" x="624" y="256">тесты и ревью</text></g>
+            <g class="node human"><rect x="795" y="210" width="155" height="60" rx="8"/><text x="809" y="236">Человек (PO)</text><text class="small" x="809" y="256">решение и «ок»</text></g>
+            <g class="node"><rect x="610" y="370" width="150" height="60" rx="8"/><text x="624" y="396">Мерж в dev</text><text class="small" x="624" y="416">поезд в rc и main</text></g>
+            <g class="node"><rect x="320" y="370" width="240" height="60" rx="8"/><text x="334" y="396">QA: что ретестить</text><text class="small" x="334" y="416">и отчёт дня</text></g>
+            <path class="edge hot" d="M210,80 H258" marker-end="url(#arrow-a)"/>
+            <path class="edge hot" d="M480,80 H528" marker-end="url(#arrow-a)"/>
+            <path class="edge hot" d="M620,110 V135 H120 V208" marker-end="url(#arrow-a)"/>
+            <path class="edge hot" d="M190,240 H228" marker-end="url(#arrow-a)"/>
+            <path class="edge hot" d="M380,240 H418" marker-end="url(#arrow-a)"/>
+            <path class="edge hot" d="M570,240 H608" marker-end="url(#arrow-a)"/>
+            <path class="edge hot" d="M685,270 V368" marker-end="url(#arrow-a)"/>
+            <path class="edge hot" d="M610,400 H562" marker-end="url(#arrow-a)"/>
+            <path class="edge" d="M305,270 V288 H130 V272" marker-end="url(#arrow-a)"/>
+            <text class="small" x="150" y="284">замечания</text>
+            <path class="edge" d="M495,270 V306 H100 V272" marker-end="url(#arrow-a)"/>
+            <text class="small" x="200" y="322">CI красный</text>
+            <path class="edge ask" d="M370,50 V24 H920 V208" marker-end="url(#arrow-a)"/>
+            <text class="small" x="725" y="42">фича, деньги, роли, сроки</text>
+            <path class="edge ask" d="M760,240 H793" marker-end="url(#arrow-a)"/>
+            <path class="edge ask" d="M820,210 V145 H140 V208" marker-end="url(#arrow-a)"/>
+            <path class="edge ask" d="M872,270 V400 H762" marker-end="url(#arrow-a)"/>
+          </svg>
+          <figcaption>Путь бага от&nbsp;сообщения в&nbsp;чате до&nbsp;мержа. Жёлтый пунктир&nbsp;— вопрос мне и&nbsp;мой ответ, пунктирная рамка&nbsp;— только разрешённые команды.</figcaption>
+        </figure>
+      </div>
+      <details class="more">
+        <summary>Как устроено и&nbsp;что агенту нельзя</summary>
+        <div class="more-body">
+          <div>
+            <h4>С чего начинал</h4>
+            <ul>
+              <li>Команда небольшая, релиза в&nbsp;сторы не&nbsp;было около 4&nbsp;месяцев.</li>
+              <li>Баги писали в&nbsp;WhatsApp-группу тестировщики, руководство и&nbsp;маркетинг. Часть касалась старой сборки, и&nbsp;их расследовали зря.</li>
+              <li>Выпуск держался на&nbsp;одном человеке. Прогресс команда меряет закрытыми багами и&nbsp;PR.</li>
+              <li>Я&nbsp;на&nbsp;частичной занятости и&nbsp;не&nbsp;успеваю быть ещё диспетчером и&nbsp;ревьюером. Диспетчерскую работу забрали агенты, решения остались за&nbsp;людьми.</li>
+            </ul>
+            <h4>Что агенту нельзя</h4>
+            <ul>
+              <li>Деньги, люди, договор и&nbsp;сообщения руководству&nbsp;— только после моего «ок».</li>
+              <li>Вопрос мне приходит одним сообщением: варианты, рекомендация, срок и&nbsp;что будет по&nbsp;умолчанию. Сам агент делает только обратимое.</li>
+              <li>Без роли хук запрещает любую внешнюю команду. В&nbsp;WhatsApp агент пишет через обёртку, пушит одним скриптом со&nbsp;сверкой на&nbsp;ключи, чужой код запускает только в&nbsp;контейнере.</li>
+              <li>Команда «стоп» срабатывает в&nbsp;обход агента.</li>
+            </ul>
+          </div>
+          <div>
+            <h4>Из чего состоит</h4>
+            <ul>
+              <li><b>Оператор.</b> Разбирает находки тестировщиков из&nbsp;WhatsApp, отсеивает дубли и&nbsp;баги старых сборок, заводит тикеты, раздаёт задачи и&nbsp;ведёт PR до&nbsp;мержа. Тестировщикам говорит, что перепроверить.</li>
+              <li><b>Штурман.</b> План релизов, выпуск в&nbsp;сторы, вечерняя сводка руководству.</li>
+              <li><b>Агенты-разработчики.</b> До&nbsp;4&nbsp;параллельно, каждый в&nbsp;своём git worktree. Sonnet пишет, Opus ревьюит с&nbsp;правом вето, раундов ревью не&nbsp;больше двух.</li>
+              <li><b>Страж мержа.</b> 8&nbsp;проверок: тесты, ревью, доверие к&nbsp;ветке. Мерж в&nbsp;обход закрыт хуками.</li>
+              <li><b>Эмулятор.</b> Изменения интерфейса агент смотрит сам, до&nbsp;тестировщиков.</li>
+              <li><b>Сторож.</b> Раз в&nbsp;5&nbsp;минут проверяет агентов и&nbsp;мост WhatsApp, упавших поднимает без модели.</li>
+              <li><b>Релизы.</b> EAS с&nbsp;нуля: iOS без Mac, отправка в&nbsp;App Store и&nbsp;Google Play через API, поезд dev → rc → main.</li>
+            </ul>
+          </div>
+          <div>
+            <h4>Ещё факты</h4>
+            <ul>
+              <li>С&nbsp;29.09 агенты запускались больше 1000&nbsp;раз.</li>
+              <li>Первый за&nbsp;4&nbsp;месяца релиз вышел через 2&nbsp;недели после моего прихода.</li>
+              <li>Демо для инвесторов (регистрация, лента, пост, платный чат, кошелёк) прошло без сбоев.</li>
+            </ul>
+            <p class="note">Данные на&nbsp;09.10.2026.</p>
+          </div>
+          <div>
+            <h4>Стек</h4>
+            <dl class="stack">
+              <dt>Агенты</dt><dd>Claude Code: постоянные сессии, хуки, MCP, субагенты, git worktree; Sonnet и Opus</dd>
+              <dt>Код</dt><dd>Node.js-скрипты, PowerShell, Docker для изоляции</dd>
+              <dt>Интеграции</dt><dd>Jira, GitHub, мост WhatsApp (MCP), Figma</dd>
+              <dt>Релизы</dt><dd>EAS, App Store Connect API, Google Play API</dd>
+              <dt>Приложение</dt><dd>React Native, Expo, TypeScript, Firebase</dd>
+            </dl>
+          </div>
+        </div>
+      </details>
+    </section>
+
+    <!-- Отдел из агентов -->
+    <section class="case" id="agent-hub" aria-labelledby="agent-hub-h">
+      <div class="case-h"><h3 id="agent-hub-h">Отдел из&nbsp;агентов ведёт мои проекты</h3><p>Свой проект, с&nbsp;июля 2026 в&nbsp;ежедневной работе</p></div>
+      <div class="case-grid">
+        <div>
+          <dl class="tdr">
+            <div><dt>Задача</dt><dd>Несколько проектов сразу. Сообщения идут в&nbsp;мессенджеры и&nbsp;голосом, задачи разбросаны по&nbsp;трекерам, застрявшие дела приходится держать в&nbsp;голове.</dd></div>
+            <div class="did"><dt>Сделал</dt><dd>Оператор слушает мессенджер, у&nbsp;каждого проекта свой постоянный агент, задачи из&nbsp;трекера делают фоновые исполнители. Код ищет застрявшее и&nbsp;считает, чем заняться сейчас.</dd></div>
+            <div class="res"><dt>Результат</dt><dd>5&nbsp;постоянных агентов и&nbsp;10&nbsp;фоновых задач. Дежурят скрипты, токены на&nbsp;это не&nbsp;тратятся.</dd></div>
+          </dl>
+          <ul class="nums">
+            <li><strong>5 + 10</strong>постоянных агентов и фоновых задач</li>
+            <li><strong>$0 за токены</strong>на оператора, сторожа, обход застоя и ночные задания</li>
+            <li><strong>182 коммита</strong>с 25.07.2026</li>
+            <li><strong>≈&nbsp;11&nbsp;200 строк</strong>Node.js, 23 тестовых файла</li>
+          </ul>
+          <p class="tags1">Claude Code, Node.js, Linear, Jira, мессенджеры, Планировщик Windows</p>
+        </div>
+        <figure class="pic">
+          <svg class="diagram" viewBox="0 0 960 440" role="img" aria-labelledby="hub-d">
+            <title id="hub-d">Схема: человек пишет в мессенджер, оператор передаёт сообщение штурману хаба, тот работает со штурманами столов, фоновыми лэйнами и разбором входящих; обход застоя, сторож, поток внимания и ночные задания работают кодом; под всем — общий инструментарий и Ключница.</title>
+            <defs><marker id="arrow-h" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z"/></marker></defs>
+            <g class="node code"><rect x="20" y="20" width="200" height="56" rx="8"/><text x="36" y="44">Ночные задания</text><text class="small" x="36" y="64">копия, фото, уборка</text></g>
+            <g class="node code"><rect x="260" y="20" width="200" height="56" rx="8"/><text x="276" y="44">Сторож</text><text class="small" x="276" y="64">каждые 10 мин</text></g>
+            <g class="node code"><rect x="740" y="20" width="200" height="56" rx="8"/><text x="756" y="44">Обход застоя</text><text class="small" x="756" y="64">каждые 30 мин</text></g>
+            <g class="node human"><rect x="20" y="140" width="200" height="56" rx="8"/><text x="36" y="164">Человек</text><text class="small" x="36" y="184">мессенджер, голос</text></g>
+            <g class="node code"><rect x="260" y="140" width="200" height="56" rx="8"/><text x="276" y="164">Оператор</text><text class="small" x="276" y="184">слушает и разводит</text></g>
+            <g class="node agent"><rect x="500" y="140" width="200" height="56" rx="8"/><text x="516" y="164">Штурман хаба</text><text class="small" x="516" y="184">думает и отвечает</text></g>
+            <g class="node agent"><rect x="740" y="140" width="200" height="56" rx="8"/><text x="756" y="164">Штурманы столов</text><text class="small" x="756" y="184">постоянные сессии</text></g>
+            <g class="node"><rect x="20" y="270" width="200" height="56" rx="8"/><text x="36" y="294">Трекеры</text><text class="small" x="36" y="314">Linear, календарь</text></g>
+            <g class="node agent"><rect x="260" y="270" width="200" height="56" rx="8"/><text x="276" y="294">Разбор входящих</text><text class="small" x="276" y="314">голос, заметки, Inbox</text></g>
+            <g class="node agent"><rect x="500" y="270" width="200" height="56" rx="8"/><text x="516" y="294">Лэйны</text><text class="small" x="516" y="314">задача в git worktree</text></g>
+            <g class="node code"><rect x="740" y="270" width="200" height="56" rx="8"/><text x="756" y="294">Поток внимания</text><text class="small" x="756" y="314">одно дело сейчас</text></g>
+            <g class="node code"><rect x="20" y="370" width="920" height="56" rx="8"/><text x="36" y="394">Инструментарий и Ключница</text><text class="small" x="36" y="414">мессенджеры, трекеры, Figma, браузер, ключи — общий код без данных проектов</text></g>
+            <path class="edge" d="M360,76 V136" marker-end="url(#arrow-h)"/>
+            <path class="edge" d="M840,76 V136" marker-end="url(#arrow-h)"/>
+            <path class="edge hot" d="M220,158 H256" marker-end="url(#arrow-h)"/>
+            <path class="edge ask" d="M260,180 H224" marker-end="url(#arrow-h)"/>
+            <path class="edge hot" d="M460,158 H496" marker-end="url(#arrow-h)"/>
+            <path class="edge" d="M500,180 H464" marker-end="url(#arrow-h)"/>
+            <path class="edge" d="M700,158 H736" marker-end="url(#arrow-h)"/>
+            <path class="edge" d="M740,180 H704" marker-end="url(#arrow-h)"/>
+            <path class="edge" d="M580,196 V266" marker-end="url(#arrow-h)"/>
+            <path class="edge" d="M620,270 V200" marker-end="url(#arrow-h)"/>
+            <text class="small" x="628" y="238">готово</text>
+            <path class="edge" d="M515,196 L452,266" marker-end="url(#arrow-h)"/>
+            <path class="edge" d="M260,298 H224" marker-end="url(#arrow-h)"/>
+            <path class="edge" d="M840,196 V266" marker-end="url(#arrow-h)"/>
+            <text class="small" x="848" y="238">нужен человек</text>
+            <path class="edge" d="M770,270 L690,200" marker-end="url(#arrow-h)"/>
+          </svg>
+          <figcaption>Мне приходят только ответ, вопрос с&nbsp;вариантом по&nbsp;умолчанию и&nbsp;сообщение об&nbsp;аварии (пунктир). Остальное агенты передают друг другу через хаб.</figcaption>
+        </figure>
+      </div>
+      <details class="more">
+        <summary>Из чего состоит, как выглядит переписка, стек</summary>
+        <div class="more-body">
+          <div>
+            <h4>С чего начинал</h4>
+            <ul>
+              <li>Веду мобильное приложение по&nbsp;контракту, B2B-платформу партнёра и&nbsp;свой AI-сервис.</li>
+              <li>Узкое место&nbsp;— тот, кто помнит, что важнее. В&nbsp;любом отделе с&nbsp;потоком обращений это руководитель, здесь&nbsp;— я.</li>
+              <li>Агентам отдал слежку за&nbsp;трекерами и&nbsp;мессенджерами, разбор входящих и&nbsp;голосовых, выбор следующего дела, возврат застрявшего, контроль аварий, бэкапы и&nbsp;уборку дисков.</li>
+              <li>Что здесь работает, переношу в&nbsp;автоматизацию бизнеса.</li>
+            </ul>
+            <h4>Правила системы</h4>
+            <ul>
+              <li>Что можно посчитать без LLM, считает скрипт. Модель берётся самая лёгкая из&nbsp;подходящих.</li>
+              <li>Первой система пишет только в&nbsp;пяти случаях: ответ, авария, вопрос с&nbsp;вариантом по&nbsp;умолчанию, сводка фактов дважды в&nbsp;день, недельная сверка.</li>
+              <li>У&nbsp;каждого открытого дела есть агент-владелец, и&nbsp;двигает его он, а&nbsp;не&nbsp;я.</li>
+              <li>Значений ключей агенты не&nbsp;видят. Права каждого&nbsp;— белый список в&nbsp;его конфиге.</li>
+              <li>Новое правило сразу уходит в&nbsp;код, тест, хук или инструкцию, устаревшее удаляется.</li>
+            </ul>
+          </div>
+          <div>
+            <h4>Из чего состоит</h4>
+            <ul>
+              <li><b>Оператор,</b> код без модели. Слушает мессенджер Max, расшифровывает голос, каждые 15&nbsp;секунд разводит письма агентов. В&nbsp;09:00 присылает одну пачку вопросов с&nbsp;рекомендацией и&nbsp;вариантом по&nbsp;умолчанию.</li>
+              <li><b>Штурман хаба.</b> Постоянная сессия Claude Code: отвечает мне, крупное отдаёт фоновым исполнителям.</li>
+              <li><b>Штурманы столов.</b> По&nbsp;постоянной сессии на&nbsp;проект, общаются письмами через хаб. В&nbsp;04:00 перезапускаются в&nbsp;новый чат и&nbsp;забирают только открытые дела.</li>
+              <li><b>Лэйны.</b> Сессия Claude на&nbsp;одну задачу Linear, каждая в&nbsp;своём git worktree, до&nbsp;трёх параллельно.</li>
+              <li><b>Разбор входящих.</b> Надиктованное, голосовые и&nbsp;Linear Inbox разносит по&nbsp;трекерам, не&nbsp;спрашивая меня.</li>
+              <li><b>Поток внимания.</b> Один список по&nbsp;всем проектам: сначала дела до&nbsp;30&nbsp;минут, потом со&nbsp;сроком в&nbsp;ближайшие 48&nbsp;часов, потом с&nbsp;последствиями. Если один проект горит, а&nbsp;я&nbsp;сижу в&nbsp;другом, приходит короткий пинг, не&nbsp;чаще двух раз в&nbsp;будний день.</li>
+              <li><b>Обход застоя.</b> Каждые 30&nbsp;минут; проверяет, сдвинулось ли само дело, а&nbsp;не&nbsp;отметка. Раз в&nbsp;неделю 8&nbsp;субагентов разбирают неделю, план правок я&nbsp;утверждаю.</li>
+              <li><b>Сторож.</b> Каждые 10&nbsp;минут смотрит процессы, входы в&nbsp;сервисы, Docker и&nbsp;диски. Об&nbsp;одной поломке пишет раз в&nbsp;сутки.</li>
+              <li><b>Ночные задания.</b> Копия документов в&nbsp;облако, фото с&nbsp;телефона, уборка в&nbsp;Корзину, осмотр автозапуска. Всё кодом.</li>
+              <li><b>Инструменты.</b> 13&nbsp;общих, <a href="#tools">отдельный кейс</a>.</li>
+            </ul>
+          </div>
+          <figure class="figure-wide full">
+            <svg class="diagram" viewBox="0 0 960 410" role="img" aria-labelledby="chat-d">
+              <title id="chat-d">Иллюстрация переписки. Слева: человек спрашивает «Что сейчас?», хаб отвечает одним делом — ответить на ревью PR в проекте X — с причиной, временем и первым шагом. Справа: утренняя пачка «Решения» с вопросом стола, рекомендацией и вариантом по умолчанию; человек отвечает «Да».</title>
+              <g class="node human"><rect x="300" y="40" width="140" height="40" rx="14"/><text x="316" y="65">Что сейчас?</text></g>
+              <text class="small" x="12" y="104">Хаб</text>
+              <g class="node agent"><rect x="10" y="112" width="430" height="152" rx="14"/>
+                <text x="26" y="140">Ответить на ревью PR в проекте X</text>
+                <text class="small" x="26" y="164">Зачем: ревьюер ждёт с утра, релиз в четверг.</text>
+                <text class="small" x="26" y="184">Что известно: три замечания, два — про имена.</text>
+                <text class="small" x="26" y="204">Займёт около 20 минут.</text>
+                <text class="small" x="26" y="224">Первый шаг: открыть PR и начать с замечания</text>
+                <text class="small" x="26" y="244">про тест на пустой список.</text>
+              </g>
+              <g class="node human"><rect x="330" y="282" width="110" height="40" rx="14"/><text x="346" y="307">Готово</text></g>
+              <g class="node agent"><rect x="10" y="340" width="430" height="56" rx="14"/><text x="26" y="373">Закрыл. Следующее — когда спросишь.</text></g>
+              <text class="small" x="512" y="32">Хаб, 09:00</text>
+              <g class="node agent"><rect x="510" y="40" width="430" height="182" rx="14"/>
+                <text x="526" y="66">Решения (1)</text>
+                <text class="small" x="526" y="90">Стол проекта Y спрашивает: e2e-тесты падают</text>
+                <text class="small" x="526" y="110">на старой версии Android, остальное зелёное.</text>
+                <text class="small" x="526" y="134">Рекомендую: отключить этот прогон и завести</text>
+                <text class="small" x="526" y="154">задачу на починку.</text>
+                <text class="small" x="526" y="178">По умолчанию: так и сделаю завтра в 12:00,</text>
+                <text class="small" x="526" y="198">если не ответишь.</text>
+              </g>
+              <g class="node human"><rect x="870" y="240" width="70" height="40" rx="14"/><text x="891" y="265">Да</text></g>
+              <g class="node agent"><rect x="510" y="298" width="430" height="56" rx="14"/><text x="526" y="331">Принято: прогон отключён, задача заведена.</text></g>
+            </svg>
+            <figcaption>Пример переписки, данные условные. Слева&nbsp;— одно дело по&nbsp;запросу, справа&nbsp;— вопрос агента с&nbsp;рекомендацией.</figcaption>
+          </figure>
+          <div>
+            <h4>Ещё цифры</h4>
+            <ul>
+              <li>≈&nbsp;11&nbsp;200 строк Node.js: 28 скриптов, 28 модулей, 23 тестовых файла.</li>
+              <li>Общие инструменты: 13 штук, ≈&nbsp;20&nbsp;000 строк, 73 коммита с&nbsp;29.09.2026.</li>
+            </ul>
+            <p class="note">Данные на&nbsp;09.10.2026.</p>
+          </div>
+          <div>
+            <h4>Стек</h4>
+            <dl class="stack">
+              <dt>Агенты</dt><dd>Claude Code: постоянные сессии, субагенты, git worktree, скиллы, хуки, MCP</dd>
+              <dt>Код</dt><dd>Node.js (ESM), PowerShell, Python, C#/.NET; Windows Terminal и Планировщик Windows</dd>
+              <dt>Трекеры</dt><dd>Linear, Jira, Google Calendar, Apple Reminders (iCloud)</dd>
+              <dt>Связь и голос</dt><dd>Max, WhatsApp, Telegram; Groq для распознавания речи</dd>
+              <dt>Ключи и данные</dt><dd>своё хранилище на DPAPI и AES-GCM, мастер-копия в Bitwarden; Яндекс.Диск REST; Figma</dd>
+            </dl>
+          </div>
+        </div>
+      </details>
+    </section>
+
+    <!-- Презенташки -->
+    <section class="case" id="prezentashki" aria-labelledby="prezentashki-h">
+      <div class="case-h"><h3 id="prezentashki-h">Презенташки: тема на&nbsp;входе, презентация на&nbsp;выходе</h3><p><a href="https://prezentashki.ru">prezentashki.ru</a>, технический директор (CTO) и&nbsp;сооснователь, с&nbsp;мая 2026</p></div>
+      <div class="case-grid">
+        <div>
+          <dl class="tdr">
+            <div><dt>Задача</dt><dd>Школьнику или учителю нужна презентация быстро и&nbsp;недорого. Заказ не&nbsp;должен ждать ничьих рук, а&nbsp;партнёру нужны цифры по&nbsp;рекламе без разработчика.</dd></div>
+            <div class="did"><dt>Сделал</dt><dd>После оплаты сервер сам пишет текст (GPT-4o), рисует картинки (Flux), собирает слайды и&nbsp;отдаёт PDF или PPTX. Партнёру сделал Telegram-ассистента по&nbsp;рекламе.</dd></div>
+            <div class="res"><dt>Результат</dt><dd>2&nbsp;600+ регистраций, до&nbsp;оплаты дошли 38%. С&nbsp;июля по&nbsp;07.09.2026 ни&nbsp;одной ошибки генерации.</dd></div>
+          </dl>
+          <ul class="nums">
+            <li><strong>2&nbsp;600+</strong>регистраций на 25.07.2026</li>
+            <li><strong>38%</strong>регистраций дошли до оплаты</li>
+            <li><strong>88&nbsp;с</strong>медиана генерации, p90&nbsp;— 149&nbsp;с</li>
+            <li><strong>0 ошибок</strong>генерации с июля по 07.09.2026</li>
+          </ul>
+          <p class="tags1">GPT-4o, Flux, Node.js, React, PostgreSQL, Docker</p>
+        </div>
+        <figure class="pic">
+          <img src="img/prez-slide-1.webp" alt="Сгенерированный слайд «Основы алгебры» в синем стиле." width="1200" height="758" loading="lazy">
+          <figcaption>«Основы алгебры»: текст и&nbsp;картинки сгенерированы по&nbsp;теме.</figcaption>
+        </figure>
+      </div>
+      <details class="more">
+        <summary>Как устроен пайплайн и&nbsp;ассистент для партнёра</summary>
+        <div class="more-body">
+          <div>
+            <h4>С чего начинал</h4>
+            <ul>
+              <li>Путь клиента: тема, число слайдов, шаблон, оплата, готовая презентация, правка в&nbsp;редакторе, PDF или PPTX.</li>
+              <li>Нас двое: партнёр ведёт маркетинг, на&nbsp;мне техника и&nbsp;продукт. Клиенты приходят через платную рекламу.</li>
+            </ul>
+            <h4>Ассистент для партнёра</h4>
+            <ul>
+              <li>Стоимость покупателя, долю расходов на&nbsp;рекламу и&nbsp;прибыль считают скрипты по&nbsp;Яндекс Директу и&nbsp;Метрике. Модель только собирает ответ и&nbsp;объясняет.</li>
+              <li>Любую правку в&nbsp;рекламном кабинете и&nbsp;любой выкат ассистент присылает заявкой с&nbsp;кнопками ✅/❌. Без нажатия ничего не&nbsp;меняется.</li>
+              <li>Спрашивать можно голосом.</li>
+            </ul>
+          </div>
+          <div>
+            <h4>Что построено</h4>
+            <ul>
+              <li><b>Заказ.</b> Форма «тема + слайды + шаблон», оплата картой, через СБП или подпиской.</li>
+              <li><b>Статусы.</b> awaiting_payment → paid → generating → ready или failed. Генерацию запускает сервер, фронтенд только спрашивает статус.</li>
+              <li><b>Надёжность.</b> Один заказ&nbsp;— одна генерация, даже если запрос пришёл дважды. Каждые ~30&nbsp;секунд cron поднимает зависшие заказы.</li>
+              <li><b>Генерация.</b> План по&nbsp;теме, текст и&nbsp;структура от&nbsp;GPT-4o и&nbsp;4o-mini, HTML-шаблон, около 6&nbsp;картинок Flux, экспорт. Тема берётся из&nbsp;запроса дословно.</li>
+              <li><b>Редактор.</b> Правка в&nbsp;браузере, PDF через Puppeteer, PPTX через pptxgenjs.</li>
+              <li><b>Шаблоны.</b> Каталог HTML-шаблонов и&nbsp;свой перенос шаблонов из&nbsp;Figma.</li>
+              <li><b>Текст выступления.</b> Платная функция: GPT-4o пишет речь к&nbsp;слайдам.</li>
+              <li><b>Инфраструктура.</b> Blue-green в&nbsp;Docker Compose за&nbsp;nginx, prod и&nbsp;preprod, релиз по&nbsp;тегу через GitHub Actions, ежедневные бэкапы с&nbsp;копией в&nbsp;S3. Код пишу с&nbsp;Claude Code и&nbsp;Codex.</li>
+            </ul>
+          </div>
+          <figure class="figure-wide full">
+            <svg class="diagram" viewBox="0 0 960 376" role="img" aria-labelledby="prez-d">
+              <title id="prez-d">Схема: пользователь заполняет форму на лендинге, API принимает заказ, после оплаты он попадает в очередь генерации; модель пишет текст слайдов, Flux рисует картинки, код собирает шаблон и экспортирует PDF или PPTX, готовая презентация возвращается пользователю. Отдельно: партнёр спрашивает Telegram-ассистента, цифры считают скрипты по Яндекс Директу и Метрике, а правка в рекламном кабинете проходит только после подтверждения партнёра.</title>
+              <defs><marker id="arrow-p" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z"/></marker></defs>
+              <text class="small" x="20" y="22">Продукт: от темы до готовой презентации</text>
+              <g class="node human"><rect x="20" y="36" width="200" height="56" rx="8"/><text x="36" y="60">Пользователь</text><text class="small" x="36" y="80">тема, слайды, шаблон</text></g>
+              <g class="node code"><rect x="260" y="36" width="200" height="56" rx="8"/><text x="276" y="60">Лендинг</text><text class="small" x="276" y="80">форма и редактор</text></g>
+              <g class="node code"><rect x="500" y="36" width="200" height="56" rx="8"/><text x="516" y="60">API</text><text class="small" x="516" y="80">статусы заказа</text></g>
+              <g class="node"><rect x="740" y="36" width="200" height="56" rx="8"/><text x="756" y="60">Оплата</text><text class="small" x="756" y="80">карта, СБП, подписка</text></g>
+              <g class="node code"><rect x="740" y="150" width="200" height="56" rx="8"/><text x="756" y="174">Очередь генерации</text><text class="small" x="756" y="194">блокировка, cron 30 с</text></g>
+              <g class="node agent"><rect x="500" y="150" width="200" height="56" rx="8"/><text x="516" y="174">Текст слайдов</text><text class="small" x="516" y="194">GPT-4o / 4o-mini</text></g>
+              <g class="node agent"><rect x="260" y="150" width="200" height="56" rx="8"/><text x="276" y="174">Картинки</text><text class="small" x="276" y="194">Flux, около 6 штук</text></g>
+              <g class="node code"><rect x="20" y="150" width="200" height="56" rx="8"/><text x="36" y="174">Шаблон и экспорт</text><text class="small" x="36" y="194">HTML → PDF, PPTX</text></g>
+              <text class="small" x="20" y="250">Рутина партнёра: отчёты по рекламе</text>
+              <g class="node human"><rect x="20" y="264" width="200" height="56" rx="8"/><text x="36" y="288">Партнёр ✅ / ❌</text><text class="small" x="36" y="308">вопрос, голос, решение</text></g>
+              <g class="node agent"><rect x="260" y="264" width="200" height="56" rx="8"/><text x="276" y="288">Telegram-ассистент</text><text class="small" x="276" y="308">собирает и объясняет</text></g>
+              <g class="node code"><rect x="500" y="264" width="200" height="56" rx="8"/><text x="516" y="288">Скрипты отчётов</text><text class="small" x="516" y="308">CPA, расходы, P&amp;L</text></g>
+              <g class="node"><rect x="740" y="264" width="200" height="56" rx="8"/><text x="756" y="288">Директ и Метрика</text><text class="small" x="756" y="308">API Яндекса</text></g>
+              <path class="edge hot" d="M220,64 H256" marker-end="url(#arrow-p)"/>
+              <path class="edge hot" d="M460,64 H496" marker-end="url(#arrow-p)"/>
+              <path class="edge hot" d="M700,64 H736" marker-end="url(#arrow-p)"/>
+              <path class="edge hot" d="M840,92 V146" marker-end="url(#arrow-p)"/>
+              <text class="small" x="848" y="124">оплачено</text>
+              <path class="edge hot" d="M740,178 H704" marker-end="url(#arrow-p)"/>
+              <path class="edge hot" d="M500,178 H464" marker-end="url(#arrow-p)"/>
+              <path class="edge hot" d="M260,178 H224" marker-end="url(#arrow-p)"/>
+              <path class="edge hot" d="M120,150 V96" marker-end="url(#arrow-p)"/>
+              <text class="small" x="128" y="124">готово</text>
+              <path class="edge" d="M220,282 H256" marker-end="url(#arrow-p)"/>
+              <path class="edge ask" d="M260,304 H224" marker-end="url(#arrow-p)"/>
+              <path class="edge" d="M460,292 H496" marker-end="url(#arrow-p)"/>
+              <path class="edge" d="M700,282 H736" marker-end="url(#arrow-p)"/>
+              <path class="edge" d="M740,304 H704" marker-end="url(#arrow-p)"/>
+              <path class="edge ask" d="M120,320 V344 H840 V324" marker-end="url(#arrow-p)"/>
+              <text class="small" x="360" y="366">правка в кабинете — только после ✅</text>
+            </svg>
+            <figcaption>Синие стрелки&nbsp;— путь заказа, после оплаты в&nbsp;нём нет ручных шагов. Пунктир&nbsp;— единственное место, где система ждёт человека.</figcaption>
+          </figure>
+          <div>
+            <h4>Ещё цифры</h4>
+            <ul>
+              <li>1&nbsp;400+ онлайн-оплат и&nbsp;~16&nbsp;000 слайдов на&nbsp;25.07.2026.</li>
+              <li>Ни&nbsp;одного заказа без презентации с&nbsp;июля по&nbsp;07.09.2026.</li>
+              <li>11,3% покупателей купили повторно, к&nbsp;07.09.2026.</li>
+              <li>945 коммитов с&nbsp;02.05.2026, вся техника&nbsp;— один человек с&nbsp;агентами.</li>
+              <li>Сервис окупает свои расходы.</li>
+            </ul>
+            <p class="note">Регистрации, оплаты и&nbsp;слайды&nbsp;— срез базы на&nbsp;25.07.2026. Скорость&nbsp;— за&nbsp;август 2026, ошибки&nbsp;— по&nbsp;07.09.2026.</p>
+          </div>
+          <div>
+            <h4>Стек</h4>
+            <dl class="stack">
+              <dt>Модели</dt><dd>OpenAI GPT-4o и 4o-mini — текст; Flux — картинки</dd>
+              <dt>Бэкенд</dt><dd>Node 22, TypeScript, Express → Hono, Sequelize, PostgreSQL, Zod, OpenAPI</dd>
+              <dt>Фронтенд</dt><dd>React 19, Vite, TanStack Query</dd>
+              <dt>Экспорт</dt><dd>Puppeteer (PDF), pptxgenjs (PPTX), HTML-шаблоны из Figma</dd>
+              <dt>Оплата</dt><dd>CloudPayments: карта, СБП, подписки</dd>
+              <dt>Инфраструктура</dt><dd>Docker Compose, nginx, blue-green, GitHub Actions, GHCR, бэкапы в S3</dd>
+              <dt>Ассистент</dt><dd>Telegram Bot API, API Яндекс Директа и Метрики</dd>
+            </dl>
+          </div>
+          <div class="shots full">
+            <figure><img src="img/prez-templates.webp" alt="Шесть шаблонов презентаций: биология, алгебра, креатив, бизнес, гейминг, рисование." loading="lazy" width="1400" height="1204"><figcaption>Часть каталога шаблонов, перенесённых из&nbsp;Figma.</figcaption></figure>
+            <figure><img src="img/prez-slide-3.webp" alt="Сгенерированный слайд «Эволюция видов» с зелёной графикой." loading="lazy" width="1200" height="758"><figcaption>«Эволюция видов»: та&nbsp;же цепочка, другой шаблон.</figcaption></figure>
+          </div>
+        </div>
+      </details>
+    </section>
+
+    <!-- РИСК (NDA: заказчика по имени не называем; скрыть — data-hide="risk" на body) -->
+    <section class="case is-risk" id="risk" aria-labelledby="risk-h">
+      <div class="case-h"><h3 id="risk-h">РИСК: долг за&nbsp;рейс без юриста в&nbsp;штате</h3><p><a href="https://vrisk.ru">vrisk.ru</a>, технический директор / ведущий разработчик, с&nbsp;августа 2026</p></div>
+      <div class="case-grid">
+        <div>
+          <dl class="tdr">
+            <div><dt>Задача</dt><dd>Заказчик не&nbsp;платит перевозчику за&nbsp;рейс, а&nbsp;юриста в&nbsp;небольшой транспортной компании нет. Деньги теряются на&nbsp;сроках и&nbsp;ошибках в&nbsp;бумагах.</dd></div>
+            <div class="did"><dt>Сделал</dt><dd>Платформу от&nbsp;претензии до&nbsp;суда. ИИ пишет претензию и&nbsp;заявление в&nbsp;суд по&nbsp;документам дела, неустойку и&nbsp;сроки считает код, должника платформа обзванивает сама.</dd></div>
+            <div class="res"><dt>Результат</dt><dd>Работает с&nbsp;21.09.2026, за&nbsp;первые 18&nbsp;дней&nbsp;— 15&nbsp;релизов. С&nbsp;05.10 её&nbsp;обкатывает заказчик.</dd></div>
+          </dl>
+          <ul class="nums">
+            <li><strong>21.09.2026</strong>запуск на vrisk.ru</li>
+            <li><strong>15 релизов</strong>за первые 18 дней</li>
+            <li><strong>≈&nbsp;45&nbsp;с</strong>на черновик претензии</li>
+            <li><strong>900+ коммитов</strong>с 02.08.2026</li>
+          </ul>
+          <p class="tags1">Claude Sonnet и Haiku, pgvector, Hono, React, PostgreSQL</p>
+        </div>
+        <figure class="pic">
+          <svg class="diagram" viewBox="0 0 960 390" role="img" aria-labelledby="risk-d">
+            <title id="risk-d">Схема: перевозчик работает в кабинете, кабинет обращается к API, API хранит данные в PostgreSQL с pgvector. API отдаёт документы генератору по шаблону и вызывает ИИ-адаптер: маска персональных данных, модель Sonnet или Haiku, сторож чисел. Принятый ответ становится черновиком или подсказкой модератору-человеку. Помощник отвечает по базе знаний через тот же адаптер.</title>
+            <defs><marker id="arrow-r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z"/></marker></defs>
+            <g class="node human"><rect x="20" y="30" width="200" height="56" rx="8"/><text x="36" y="54">Перевозчик</text><text class="small" x="36" y="74">или экспедитор</text></g>
+            <g class="node"><rect x="260" y="30" width="200" height="56" rx="8"/><text x="276" y="54">Кабинет</text><text class="small" x="276" y="74">мастер претензии</text></g>
+            <g class="node code"><rect x="500" y="30" width="200" height="56" rx="8"/><text x="516" y="54">API</text><text class="small" x="516" y="74">Hono, флаги ИИ</text></g>
+            <g class="node"><rect x="740" y="30" width="200" height="56" rx="8"/><text x="756" y="54">PostgreSQL + pgvector</text><text class="small" x="756" y="74">дела, реестр, векторы</text></g>
+            <text class="small" x="600" y="156">ИИ-адаптер за флагом: cli | api | mock | off</text>
+            <g class="node code"><rect x="20" y="170" width="200" height="56" rx="8"/><text x="36" y="194">Генератор документов</text><text class="small" x="36" y="214">шаблон, PDF, почта</text></g>
+            <g class="node code"><rect x="260" y="170" width="200" height="56" rx="8"/><text x="276" y="194">Маска ПДн</text><text class="small" x="276" y="214">ФИО, телефон → [ФИО-1]</text></g>
+            <g class="node agent"><rect x="500" y="170" width="200" height="56" rx="8"/><text x="516" y="194">Модель</text><text class="small" x="516" y="214">Claude Sonnet, Haiku</text></g>
+            <g class="node code"><rect x="740" y="170" width="200" height="56" rx="8"/><text x="756" y="194">Сторож чисел</text><text class="small" x="756" y="214">чужое число — шаблон</text></g>
+            <g class="node"><rect x="20" y="310" width="200" height="56" rx="8"/><text x="36" y="334">База знаний</text><text class="small" x="36" y="354">«Спорные ситуации»</text></g>
+            <g class="node agent"><rect x="260" y="310" width="200" height="56" rx="8"/><text x="276" y="334">Помощник</text><text class="small" x="276" y="354">только по карточкам</text></g>
+            <g class="node human"><rect x="500" y="310" width="200" height="56" rx="8"/><text x="516" y="334">Модератор</text><text class="small" x="516" y="354">решает по чек-листу</text></g>
+            <g class="node"><rect x="740" y="310" width="200" height="56" rx="8"/><text x="756" y="334">Черновик</text><text class="small" x="756" y="354">текст или чек-лист</text></g>
+            <path class="edge hot" d="M220,58 H256" marker-end="url(#arrow-r)"/>
+            <path class="edge hot" d="M460,58 H496" marker-end="url(#arrow-r)"/>
+            <path class="edge" d="M700,58 H736" marker-end="url(#arrow-r)"/>
+            <path class="edge" d="M580,86 V128 H120 V166" marker-end="url(#arrow-r)"/>
+            <path class="edge" d="M360,128 V166" marker-end="url(#arrow-r)"/>
+            <path class="edge hot" d="M460,198 H496" marker-end="url(#arrow-r)"/>
+            <path class="edge hot" d="M700,198 H736" marker-end="url(#arrow-r)"/>
+            <path class="edge hot" d="M840,226 V306" marker-end="url(#arrow-r)"/>
+            <path class="edge ask" d="M740,338 H704" marker-end="url(#arrow-r)"/>
+            <path class="edge" d="M220,338 H256" marker-end="url(#arrow-r)"/>
+            <path class="edge" d="M360,310 V230" marker-end="url(#arrow-r)"/>
+          </svg>
+          <figcaption>Модель видит только текст со&nbsp;скрытыми персональными данными, её&nbsp;ответ проверяет сторож чисел. Документы для суда собирает генератор по&nbsp;шаблону.</figcaption>
+        </figure>
+      </div>
+      <details class="more">
+        <summary>Как ИИ встроен в&nbsp;юридический процесс</summary>
+        <div class="more-body">
+          <div>
+            <h4>С чего начинал</h4>
+            <ul>
+              <li>Перевозчик не&nbsp;знает, какую претензию писать, сколько ждать, когда идти в&nbsp;суд и&nbsp;как посчитать неустойку.</li>
+              <li>Платформа ведёт его от&nbsp;претензии через досудебное урегулирование к&nbsp;судебному приказу или иску и&nbsp;сама собирает документы.</li>
+              <li>Ошибка в&nbsp;сумме или дате стоит денег. Поэтому модель не&nbsp;должна выдумывать цифры, видеть лишние персональные данные и&nbsp;ломать продукт своим сбоем.</li>
+            </ul>
+            <h4>Где сейчас</h4>
+            <ul>
+              <li>Работает на&nbsp;vrisk.ru с&nbsp;21.09.2026, с&nbsp;05.10 её&nbsp;обкатывает заказчик&nbsp;— транспортно-логистическая компания из&nbsp;Казани.</li>
+              <li>180+ архитектурных решений записано в&nbsp;ADR.</li>
+            </ul>
+            <p class="note">Цифр использования пока нет: обкатка только началась. ИИ-функции включаются флагами по&nbsp;мере проверки юристом.</p>
+          </div>
+          <div>
+            <h4>Что построено</h4>
+            <p>Сначала платформа без ИИ: всё, что влияет на&nbsp;деньги и&nbsp;сроки, считает код. Потом ИИ поверх неё, с&nbsp;тремя предохранителями.</p>
+            <ul>
+              <li><b>Кабинет перевозчика.</b> Мастер претензии: несколько требований в&nbsp;одном черновике, вложения, статусы, публикация в&nbsp;реестр.</li>
+              <li><b>Реестр контрагентов.</b> Карточка по&nbsp;ИНН со&nbsp;статистикой претензий и&nbsp;наблюдением.</li>
+              <li><b>Документы.</b> ИИ пишет досудебную претензию и&nbsp;заявление в&nbsp;суд по&nbsp;документам дела. PDF и&nbsp;почтовый пакет собирает шаблон, неустойку для судьи считает код.</li>
+              <li><b>Обзвон.</b> Должника платформа обзванивает автоматически.</li>
+              <li><b>Маска данных.</b> До&nbsp;вызова модели ФИО, телефоны, email и&nbsp;паспорт меняются на&nbsp;метки вида [ФИО-1], после ответа возвращаются. Журнал вызовов без текстов.</li>
+              <li><b>Сторож чисел.</b> Ответ принимается, только если каждая сумма, дата, номер и&nbsp;статья есть во&nbsp;входных данных. Иначе в&nbsp;документ идёт шаблон.</li>
+              <li><b>Флаги.</b> Каждая ИИ-функция включается отдельно. Если модель недоступна, продукт работает без неё.</li>
+              <li><b>Модерация и&nbsp;помощник.</b> Модератору ИИ готовит чек-лист с&nbsp;доказательствами, решает модератор. Помощник отвечает только по&nbsp;карточкам «Спорные ситуации» (поиск на&nbsp;pgvector) и&nbsp;данным дела.</li>
+              <li><b>Остальное.</b> Сверка оплат с&nbsp;банком, SMS-коды, чат поддержки, тарифы, админка.</li>
+            </ul>
+          </div>
+          <div class="shots full">
+            <figure class="phone"><img src="img/risk-ai-hint.webp" alt="Мастер претензии: поле «Суть претензии» и плашка «подсказка ИИ» о расхождении суммы." loading="lazy" width="375" height="1026"><figcaption>Сумма в&nbsp;тексте не&nbsp;совпала с&nbsp;полем: поле не&nbsp;меняется, есть только предупреждение. Данные вымышленные.</figcaption></figure>
+            <figure class="phone"><img src="img/risk-kb-card.webp" alt="Карточка базы знаний: пошаговая инструкция «Что делать» с ссылками на связанные карточки." loading="lazy" width="375" height="1002"><figcaption>Карточка базы знаний. Помощник отвечает по&nbsp;таким карточкам.</figcaption></figure>
+            <figure><img src="img/risk-desktop.webp" alt="Администрирование базы знаний в десктопном кабинете: таблица карточек со статусами проверки." loading="lazy" width="1174" height="946"><figcaption>Админка базы знаний: у&nbsp;каждой карточки статус проверки.</figcaption></figure>
+          </div>
+          <div class="full">
+            <h4>Стек</h4>
+            <dl class="stack">
+              <dt>ИИ</dt><dd>Claude Sonnet и Haiku через свой адаптер: маска персональных данных, сторож чисел, флаги; pgvector</dd>
+              <dt>Бэкенд</dt><dd>Node 22, TypeScript, Hono, Drizzle ORM; PostgreSQL, Redis, S3</dd>
+              <dt>Фронтенд</dt><dd>React, Vite, Ant Design</dd>
+              <dt>Инфраструктура</dt><dd>Docker Compose; GitHub Actions: стенд по main, бой по тегу; GlitchTip</dd>
+            </dl>
+          </div>
+        </div>
+      </details>
+    </section>
+
+    <!-- Инструменты -->
+    <section class="case" id="tools" aria-labelledby="tools-h">
+      <div class="case-h"><h3 id="tools-h">Один набор инструментов на&nbsp;всех агентов</h3><p>Свой проект, с&nbsp;сентября 2026</p></div>
+      <div class="case-grid">
+        <div>
+          <dl class="tdr">
+            <div><dt>Задача</dt><dd>Нескольким системам агентов нужны одни и&nbsp;те&nbsp;же чаты, задачи, макеты и&nbsp;ключи. Если у&nbsp;каждого проекта своя копия, не&nbsp;понять, какой агент что видит.</dd></div>
+            <div class="did"><dt>Сделал</dt><dd>Каждый инструмент написан один раз, а&nbsp;права агента записаны в&nbsp;его конфиге и&nbsp;проверяются самим инструментом. В&nbsp;наборе диктовка в&nbsp;любое окно, хранилище ключей, которые агент использует, но не&nbsp;видит, и&nbsp;один вход в&nbsp;мессенджеры.</dd></div>
+            <div class="res"><dt>Результат</dt><dd>13&nbsp;инструментов на&nbsp;5&nbsp;постоянных агентов. Новый проект подключается строкой в&nbsp;настройках.</dd></div>
+          </dl>
+          <ul class="nums">
+            <li><strong>13</strong>инструментов в общем наборе</li>
+            <li><strong>5</strong>постоянных агентов на одном коде</li>
+            <li><strong>≈&nbsp;20&nbsp;000</strong>строк: Node.js, PowerShell, Python</li>
+            <li><strong>73</strong>коммита с 29.09.2026</li>
+          </ul>
+          <p class="tags1">.NET, Node.js, MCP, Groq</p>
+        </div>
+        <figure class="pic">
+          <svg class="diagram" viewBox="0 0 960 486" role="img" aria-labelledby="tools-d">
+            <title id="tools-d">Слои набора: агенты и человек сверху, под агентами конфиг доступа, ниже 13 инструментов, внизу внешние сервисы</title>
+            <defs><marker id="arrow-t" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z"/></marker></defs>
+            <g class="node agent"><rect x="20" y="20" width="330" height="56" rx="8"/><text x="36" y="44">Штурман хаба</text><text class="small" x="36" y="64">постоянная сессия Claude Code</text></g>
+            <g class="node agent"><rect x="370" y="20" width="330" height="56" rx="8"/><text x="386" y="44">Агенты проектов</text><text class="small" x="386" y="64">по агенту на проект</text></g>
+            <g class="node human"><rect x="740" y="20" width="200" height="56" rx="8"/><text x="756" y="44">Человек</text><text class="small" x="756" y="64">хоткей и голос</text></g>
+            <g class="node code"><rect x="20" y="110" width="680" height="56" rx="8"/><text x="36" y="134">Конфиг доступа потребителя</text><text class="small" x="36" y="154">что можно этому агенту: чаты, проекты, макеты, ключи, профиль браузера</text></g>
+            <g class="node"><rect x="12" y="192" width="936" height="176" rx="10"/><text class="small" x="28" y="212">общий набор: 13 инструментов</text></g>
+            <g class="node code"><rect x="28" y="224" width="208" height="56" rx="8"/><text x="44" y="248">Связь</text><text class="small" x="44" y="268">Max, WhatsApp, Telegram</text></g>
+            <g class="node code"><rect x="252" y="224" width="208" height="56" rx="8"/><text x="268" y="248">Трекеры</text><text class="small" x="268" y="268">Linear, Jira</text></g>
+            <g class="node code"><rect x="476" y="224" width="208" height="56" rx="8"/><text x="492" y="248">Figma</text><text class="small" x="492" y="268">макеты по снимку</text></g>
+            <g class="node code"><rect x="28" y="296" width="208" height="56" rx="8"/><text x="44" y="320">Ключница</text><text class="small" x="44" y="340">значения агенту не видны</text></g>
+            <g class="node code"><rect x="252" y="296" width="208" height="56" rx="8"/><text x="268" y="320">Браузер</text><text class="small" x="268" y="340">свой Chrome у агента</text></g>
+            <g class="node code"><rect x="476" y="296" width="208" height="56" rx="8"/><text x="492" y="320">Сборка</text><text class="small" x="492" y="340">пул аккаунтов EAS</text></g>
+            <g class="node code"><rect x="740" y="224" width="192" height="56" rx="8"/><text x="756" y="248">GroqDictate</text><text class="small" x="756" y="268">диктовка из трея</text></g>
+            <g class="node"><rect x="20" y="410" width="920" height="56" rx="8"/><text x="36" y="434">Внешние сервисы</text><text class="small" x="36" y="454">мессенджеры, Linear, Jira, Figma, Chrome, EAS, Groq, Bitwarden</text></g>
+            <path class="edge hot" d="M185,76 V108" marker-end="url(#arrow-t)"/>
+            <path class="edge hot" d="M535,76 V108" marker-end="url(#arrow-t)"/>
+            <path class="edge" d="M360,166 V190" marker-end="url(#arrow-t)"/>
+            <path class="edge ask" d="M836,76 V222" marker-end="url(#arrow-t)"/>
+            <path class="edge" d="M360,368 V408" marker-end="url(#arrow-t)"/>
+            <path class="edge" d="M836,280 V408" marker-end="url(#arrow-t)"/>
+          </svg>
+          <figcaption>Агенты обращаются к&nbsp;инструментам только через свой конфиг. Диктовкой я&nbsp;пользуюсь напрямую.</figcaption>
+        </figure>
+      </div>
+      <details class="more">
+        <summary>Что внутри: диктовка, ключи, мессенджеры, трекеры, Figma</summary>
+        <div class="more-body">
+          <div>
+            <h4>С чего начинал</h4>
+            <ul>
+              <li>Агенты работают на&nbsp;мобильное приложение, проекты партнёров и&nbsp;мой хаб. Всем нужны чаты, задачи, дизайн и&nbsp;ключи API.</li>
+              <li>Без общего набора у&nbsp;каждого проекта свой клиент трекера, свой мост к&nbsp;мессенджеру и&nbsp;своё место для ключей. Ошибку приходится чинить в&nbsp;каждой копии.</li>
+            </ul>
+            <h4>Главное правило</h4>
+            <p>Инструменты не&nbsp;знают, кто ими пользуется: в&nbsp;коде нет ни&nbsp;названий проектов, ни&nbsp;списков чатов. Агент приходит со&nbsp;своим конфигом, где перечислено, какие чаты ему читать и&nbsp;куда писать, какие проекты, макеты, профиль браузера и&nbsp;хранилище ключей. Права проверяет сам инструмент, поэтому их не&nbsp;обойти ни&nbsp;из&nbsp;командной строки, ни&nbsp;через MCP.</p>
+          </div>
+          <div>
+            <h4>Что внутри</h4>
+            <ul>
+              <li><b>GroqDictate.</b> Нажимаю горячую клавишу и&nbsp;говорю. Groq распознаёт речь, лёгкая модель убирает оговорки, словарь поправляет имена, и&nbsp;текст встаёт туда, где курсор. Один .exe на&nbsp;.NET, ~1,8&nbsp;МБ, без установщика.</li>
+              <li><b>Ключница.</b> Ключи лежат зашифрованными, по&nbsp;хранилищу на&nbsp;проект, боевые отдельно. Мастер-копия в&nbsp;Bitwarden. Показать значение агент не&nbsp;может: он запускает программу через Ключницу, и&nbsp;ключ попадает только в&nbsp;её окружение.</li>
+              <li><b>Связь.</b> Max, WhatsApp и&nbsp;Telegram через один MCP-сервер с&nbsp;локальным архивом. Агент видит только чаты из&nbsp;своего белого списка и&nbsp;пишет только туда, куда разрешено.</li>
+              <li><b>Трекеры.</b> Linear и&nbsp;Jira: одна библиотека, CLI и&nbsp;MCP. Фильтр уходит прямо в&nbsp;запрос, ответ проверяется ещё раз. Лимит запросов на&nbsp;ключ инструмент делит между агентами.</li>
+              <li><b>Figma.</b> Раз в&nbsp;сутки инструмент снимает макеты на&nbsp;диск, и&nbsp;днём агенты читают их без лимитов. Каждый видит только свои файлы.</li>
+              <li><b>Остальное.</b> Свой профиль Chrome у&nbsp;каждого агента, пул аккаунтов для мобильных сборок, запуск постоянных сессий.</li>
+            </ul>
+          </div>
+          <div>
+            <h4>Ещё цифры</h4>
+            <ul>
+              <li>10 тестовых файлов.</li>
+              <li>GroqDictate целиком&nbsp;— один .exe на&nbsp;~1,8&nbsp;МБ.</li>
+              <li>Ключи всех проектов лежат в&nbsp;одном зашифрованном месте, права агента&nbsp;— в&nbsp;одном конфиге.</li>
+            </ul>
+            <p class="note">Данные на&nbsp;09.10.2026.</p>
+          </div>
+          <div>
+            <h4>Стек</h4>
+            <dl class="stack">
+              <dt>Агенты</dt><dd>Claude Code: MCP-серверы, хуки, постоянные сессии</dd>
+              <dt>Код</dt><dd>Node.js (ESM), PowerShell, Python, C#/.NET (GroqDictate)</dd>
+              <dt>Интеграции</dt><dd>Max, WhatsApp, Telegram, Linear, Jira, Figma, Chrome, EAS, Groq</dd>
+              <dt>Ключи</dt><dd>DPAPI + AES-GCM, мастер-копия в Bitwarden</dd>
+            </dl>
+          </div>
+        </div>
+      </details>
+    </section>
+  </section>
+
+  <!-- ============ Контакты ============ -->
+  <section class="block" id="contacts" aria-labelledby="contacts-h">
+    <h2 class="block-h" id="contacts-h">Контакты</h2>
+    <p class="contact-line">Ищу проект или частичную занятость, удалённо, от&nbsp;15&nbsp;часов в&nbsp;неделю. Полную ставку тоже рассмотрю.</p>
+    <ul class="actions">
+      <li><a class="btn main" href="mailto:evilandfox@gmail.com">evilandfox@gmail.com</a></li>
+      <li><a class="btn" href="https://www.linkedin.com/in/rinat-taysin-2b31ab225">LinkedIn</a></li>
+      <li><a class="btn" href="https://github.com/rinat-taysin">GitHub</a></li>
+    </ul>
   </section>
 </main>
 
 <footer class="wrap">
-  <p>Ринат Тайсин, инженер AI-автоматизации. <a href="mailto:evilandfox@gmail.com">evilandfox@gmail.com</a>, <a href="https://www.linkedin.com/in/rinat-taysin-2b31ab225">LinkedIn</a>, <a href="https://github.com/rinat-taysin">GitHub</a></p>
+  <p>Ринат Тайсин, инженер AI-автоматизации. Резюме отдельной страницей&nbsp;— <a href="cv.html">cv.html</a>.</p>
 </footer>
+
+<script>
+// Подсветка текущего раздела в оглавлении; перед печатью раскрываем все подробности.
+(function () {
+  var links = Array.prototype.slice.call(document.querySelectorAll('.toc a'));
+  var map = {};
+  links.forEach(function (a) { map[a.getAttribute('href').slice(1)] = a; });
+  var targets = Object.keys(map).map(function (id) { return document.getElementById(id); }).filter(Boolean);
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        links.forEach(function (a) { a.classList.remove('on'); });
+        var a = map[e.target.id];
+        if (a) {
+          a.classList.add('on');
+          var toc = a.parentNode;
+          if (toc.scrollWidth > toc.clientWidth) toc.scrollTo({ left: a.offsetLeft - 16, behavior: 'auto' });
+        }
+      });
+    }, { rootMargin: '-30% 0px -65% 0px' });
+    targets.forEach(function (t) { io.observe(t); });
+  }
+  window.addEventListener('beforeprint', function () {
+    document.querySelectorAll('details').forEach(function (d) { d.open = true; });
+  });
+})();
+</script>
 </body>
 </html>

@@ -1,0 +1,158 @@
+/* Главная одной страницей (RU, 11.10): шапка с якорями, резюме, кейсы с подробностями в <details>.
+   Цвета, шрифты и схемы — из style.css; здесь только раскладка и плотность.
+   Скрыть кейс РИСК одной правкой: <body ... data-hide="risk">. */
+
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+.one { font-size: 1rem; line-height: 1.5; }
+.one .wrap { max-width: 76rem; }
+.one [id] { scroll-margin-top: 4rem; }
+.one p { margin: 0 0 0.5rem; }
+.one h3, .one h4 { margin: 0; }
+:where(.one) section { display: block; padding: 0; border: 0; }
+:where(.one) section > h2 { position: static; }
+
+body[data-hide~="risk"] .is-risk { display: none; }
+
+/* Липкая шапка: имя, оглавление-якоря, язык и тема */
+.bar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--paper);
+  border-bottom: 1px solid var(--line);
+}
+.bar-in { display: flex; align-items: center; gap: 1rem; min-height: 3.1rem; }
+.bar .home { font-family: var(--display); font-weight: 600; font-size: 0.9rem; letter-spacing: -0.01em; color: var(--ink); text-decoration: none; white-space: nowrap; }
+.toc { display: flex; align-items: center; gap: 0.1rem; flex: 1; min-width: 0; overflow-x: auto; scrollbar-width: none; }
+.toc::-webkit-scrollbar { display: none; }
+.toc a { color: var(--muted); text-decoration: none; white-space: nowrap; font-size: 0.9rem; padding: 0.4rem 0.5rem; }
+.toc a:hover { color: var(--ink); }
+.toc a.on { color: var(--ink); box-shadow: inset 0 -2px var(--human); }
+.toc .grp { color: var(--muted); font-size: 0.8rem; white-space: nowrap; margin-left: 0.4rem; padding-left: 0.75rem; border-left: 1px solid var(--line); }
+.bar-tools { display: flex; align-items: center; gap: 0.75rem; font-size: 0.9rem; }
+.bar-tools a { color: var(--muted); text-decoration: none; }
+.bar-tools a:hover { color: var(--ink); }
+
+/* Шапка страницы: кто, чем полезен, как связаться */
+.intro { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 0 1.5rem; align-items: center; padding: 1.75rem 0 1.25rem; }
+.intro .portrait { width: 6.5rem; height: 6.5rem; border-radius: 50%; background: var(--surface); box-shadow: 0.3rem 0.3rem 0 var(--agent); }
+.intro h1 { font-size: clamp(1.6rem, 3.4vw, 2.3rem); font-weight: 600; letter-spacing: -0.03em; line-height: 1.05; margin: 0 0 0.4rem; }
+.intro .pos { font-size: 1.15rem; font-weight: 500; line-height: 1.35; margin: 0 0 0.3rem; }
+.intro .facts { color: var(--muted); margin: 0 0 0.8rem; }
+.actions { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0; padding: 0; list-style: none; }
+.btn { display: inline-block; padding: 0.35rem 0.8rem; border: 1.5px solid var(--line); border-radius: 4px; color: var(--ink); text-decoration: none; font-weight: 500; font-size: 0.95rem; }
+.btn:hover { border-color: var(--ink); }
+.btn.main { background: var(--agent); border-color: var(--agent); color: var(--agent-ink); }
+
+/* Заголовки больших блоков: Резюме, Кейсы, Контакты */
+.block { padding: 0 0 1.5rem; }
+.block-h { font-family: var(--display); font-weight: 500; font-size: 1.15rem; letter-spacing: -0.01em; margin: 0 0 0.9rem; padding-top: 0.7rem; border-top: 1.5px solid var(--ink); }
+
+/* Резюме: опыт слева, навыки и образование справа */
+.cv1 { display: grid; grid-template-columns: minmax(0, 1.75fr) minmax(0, 1fr); gap: 0 2.5rem; }
+.about { grid-column: 1 / -1; margin: 0 0 0.75rem; padding: 0; list-style: none; max-width: 56rem; }
+.about li { margin: 0 0 0.2rem; padding-left: 0.9rem; position: relative; }
+.about li::before { content: ""; position: absolute; left: 0; top: 0.6em; width: 0.4rem; height: 0.4rem; background: var(--agent); border-radius: 1px; }
+.job1 { padding: 0.65rem 0; border-top: 1px solid var(--line); }
+.job1 .jh { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 0 1rem; }
+.job1 h3 { font-size: 1rem; font-weight: 600; line-height: 1.35; }
+.job1 h3 span { font-weight: 400; }
+.job1 .when { color: var(--muted); font-size: 0.875rem; white-space: nowrap; margin: 0; }
+.job1 p, .job1 ul { font-size: 0.95rem; margin: 0.2rem 0 0; }
+.job1 ul { padding-left: 1.1rem; }
+.job1 li { margin: 0.15rem 0; }
+.job1 li::marker { color: var(--muted); }
+.job1 .tech { color: var(--muted); font-size: 0.85rem; }
+.job1 details { margin-top: 0.2rem; }
+.side > div { padding: 0.65rem 0; border-top: 1px solid var(--line); }
+.side h3 { font-size: 1rem; font-weight: 600; margin: 0 0 0.3rem; }
+.side dl { margin: 0; font-size: 0.92rem; }
+.side dt { color: var(--muted); font-size: 0.85rem; }
+.side dd { margin: 0 0 0.35rem; }
+.side p { font-size: 0.92rem; margin: 0 0 0.35rem; }
+
+/* Раскрывашки */
+.one summary { cursor: pointer; color: var(--agent); font-weight: 500; font-size: 0.92rem; list-style: none; display: inline-flex; align-items: center; gap: 0.45rem; padding: 0.25rem 0; }
+.one summary::-webkit-details-marker { display: none; }
+.one summary::before { content: "+"; display: inline-grid; place-items: center; width: 1.05rem; height: 1.05rem; border: 1.5px solid currentColor; border-radius: 3px; font-size: 0.85rem; line-height: 1; }
+.one details[open] > summary::before { content: "\2212"; }
+.one summary:hover { text-decoration: underline; text-underline-offset: 0.2em; }
+
+/* Кейсы */
+.cases-legend { margin: 0 0 0.5rem; font-size: 0.85rem; }
+.case { padding: 1.25rem 0 1rem; border-top: 1px solid var(--line); }
+.case:first-of-type { border-top: 0; padding-top: 0.25rem; }
+.case-h { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.15rem 1rem; margin: 0 0 0.8rem; }
+.case-h h3 { font-family: var(--display); font-weight: 500; font-size: clamp(1.15rem, 2vw, 1.4rem); letter-spacing: -0.02em; line-height: 1.2; }
+.case-h p { color: var(--muted); font-size: 0.9rem; margin: 0; }
+.case-grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 1rem 2rem; align-items: start; }
+
+.tdr { display: grid; gap: 0.5rem; margin: 0; }
+.tdr > div { display: grid; grid-template-columns: 5.25rem minmax(0, 1fr); gap: 0 0.6rem; padding-left: 0.65rem; border-left: 3px solid var(--line); }
+.tdr dt { color: var(--muted); font-size: 0.85rem; padding-top: 0.12rem; }
+.tdr dd { margin: 0; }
+.tdr .did { border-left-color: var(--ink); }
+.tdr .res { border-left-color: var(--human); }
+.tdr .res dd { font-weight: 500; }
+
+.nums { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.6rem 1rem; margin: 0.9rem 0 0; padding: 0; list-style: none; }
+.nums li { border-top: 3px solid var(--human); padding-top: 0.3rem; color: var(--muted); font-size: 0.82rem; line-height: 1.3; }
+.nums strong { display: block; font-family: var(--display); font-weight: 500; font-size: 1.05rem; letter-spacing: -0.02em; line-height: 1.2; color: var(--ink); margin-bottom: 0.1rem; }
+.one .tags1 { color: var(--muted); font-size: 0.85rem; margin: 1rem 0 0; }
+
+.pic { margin: 0; padding: 0.75rem; background: var(--surface); border: 1px solid var(--line); border-radius: 4px; }
+.pic svg, .pic img { display: block; width: 100%; }
+.pic img { border-radius: 3px; }
+.pic figcaption { font-size: 0.82rem; margin-top: 0.4rem; }
+
+.more { margin-top: 0.75rem; }
+.more-body { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 0.75rem 2.5rem; padding: 0.6rem 0 0.25rem; font-size: 0.95rem; }
+.more-body > * { min-width: 0; }
+.more-body .full { grid-column: 1 / -1; }
+.more-body h4 { font-size: 0.95rem; font-weight: 600; margin: 0 0 0.3rem; }
+.more-body ul { padding-left: 1.1rem; margin: 0 0 0.5rem; }
+.more-body li { margin: 0.2rem 0; }
+.more-body li::marker { color: var(--muted); }
+.more-body .stack { grid-template-columns: 7.5rem minmax(0, 1fr); gap: 0.25rem 1rem; font-size: 0.9rem; }
+.more-body .note { color: var(--muted); font-size: 0.88rem; }
+.more-body .nums { margin-top: 0.2rem; }
+.more-body .figure-wide { margin: 0; padding: 0.75rem; }
+.more-body .figure-wide svg { display: block; max-width: 46rem; margin: 0 auto; }
+.more-body .shots { gap: 1rem; }
+.more-body .shots figcaption { font-size: 0.82rem; }
+.more-body .shots .phone img { max-width: 14rem; }
+.case-link { font-size: 0.88rem; }
+
+/* Контакты и подвал */
+.one .contact-line { margin: 0 0 0.75rem; max-width: 46rem; }
+.one footer { padding: 1rem 0 2rem; font-size: 0.88rem; }
+
+@media (max-width: 860px) {
+  .cv1, .case-grid, .more-body { grid-template-columns: minmax(0, 1fr); }
+  .more-body .full { grid-column: 1; }
+  .pic { overflow-x: auto; }
+  .pic svg { min-width: 38rem; }
+}
+
+@media (max-width: 720px) {
+  .one .wrap { padding: 0 1rem; }
+  .one [id] { scroll-margin-top: 5.75rem; }
+  .bar-in { flex-wrap: wrap; gap: 0 0.75rem; padding-top: 0.35rem; }
+  .bar .home { flex: 1; }
+  .toc { order: 3; flex-basis: 100%; margin: 0 -0.5rem; }
+  .toc .grp { margin-left: 0.2rem; padding-left: 0.5rem; }
+  .intro { grid-template-columns: minmax(0, 1fr); padding: 1.25rem 0 1rem; }
+  .intro .portrait { width: 4.5rem; height: 4.5rem; margin-bottom: 0.75rem; }
+  .intro .pos { font-size: 1.05rem; }
+  .tdr > div { grid-template-columns: minmax(0, 1fr); }
+  .more-body .stack { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .more-body .stack dd { margin-bottom: 0.4rem; }
+  .more-body .figure-wide svg { min-width: 40rem; }
+}
+
+@media print {
+  .bar { position: static; }
+  .toc, .bar-tools { display: none; }
+}
